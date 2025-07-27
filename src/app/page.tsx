@@ -7,7 +7,6 @@ const page = () => {
     <div>
       <Header/>
       <Banner/>
-      
     </div>
   );
 };
