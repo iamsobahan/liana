@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${rajdhani.variable} ${raleway.variable}`}>
+      <body className={`${rajdhani.variable} ${raleway.variable} bg-white`}>
         {children}
       </body>
     </html>

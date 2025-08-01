@@ -9,7 +9,7 @@ const Slider = dynamic(() => import('react-slick'), { ssr: false });
 const slides = [{ image: banner }, { image: banner1 }];
 
 const settings = {
-  dots: false,
+  dots: true,
   fade: true,
   arrows: false,
   infinite: true,

@@ -29,10 +29,10 @@ const Header = () => {
     <div className="w-full">
       {/* Top Header */}
       <header className="px-4 py-2 bg-gray-100 shadow flex justify-between items-center text-xs sm:text-sm">
-        <div className="flex items-center gap-2 font-medium text-gray-800">
+        <div className="flex items-center gap-0 font-medium text-gray-800">
           <IoCall />
           <span className="uppercase font-medium text-[13px]">
-            Customer care: +8801999498887
+            <a href="tel:+8801999498887">+8801999498887</a>
           </span>
         </div>
 
