@@ -71,6 +71,7 @@ const settings = {
     {
       breakpoint: 640,
       settings: { slidesToShow: 1 },
+      arrow: false,
     },
   ],
 };
