@@ -70,7 +70,7 @@ const settings = {
     },
     {
       breakpoint: 640,
-      settings: { slidesToShow: 1, arrows: false }
+      settings: { slidesToShow: 2, arrows: false }
     },
   ],
 };
@@ -79,7 +79,7 @@ const BestProductPage = () => {
   return (
     <div className="container mx-auto mt-10 px-4">
       <div className="text-center">
-        <h2 className="text-3xl md:text-2xl font-normal mb-10 text-center font-rajdhani uppercase tracking-widest relative inline-block text-gray-900 animate-fade-in-down">
+        <h2 className="text-md md:text-2xl font-normal mb-10 text-center font-rajdhani uppercase tracking-widest relative inline-block text-gray-900 animate-fade-in-down">
           Best Selling Products
           <span className="block h-[2px] w-30 mx-auto mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 rounded-"></span>
         </h2>
