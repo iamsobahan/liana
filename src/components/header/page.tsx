@@ -39,7 +39,7 @@ const Header = () => {
     <div className="w-full">
       {/* Top Header */}
       <div
-        className={`z-50 w-full bg-white transition-shadow duration-300 md:${
+        className={`z-50 w-full bg-white transition-shadow duration-300 ${
           isSticky ? 'fixed top-0 shadow-lg' : 'relative'
         }`}
       >
