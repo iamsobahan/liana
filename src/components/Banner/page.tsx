@@ -5,25 +5,32 @@ import banner1 from '../../assets/banner3.jpg';
 import banner from '../../assets/banner2.jpg';
 import dynamic from 'next/dynamic';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import type { FC, MouseEventHandler } from 'react';
 
 const Slider = dynamic(() => import('react-slick'), { ssr: false });
 
-const slides = [{ image: banner }, { image: banner1 }];
+const slides = [{ image: banner }, { image: banner1 }]
 
-// Custom Arrows
-const PrevArrow = ({ onClick }: any) => (
+// Custom Arrows with proper types
+interface ArrowProps {
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}
+
+const PrevArrow: FC<ArrowProps> = ({ onClick }) => (
   <button
-    className="absolute z-10 left-2 sm:left-5 top-1/2 transform -translate-y-1/2 text-white bg-black/40 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
+    type="button"
     onClick={onClick}
+    className="absolute z-10 left-2 sm:left-5 top-1/2 transform -translate-y-1/2 text-white bg-black/40 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
   >
     <FaArrowLeft size={20} />
   </button>
 );
 
-const NextArrow = ({ onClick }: any) => (
+const NextArrow: FC<ArrowProps> = ({ onClick }) => (
   <button
-    className="cursor-pointer absolute z-10 right-2 sm:right-5 top-1/2 transform -translate-y-1/2 text-white bg-black/40 hover:bg-yellow-500 p-2 rounded-full focus:outline-none"
+    type="button"
     onClick={onClick}
+    className="absolute z-10 right-2 sm:right-5 top-1/2 transform -translate-y-1/2 text-white bg-black/40 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
   >
     <FaArrowRight size={20} />
   </button>
@@ -31,7 +38,7 @@ const NextArrow = ({ onClick }: any) => (
 
 // Slider Settings
 const settings = {
-  dots: false,
+  dots: true,
   fade: true,
   infinite: true,
   autoplay: true,
@@ -41,7 +48,12 @@ const settings = {
   arrows: true,
   prevArrow: <PrevArrow />,
   nextArrow: <NextArrow />,
-  
+  appendDots: (dots: React.ReactNode) => (
+    <div className="absolute bottom-5 w-full flex justify-center">{dots}</div>
+  ),
+  customPaging: () => (
+    <div className="w-3 h-3 bg-white rounded-full mx-1" />
+  ),
 };
 
 const Banner = () => {
@@ -59,8 +71,9 @@ const Banner = () => {
               fill
               className="object-cover"
               placeholder="blur"
+              sizes="100vw"
             />
-            <div className="absolute inset-0 flex items-center justify-end pr-4 sm:pr-10 md:pr-16 bg-black/20"></div>
+            <div className="absolute inset-0 bg-black/20" />
           </div>
         ))}
       </Slider>
