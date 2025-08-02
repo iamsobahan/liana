@@ -28,7 +28,7 @@ const Header = () => {
   return (
     <div className="w-full">
       {/* Top Header */}
-      <header className="px-4 py-2 bg-gray-100 shadow flex justify-between items-center text-xs sm:text-sm">
+      <header className="container mx-auto py-2 bg-gray-100 shadow flex justify-between items-center text-xs sm:text-sm">
         <div className="flex items-center gap-0 font-medium text-gray-800">
           <IoCall />
           <span className="uppercase font-medium text-[13px]">
@@ -63,7 +63,7 @@ const Header = () => {
 
       {/* Logo + Icons */}
       <div className="bg-white shadow-sm py-3 border-b border-gray-300">
-        <div className="max-w-7xl mx-auto flex justify-between items-center px-4">
+        <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
           <Link href="/">
             <Image
@@ -75,12 +75,12 @@ const Header = () => {
             />
           </Link>
 
-          <div className="hidden md:block w-full bg-white px-4 py-3">
+          <div className="hidden md:block w-[600px] bg-white px-4 py-3">
             <form action="" className="relative w-full">
               <input
                 type="text"
                 placeholder="Search your products"
-                className="w-full pl-4 pr-10 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
+                className="w-full pl-4 pr-10 py-2 border border-gray-400 rounded-3xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
               />
               <button
                 type="submit"
