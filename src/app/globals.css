@@ -11,3 +11,10 @@ body, p, a, span {
   font-family: var(--font-rajdhani);
   
 }
+
+
+.zIndex_sticky{
+  z-index: 1000px;
+}
+
+

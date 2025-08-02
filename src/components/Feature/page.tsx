@@ -1,8 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import dynamic from 'next/dynamic';
+
 const Slider = dynamic(() => import('react-slick'), { ssr: false });
 
 import slick from '../../assets/slick.jpeg';
@@ -21,26 +22,24 @@ const slides = [
   { image: slick5 },
 ];
 
-// ❗ Move these up here:
 const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
   <div
-    className="absolute top-1/2 -left-8 transform -translate-y-1/2 z-10 cursor-pointer text-yellow-500 hover:text-yellow-600 transition"
+    className="absolute top-1/2 -left-6 transform -translate-y-1/2 z-10 cursor-pointer text-yellow-500 hover:text-yellow-600"
     onClick={onClick}
   >
-    <HiChevronLeft className="w-10 h-10" />
+    <HiChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
   </div>
 );
 
 const NextArrow = ({ onClick }: { onClick?: () => void }) => (
   <div
-    className="absolute top-1/2 -right-8 transform -translate-y-1/2 z-10 cursor-pointer text-yellow-500 hover:text-yellow-600 transition"
+    className="absolute top-1/2 -right-6 transform -translate-y-1/2 z-10 cursor-pointer text-yellow-500 hover:text-yellow-600"
     onClick={onClick}
   >
-    <HiChevronRight className="w-10 h-10" />
+    <HiChevronRight className="w-8 h-8 md:w-10 md:h-10" />
   </div>
 );
 
-// ✅ Now it's safe to use the arrows
 const settings = {
   dots: false,
   arrows: true,
@@ -70,44 +69,56 @@ const settings = {
     },
     {
       breakpoint: 640,
-      settings: { slidesToShow: 1, arrows: false }
-    
+      settings: { slidesToShow: 1, arrows: false },
     },
   ],
 };
 
 const FeaturePage = () => {
+  const modalRef = useRef<HTMLDialogElement>(null);
+
+  const showModal = () => {
+    if (modalRef.current) {
+      modalRef.current.showModal();
+    }
+  };
+
   return (
     <div className="container mx-auto px-4">
-      <div className="text-center">
-        <h2 className="text-3xl md:text-2xl font-normal mb-10 text-center font-rajdhani uppercase tracking-widest relative inline-block text-gray-900 animate-fade-in-down">
+      <dialog id="my_modal_1" ref={modalRef} className="modal">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Buy Now!</h3>
+          <p className="py-4">You clicked Buy Now. Implement logic here.</p>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn btn-sm btn-warning">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
+      <div className="text-center mb-10">
+        <h2 className="text-md md:text-2xl font-semibold text-gray-800 uppercase tracking-widest font-rajdhani animate-fade-in-down">
           Feature Products
-          <span className="block h-[2px] w-30 mx-auto mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 rounded-"></span>
         </h2>
+        <span className="block h-[2px] w-32 mx-auto mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"></span>
       </div>
-      {/* <button className="text-white bg-yellow-600 hover:bg-yellow-700 transition px-4 py-2 rounded-full text-sm font-semibold font-raleway">
-          See All
-        </button> */}
 
       <div className="-mx-2">
         <Slider {...settings}>
           {slides.map((item, idx) => (
-            <div
-              key={idx}
-              className="px-2" // this adds horizontal spacing
-            >
-              <div className="bg-white cursor-pointer shadow-lg rounded-lg overflow-hidden hover:shadow-xl hover:border-gray-300 transition border">
+            <div key={idx} className="px-2">
+              <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg border transition">
                 <div className="relative h-60 w-full">
                   <Image
                     src={item.image}
-                    alt="Hello"
-                    className="rounded-tr-lg  object-cover w-full h-full"
-                    width={500}
-                    height={240}
+                    alt={`Product ${idx + 1}`}
+                    fill
+                    className="object-cover"
                   />
                 </div>
                 <div className="p-4 text-center">
-                  <h4 className="font-raleway font-semibold text-lg text-gray-800">
+                  <h4 className="font-semibold text-lg text-gray-800">
                     Women Denim Jewelry - Skythread
                   </h4>
                   <p className="text-sm text-green-600 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
@@ -120,7 +131,10 @@ const FeaturePage = () => {
                     <span className="text-black font-bold">৳1900</span>
                   </div>
                 </div>
-                <div className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-1 pt-3 font-semibold font-raleway cursor-pointer">
+                <div
+                  className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-2 font-semibold cursor-pointer"
+                  onClick={showModal}
+                >
                   <span className="inline-flex items-center justify-center gap-1">
                     <svg
                       className="w-5 h-5"
