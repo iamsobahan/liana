@@ -76,7 +76,7 @@ const Header = () => {
             isSticky ? 'fixed top-0 shadow-lg' : 'relative'
           }`}
         >
-          <div className="bg-white shadow-sm py-3 border-b border-gray-300">
+          <div className="bg-white py-3 border-b border-gray-300">
             <div className="md:container px-4 mx-auto flex justify-between items-center">
               {/* Logo */}
               <Link href="/">
