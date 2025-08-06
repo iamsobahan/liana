@@ -80,7 +80,7 @@ const NewProductPage = () => {
   return (
     <div className="container mx-auto mt-10 px-4">
       <div className="text-center">
-        <h2 className="text-md md:text-2xl font-normal mb-10 text-center font-rajdhani uppercase tracking-widest relative inline-block text-gray-900 animate-fade-in-down">
+        <h2 className="text-md md:text-2xl font-normal mb-5 md:mb-10 text-center font-rajdhani uppercase tracking-widest relative inline-block text-gray-900 animate-fade-in-down">
           New Arrival Products
           <span className="block h-[2px] w-30 mx-auto mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 rounded-"></span>
         </h2>
@@ -97,17 +97,16 @@ const NewProductPage = () => {
               className="px-2" // this adds horizontal spacing
             >
               <div className="bg-white cursor-pointer shadow-lg rounded-lg overflow-hidden hover:shadow-xl hover:border-gray-300 transition border">
-                <div className="relative h-60 w-full">
+                <div className="relative h-32 md:h-60 w-full">
                   <Image
                     src={item.image}
                     alt="Hello"
-                    className="rounded-tr-lg  object-cover w-full h-full"
-                    width={500}
-                    height={240}
+                    className="rounded-tr-lg  object-cover h-[120px] w-[400px] md:h-[240px] md:w-[500px]"
+                   
                   />
                 </div>
-                <div className="p-4 text-center">
-                  <h4 className="font-raleway font-semibold text-lg text-gray-800">
+                <div className="p-0 md:p-4 text-center">
+                  <h4 className="font-raleway font-mediam md:font-semibold text-md md:text-lg text-gray-800">
                     Women Denim Jewelry - Skythread
                   </h4>
                   <p className="text-sm text-green-600 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
@@ -120,7 +119,7 @@ const NewProductPage = () => {
                     <span className="text-black font-bold">৳1900</span>
                   </div>
                 </div>
-                <div className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-1 pt-3 font-semibold font-raleway cursor-pointer">
+                <div className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer">
                   <span className="inline-flex items-center justify-center gap-1">
                     <svg
                       className="w-5 h-5"

@@ -2,12 +2,14 @@ import type { Metadata } from 'next';
 
 import './globals.css';
 
+
+
 import { Rajdhani, Raleway } from 'next/font/google';
 
 const rajdhani = Rajdhani({
-  variable: '--font-rajdhani',
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '700'], // whatever weights you use
+  display: 'swap',
 });
 
 const raleway = Raleway({

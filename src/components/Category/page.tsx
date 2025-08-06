@@ -24,8 +24,8 @@ const CategoryPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className='text-center'>
-        <h2 className="text-md md:text-2xl font-normal mb-10 text-center font-rajdhani uppercase tracking-widest relative inline-block text-gray-900 animate-fade-in-down">
+      <div className="text-center mb-5 md:mb-10">
+        <h2 className="text-md md:text-2xl font-normal font-rajdhani uppercase tracking-widest relative inline-block text-gray-900 animate-fade-in-down">
           Explore Our Categories
           <span className="block h-[2px] w-50 mx-auto mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400 rounded-"></span>
         </h2>
@@ -35,7 +35,9 @@ const CategoryPage = () => {
         {items.map((item, index) => (
           <div
             key={index}
-            className={`w-full cursor-pointer ${item.span ? 'row-span-2 xl:row-span-2' : ''}`}
+            className={`w-full cursor-pointer ${
+              item.span ? 'row-span-2 xl:row-span-2' : ''
+            }`}
           >
             <div
               className={`relative w-full ${item.span ? 'h-full' : 'h-auto'}`}

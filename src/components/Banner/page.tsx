@@ -4,7 +4,7 @@ import Image from 'next/image';
 import banner1 from '../../assets/banner3.jpg';
 import banner from '../../assets/banner2.jpg';
 import dynamic from 'next/dynamic';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import type { FC, MouseEventHandler } from 'react';
 
 const Slider = dynamic(() => import('react-slick'), { ssr: false });
@@ -22,7 +22,7 @@ const PrevArrow: FC<ArrowProps> = ({ onClick }) => (
     onClick={onClick}
     className="absolute z-10 left-2 sm:left-5 top-1/2 transform -translate-y-1/2 text-white bg-black/40 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
   >
-    <FaArrowLeft size={20} />
+    <HiChevronLeft size={30} />
   </button>
 );
 
@@ -32,7 +32,7 @@ const NextArrow: FC<ArrowProps> = ({ onClick }) => (
     onClick={onClick}
     className="absolute z-10 right-2 sm:right-5 top-1/2 transform -translate-y-1/2 text-white bg-black/40 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
   >
-    <FaArrowRight size={20} />
+    <HiChevronRight size={30} />
   </button>
 );
 

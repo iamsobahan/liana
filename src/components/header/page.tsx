@@ -38,11 +38,7 @@ const Header = () => {
   return (
     <div className="w-full">
       {/* Top Header */}
-      <div
-        className={`z-50 w-full bg-white transition-shadow duration-300 ${
-          isSticky ? 'fixed top-0 shadow-lg' : 'relative'
-        }`}
-      >
+      <div>
         <header className="px-4 md:container mx-auto py-2 bg-gray-100 shadow flex justify-between items-center text-xs sm:text-sm">
           <div className="flex items-center gap-0 font-medium text-gray-800">
             <IoCall />
@@ -75,73 +71,79 @@ const Header = () => {
             </div>
           </div>
         </header>
-        <div className="bg-white shadow-sm py-3 border-b border-gray-300">
-          <div className="md:container px-4 mx-auto flex justify-between items-center">
-            {/* Logo */}
-            <Link href="/">
-              <Image
-                src={logo}
-                alt="Logo"
-                width={160}
-                height={60}
-                className="object-contain"
-              />
-            </Link>
-
-            <div className="hidden md:block w-[600px] bg-white px-4 py-3">
-              <form action="" className="relative w-full">
-                <input
-                  type="text"
-                  placeholder="Search your products"
-                  className="w-full pl-4 pr-10 py-2 border border-gray-400 rounded-3xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
+        <div
+          className={`z-50 w-full bg-white transition-shadow duration-300 ${
+            isSticky ? 'fixed top-0 shadow-lg' : 'relative'
+          }`}
+        >
+          <div className="bg-white shadow-sm py-3 border-b border-gray-300">
+            <div className="md:container px-4 mx-auto flex justify-between items-center">
+              {/* Logo */}
+              <Link href="/">
+                <Image
+                  src={logo}
+                  alt="Logo"
+                  width={160}
+                  height={60}
+                  className="object-contain"
                 />
-                <button
-                  type="submit"
-                  className="absolute inset-y-0 right-3 flex items-center text-gray-600 cursor-pointer z-50"
-                >
-                  <AiOutlineSearch className="w-6 h-6" />
-                </button>
-              </form>
-            </div>
+              </Link>
 
-            {/* Icons */}
-            <div className="flex items-center gap-4">
-              <div className="relative cursor-pointer">
-                <FaRegHeart className="text-gray-800 text-xl" />
-                <span className="absolute -top-2 -right-2 bg-[#D6A74E] text-xs px-1 rounded-full text-white">
-                  0
-                </span>
+              <div className="hidden md:block w-[600px] bg-white px-4 py-3">
+                <form action="" className="relative w-full">
+                  <input
+                    type="text"
+                    placeholder="Search your products"
+                    className="w-full pl-4 pr-10 py-2 border border-gray-400 rounded-3xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute inset-y-0 right-3 flex items-center text-gray-600 cursor-pointer z-50"
+                  >
+                    <AiOutlineSearch className="w-6 h-6" />
+                  </button>
+                </form>
               </div>
-              <div className="relative cursor-pointer">
-                <BsCartCheckFill className="text-gray-800 text-xl" />
-                <span className="absolute -top-2 -right-2 bg-[#D6A74E] text-xs px-1 rounded-full text-white">
-                  0
-                </span>
+
+              {/* Icons */}
+              <div className="flex items-center gap-4">
+                <div className="relative cursor-pointer">
+                  <FaRegHeart className="text-gray-800 text-xl" />
+                  <span className="absolute -top-2 -right-2 bg-[#D6A74E] text-xs px-1 rounded-full text-white">
+                    0
+                  </span>
+                </div>
+                <div className="relative cursor-pointer">
+                  <BsCartCheckFill className="text-gray-800 text-xl" />
+                  <span className="absolute -top-2 -right-2 bg-[#D6A74E] text-xs px-1 rounded-full text-white">
+                    0
+                  </span>
+                </div>
+                {/* Drawer Toggle */}
+                <button
+                  onClick={() => setDrawerOpen(!isDrawerOpen)}
+                  className="sm:hidden"
+                >
+                  <HiMenu className="text-2xl text-gray-700" />
+                </button>
               </div>
-              {/* Drawer Toggle */}
-              <button
-                onClick={() => setDrawerOpen(!isDrawerOpen)}
-                className="sm:hidden"
-              >
-                <HiMenu className="text-2xl text-gray-700" />
-              </button>
             </div>
           </div>
-        </div>
-        <div className="block md:hidden w-full bg-white px-4 py-3">
-          <form action="" className="relative w-full">
-            <input
-              type="text"
-              placeholder="Search your products"
-              className="w-full pl-4 pr-10 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
-            />
-            <button
-              type="submit"
-              className="absolute inset-y-0 right-3 flex items-center text-gray-600 cursor-pointer z-50"
-            >
-              <AiOutlineSearch className="w-6 h-6" />
-            </button>
-          </form>
+          <div className="block md:hidden w-full bg-white px-4 py-3">
+            <form action="" className="relative w-full">
+              <input
+                type="text"
+                placeholder="Search your products"
+                className="w-full pl-4 pr-10 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
+              />
+              <button
+                type="submit"
+                className="absolute inset-y-0 right-3 flex items-center text-gray-600 cursor-pointer z-50"
+              >
+                <AiOutlineSearch className="w-6 h-6" />
+              </button>
+            </form>
+          </div>
         </div>
       </div>
 

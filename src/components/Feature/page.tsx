@@ -97,7 +97,7 @@ const FeaturePage = () => {
         </div>
       </dialog>
 
-      <div className="text-center mb-10">
+      <div className="text-center mb-5 md:mb-10">
         <h2 className="text-md md:text-2xl font-semibold text-gray-800 uppercase tracking-widest font-rajdhani animate-fade-in-down">
           Feature Products
         </h2>
@@ -109,16 +109,16 @@ const FeaturePage = () => {
           {slides.map((item, idx) => (
             <div key={idx} className="px-2">
               <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg border transition">
-                <div className="relative h-60 w-full">
+                <div className="relative h-32 md:h-60 w-full">
                   <Image
                     src={item.image}
                     alt={`Product ${idx + 1}`}
                     fill
-                    className="object-cover"
+                    className="rounded-tr-lg  object-cover h-[120px] w-[400px] md:h-[240px] md:w-[500px]"
                   />
                 </div>
-                <div className="p-4 text-center">
-                  <h4 className="font-semibold text-lg text-gray-800">
+                <div className="mt-2 md:p-4 text-center">
+                  <h4 className="font-raleway font-mediam md:font-semibold text-md md:text-lg text-gray-800">
                     Women Denim Jewelry - Skythread
                   </h4>
                   <p className="text-sm text-green-600 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
@@ -132,7 +132,7 @@ const FeaturePage = () => {
                   </div>
                 </div>
                 <div
-                  className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-2 font-semibold cursor-pointer"
+                  className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer"
                   onClick={showModal}
                 >
                   <span className="inline-flex items-center justify-center gap-1">
