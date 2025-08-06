@@ -1,24 +1,19 @@
 import type { Metadata } from 'next';
-
 import './globals.css';
-
-
 
 import { Rajdhani, Raleway } from 'next/font/google';
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],
-  weight: ['400', '700'], // whatever weights you use
+  weight: ['400', '700'],
   display: 'swap',
+  variable: '--font-rajdhani', // ✅ Added
 });
 
 const raleway = Raleway({
   subsets: ['latin'],
   variable: '--font-raleway',
 });
-
-
-
 
 export const metadata: Metadata = {
   title: 'Liana',
