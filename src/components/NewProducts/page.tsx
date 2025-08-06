@@ -102,10 +102,9 @@ const NewProductPage = () => {
                     src={item.image}
                     alt="Hello"
                     className="rounded-tr-lg  object-cover h-[120px] w-[400px] md:h-[240px] md:w-[500px]"
-                   
                   />
                 </div>
-                <div className="p-0 md:p-4 text-center">
+                <div className="mt-0.5 md:mt-2 pt-0 md:p-4 text-center">
                   <h4 className="font-raleway font-mediam md:font-semibold text-md md:text-lg text-gray-800">
                     Women Denim Jewelry - Skythread
                   </h4>

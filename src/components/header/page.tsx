@@ -36,10 +36,10 @@ const Header = () => {
   ];
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-gray-100">
       {/* Top Header */}
       <div>
-        <header className="px-4 md:container mx-auto py-2 bg-gray-100 shadow flex justify-between items-center text-xs sm:text-sm">
+        <header className="px-4 md:container mx-auto py-2 flex justify-between items-center text-xs sm:text-sm">
           <div className="flex items-center gap-0 font-medium text-gray-800">
             <IoCall />
             <span className="uppercase font-medium text-[13px]">
@@ -129,7 +129,13 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <div className="block md:hidden w-full bg-white px-4 py-3">
+
+          <div
+            className={`block my-3 px-2 md:hidden ${
+              isSticky ? 'hidden' : ''
+            }`}
+          
+          >
             <form action="" className="relative w-full">
               <input
                 type="text"
