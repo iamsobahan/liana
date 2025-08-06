@@ -47,14 +47,14 @@ const settings = {
   infinite: true,
   autoplay: true,
   autoplaySpeed: 3000,
-  slidesToShow: 4,
+  slidesToShow: 5,
   slidesToScroll: 1,
   prevArrow: <PrevArrow />,
   nextArrow: <NextArrow />,
   responsive: [
     {
       breakpoint: 1536,
-      settings: { slidesToShow: 4 },
+      settings: { slidesToShow: 5 },
     },
     {
       breakpoint: 1280,
@@ -96,7 +96,7 @@ const NewProductPage = () => {
               key={idx}
               className="px-2" // this adds horizontal spacing
             >
-              <div className="bg-white cursor-pointer shadow-lg rounded-lg overflow-hidden hover:shadow-xl hover:border-gray-300 transition border">
+              <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg border-gray-100 transition">
                 <div className="relative h-32 md:h-60 w-full">
                   <Image
                     src={item.image}
@@ -104,7 +104,7 @@ const NewProductPage = () => {
                     className="rounded-tr-lg  object-cover h-[120px] w-[400px] md:h-[240px] md:w-[500px]"
                   />
                 </div>
-                <div className="mt-0.5 md:mt-2 pt-0 md:p-4 text-center">
+                <div className="mt-0.5 md:mt-2 md:p-1 text-center">
                   <h4 className="font-raleway font-mediam md:font-semibold text-md md:text-lg text-gray-800">
                     Women Denim Jewelry - Skythread
                   </h4>
