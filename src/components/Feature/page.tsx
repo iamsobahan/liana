@@ -118,7 +118,7 @@ const FeaturePage = () => {
                   />
                 </div>
                 <div className="mt-0.5 md:mt-2 md:p-1 text-center">
-                  <h4 className="font-raleway font-mediam md:font-semibold text-md md:text-lg text-gray-800">
+                  <h4 className="font-raleway md:font-semibold text-md md:text-lg text-gray-800">
                     Women Denim Jewelry - Skythread
                   </h4>
                   <p className="text-sm text-green-600 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">

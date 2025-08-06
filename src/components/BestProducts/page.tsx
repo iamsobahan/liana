@@ -95,16 +95,17 @@ const BestProductPage = () => {
               key={idx}
               className="px-2" // this adds horizontal spacing
             >
-              <div className="bg-white cursor-pointer shadow-lg rounded-lg overflow-hidden hover:shadow-xl hover:border-gray-300 transition border">
+              <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg border-gray-100 transition">
                 <div className="relative h-32 md:h-60 w-full">
                   <Image
                     src={item.image}
-                    alt="Hello"
+                    alt={`Product ${idx + 1}`}
+                    fill
                     className="rounded-tr-lg  object-cover h-[120px] w-[400px] md:h-[240px] md:w-[500px]"
                   />
                 </div>
-                <div className="p-0 md:p-4 text-center">
-                  <h4 className="font-raleway font-mediam md:font-semibold text-md md:text-lg text-gray-800">
+                <div className="mt-0.5 md:mt-2 md:p-1 text-center">
+                  <h4 className="font-raleway md:font-semibold text-md md:text-lg text-gray-800">
                     Women Denim Jewelry - Skythread
                   </h4>
                   <p className="text-sm text-green-600 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
