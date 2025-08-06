@@ -87,6 +87,8 @@ const FeaturePage = () => {
 
   return (
     <div className="container mx-auto px-4">
+
+      {/* model box pop up  */}
       <dialog id="my_modal_1" ref={modalRef} className="modal">
         <div>
           <div className="w-full max-w-md mx-auto bg-white p-4 shadow-md rounded-md gap-4 items-start">

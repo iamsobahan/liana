@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import dynamic from 'next/dynamic';
@@ -77,8 +77,62 @@ const settings = {
 };
 
 const NewProductPage = () => {
+const modalRef = useRef<HTMLDialogElement>(null);
+ const showModal = () => {
+   if (modalRef.current) {
+     modalRef.current.showModal();
+
+    
+   }
+ };
+
   return (
     <div className="container mx-auto mt-10 px-4">
+      <dialog id="my_modal_1" ref={modalRef} className="modal">
+        <div>
+          <div className="w-full max-w-md mx-auto bg-white p-4 shadow-md rounded-md gap-4 items-start">
+            {/* Left: Image */}
+            <div className="modal-action pt-0 mt-0">
+              <form method="dialog">
+                <button className="text-[#D6A74E] hover:text-[#f6c262] text-2xl font-semibold leading-none cursor-pointer">
+                  X
+                </button>
+              </form>
+            </div>
+            <div className="flex min-w-[80px]">
+              <Image
+                src={slick1}
+                alt="Gift Card"
+                className="rounded mr-3"
+                width={80}
+                height={80}
+                style={{ objectFit: 'cover' }}
+              />
+
+              {/* Right: Content */}
+              <div className="flex-1">
+                <div className="items-start">
+                  <h2 className="text-lg font-semibold cursor-pointer text-gray-900">
+                    Bata Digital Gift Card 15000Tk
+                  </h2>
+                </div>
+
+                <p className="text-sm text-gray-400 cursor-pointer italic mt-1">
+                  Added to your shopping cart.
+                </p>
+              </div>
+            </div>
+            <div className="mt-3">
+              <button className="flex cursor-pointer mb-1 items-center gap-1 text-sm font-semibold text-gray-800 hover:text-yellow-600 border-b-2 border-transparent hover:border-yellow-600 transition duration-150">
+                CONTINUE SHOPPING →
+              </button>
+              <button className="flex cursor-pointer items-center gap-1 text-sm font-semibold text-gray-800 hover:text-yellow-600 border-b-2 border-transparent hover:border-yellow-600 transition duration-150">
+                VIEW CART →
+              </button>
+            </div>
+          </div>
+        </div>
+      </dialog>
       <div className="text-center">
         <h2 className="text-md md:text-2xl font-normal mb-5 md:mb-10 text-center font-rajdhani uppercase tracking-widest relative inline-block text-gray-900 animate-fade-in-down">
           New Arrival Products
@@ -119,7 +173,10 @@ const NewProductPage = () => {
                     <span className="text-black font-bold">৳1900</span>
                   </div>
                 </div>
-                <div className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer">
+                <div
+                  className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer"
+                  onClick={showModal}
+                >
                   <span className="inline-flex items-center justify-center gap-1">
                     <svg
                       className="w-5 h-5"
