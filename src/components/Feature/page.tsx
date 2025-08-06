@@ -12,6 +12,7 @@ import slick2 from '../../assets/slick2.jpeg';
 import slick3 from '../../assets/slick3.jpeg';
 import slick4 from '../../assets/slick4.jpeg';
 import slick5 from '../../assets/slick5.jpeg';
+import { setTimeout } from 'timers/promises';
 
 const slides = [
   { image: slick },
@@ -76,27 +77,62 @@ const settings = {
 
 const FeaturePage = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
+ const showModal = () => {
+   if (modalRef.current) {
+     modalRef.current.showModal();
 
-  const showModal = () => {
-    if (modalRef.current) {
-      modalRef.current.showModal();
-    }
-  };
+    
+   }
+ };
 
   return (
     <div className="container mx-auto px-4">
       <dialog id="my_modal_1" ref={modalRef} className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Buy Now!</h3>
-          <p className="py-4">You clicked Buy Now. Implement logic here.</p>
-          <div className="modal-action">
-            <form method="dialog">
-              <button className="btn btn-sm btn-warning">Close</button>
-            </form>
+        <div>
+          <div className="w-full max-w-md mx-auto bg-white p-4 shadow-md rounded-md gap-4 items-start">
+            {/* Left: Image */}
+            <div className="modal-action pt-0 mt-0">
+              <form method="dialog">
+                <button className="text-[#D6A74E] hover:text-[#f6c262] text-2xl font-semibold leading-none cursor-pointer">
+                  X
+                </button>
+              </form>
+            </div>
+            <div className="flex min-w-[80px]">
+              <Image
+                src={slick1}
+                alt="Gift Card"
+                className="rounded mr-3"
+                width={80}
+                height={80}
+                style={{ objectFit: 'cover' }}
+              />
+
+              {/* Right: Content */}
+              <div className="flex-1">
+                <div className="items-start">
+                  <h2 className="text-lg font-semibold cursor-pointer text-gray-900">
+                    Bata Digital Gift Card 15000Tk
+                  </h2>
+                </div>
+
+                <p className="text-sm text-gray-400 cursor-pointer italic mt-1">
+                  Added to your shopping cart.
+                </p>
+              </div>
+            </div>
+            <div className="mt-3">
+              <button className="flex cursor-pointer mb-1 items-center gap-1 text-sm font-semibold text-gray-800 hover:text-yellow-600 border-b-2 border-transparent hover:border-yellow-600 transition duration-150">
+                CONTINUE SHOPPING →
+              </button>
+              <button className="flex cursor-pointer items-center gap-1 text-sm font-semibold text-gray-800 hover:text-yellow-600 border-b-2 border-transparent hover:border-yellow-600 transition duration-150">
+                VIEW CART →
+              </button>
+            </div>
           </div>
         </div>
       </dialog>
-
+      {/* Feature title  */}
       <div className="text-center mb-5 md:mb-10">
         <h2 className="text-md md:text-2xl font-semibold text-gray-800 uppercase tracking-widest font-rajdhani animate-fade-in-down">
           Feature Products
@@ -150,7 +186,7 @@ const FeaturePage = () => {
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-2 5m5-5v5m4-5v5m1 4a1 1 0 100-2 1 1 0 000 2zm-6 0a1 1 0 100-2 1 1 0 000 2z"
                       />
                     </svg>
-                    Buy Now
+                    ADD TO CART
                   </span>
                 </div>
               </div>

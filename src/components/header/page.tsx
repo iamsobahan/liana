@@ -3,6 +3,9 @@ import { IoCall } from 'react-icons/io5';
 import { FaBoxOpen, FaSignInAlt, FaUserPlus, FaRegHeart } from 'react-icons/fa';
 import { BsCartCheckFill } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
+
+
+import product from '../../assets/slick3.jpeg'; // Replace with your image path
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../../assets/logo.png';
@@ -113,12 +116,72 @@ const Header = () => {
                     0
                   </span>
                 </div>
-                <div className="relative cursor-pointer">
-                  <BsCartCheckFill className="text-gray-800 text-xl" />
-                  <span className="absolute -top-2 -right-2 bg-[#D6A74E] text-xs px-1 rounded-full text-white">
-                    0
-                  </span>
+                <div className="dropdown dropdown-hover">
+                  <div className="relative cursor-pointer">
+                    <BsCartCheckFill className="text-gray-800 text-xl cursor-pointer" />
+                    <span className="absolute -top-2 -right-2 bg-[#D6A74E] text-xs px-1 rounded-full text-white cursor-pointer">
+                      0
+                    </span>
+                  </div>
+                  <div
+                    tabIndex={0}
+                    className="dropdown-content menu z-50 absolute top-5 right-[-50px] p-2 w-80"
+                  >
+                    <div className="bg-white rounded-md shadow p-4 font-sans text-gray-800">
+                      {/* Header */}
+                      <div className="flex justify-between items-start">
+                        <div className="flex items-start gap-3">
+                          <div className="w-20 h-20 relative cursor-pointer">
+                            <Image
+                              src={product}
+                              alt="Product"
+                              fill
+                              className="object-cover rounded"
+                            />
+                          </div>
+                          <div className="text-sm cursor-pointer">
+                            <h2 className="font-semibold text-base leading-5">
+                              Bata Digital Gift Card
+                            </h2>
+                            <p className="text-xs text-gray-600">15000TK</p>
+                            <p className="text-xs text-gray-400 italic mt-1">
+                              · Tk. 15000 / Black /<br /> #MPC#525
+                            </p>
+                            <p className="text-sm mt-1">
+                              1 x{' '}
+                              <span className="font-semibold">
+                                Tk 12,000.00
+                              </span>
+                            </p>
+                          </div>
+                        </div>
+                        <button className="cursor-pointer text-xl font-bold text-gray-600 hover:text-[#D6A74E]">
+                          ×
+                        </button>
+                      </div>
+
+                      {/* Divider */}
+                      <hr className="my-4 border-gray-300" />
+
+                      {/* Total */}
+                      <div className="flex justify-between items-center text-sm font-semibold">
+                        <span>Total:</span>
+                        <span className="text-lg">Tk 12,000.00</span>
+                      </div>
+
+                      {/* Buttons */}
+                      <div className="mt-4 flex flex-col gap-2">
+                        <button className="bg-[#D6A74E] hover:bg-[#e9ad3e] text-white font-semibold py-2 rounded cursor-pointer">
+                          CHECK OUT NOW
+                        </button>
+                        <button className="border border-gray-400 hover:border-black text-black py-2 rounded font-semibold cursor-pointer">
+                          VIEW CART
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
                 {/* Drawer Toggle */}
                 <button
                   onClick={() => setDrawerOpen(!isDrawerOpen)}
@@ -131,10 +194,7 @@ const Header = () => {
           </div>
 
           <div
-            className={`block my-3 px-2 md:hidden ${
-              isSticky ? 'hidden' : ''
-            }`}
-          
+            className={`block my-3 px-2 md:hidden ${isSticky ? 'hidden' : ''}`}
           >
             <form action="" className="relative w-full">
               <input
