@@ -15,7 +15,7 @@ import payment from '../../assets/payment.png';
 const FooterPage = () => {
   return (
     <footer className="bg-gray-800 text-white font-rajdhani pt-16 pb-8 px-4 md:px-10 lg:px-20 mt-10">
-      <div className="grid grid-cols-1 gap-10 border-b border-gray-800 pb-5 md:grid-cols-5">
+      <div className="grid grid-cols-1 md:gap-10 border-b border-gray-800 pb-5 md:grid-cols-5">
         {/* Logo and Social */}
         <div className="space-y-5 md:col-span-1">
           <div className="flex items-center space-x-2">
@@ -71,7 +71,7 @@ const FooterPage = () => {
         </div>
 
         {/* Remaining 4 sections: nested grid on mobile */}
-        <div className="grid grid-cols-2 gap-6 md:contents">
+        <div className="grid grid-cols-2 gap-2 md:contents">
           {/* Account */}
           <div>
             <h4 className="text-lg font-semibold mb-4">ACCOUNT</h4>
@@ -138,7 +138,7 @@ const FooterPage = () => {
 
       {/* Bottom bar */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 text-xs text-gray-500">
-        <p>Copyright © 2025 Joice. All Rights Reserved</p>
+        <p>Copyright © 2025 Sobahan. All Rights Reserved</p>
         <div className="flex items-center gap-4">
           <p>Terms of use</p>
           <p>Privacy Policy</p>
