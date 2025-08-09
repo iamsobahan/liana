@@ -96,6 +96,8 @@ const FeaturePage = () => {
   const showModal2 = () => {
     if (modalRef2.current) {
       modalRef2.current.showModal();
+    }
+    if (modalRef.current) {
       modalRef.current.close();
     }
   };
