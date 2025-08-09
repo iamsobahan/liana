@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 import { Rajdhani, Raleway } from 'next/font/google';
+import Header from '@/components/header/page';
+import FooterPage from '@/components/Footer/page';
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],
@@ -28,7 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${rajdhani.variable} ${raleway.variable} bg-white`}>
+        <Header />
         {children}
+        <FooterPage />
       </body>
     </html>
   );

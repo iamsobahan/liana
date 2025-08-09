@@ -70,21 +70,18 @@ const settings = {
     },
     {
       breakpoint: 640,
-      settings: { slidesToShow: 2,  arrows: false}
-     
+      settings: { slidesToShow: 2, arrows: false },
     },
   ],
 };
 
 const NewProductPage = () => {
-const modalRef = useRef<HTMLDialogElement>(null);
- const showModal = () => {
-   if (modalRef.current) {
-     modalRef.current.showModal();
-
-    
-   }
- };
+  const modalRef = useRef<HTMLDialogElement>(null);
+  const showModal = () => {
+    if (modalRef.current) {
+      modalRef.current.showModal();
+    }
+  };
 
   return (
     <div className="container mx-auto mt-10 px-4">
@@ -163,7 +160,7 @@ const modalRef = useRef<HTMLDialogElement>(null);
                   <h4 className="font-raleway md:font-semibold text-md md:text-lg text-gray-800">
                     Women Denim Jewelry - Skythread
                   </h4>
-                  <p className="text-sm text-green-600 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
+                  <p className="text-sm text-red-500 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
                     Save TK 540
                   </p>
                   <div className="mt-2 text-sm">
@@ -174,7 +171,7 @@ const modalRef = useRef<HTMLDialogElement>(null);
                   </div>
                 </div>
                 <div
-                  className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer"
+                  className="bg-gray-900 hover:bg-gray-950 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer"
                   onClick={showModal}
                 >
                   <span className="inline-flex items-center justify-center gap-1">
@@ -192,7 +189,7 @@ const modalRef = useRef<HTMLDialogElement>(null);
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-2 5m5-5v5m4-5v5m1 4a1 1 0 100-2 1 1 0 000 2zm-6 0a1 1 0 100-2 1 1 0 000 2z"
                       />
                     </svg>
-                    Buy Now
+                    ADD TO CART
                   </span>
                 </div>
               </div>

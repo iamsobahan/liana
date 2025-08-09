@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import dynamic from 'next/dynamic';
@@ -12,7 +12,6 @@ import slick2 from '../../assets/slick2.jpeg';
 import slick3 from '../../assets/slick3.jpeg';
 import slick4 from '../../assets/slick4.jpeg';
 import slick5 from '../../assets/slick5.jpeg';
-import { setTimeout } from 'timers/promises';
 
 const slides = [
   { image: slick },
@@ -77,19 +76,34 @@ const settings = {
 
 const FeaturePage = () => {
   const modalRef = useRef<HTMLDialogElement>(null);
- const showModal = () => {
-   if (modalRef.current) {
-     modalRef.current.showModal();
+  const modalRef2 = useRef<HTMLDialogElement>(null);
 
-    
-   }
- };
+  const [selectedSize, setSelectedSize] = useState('M(28-30)');
+  const [selectedColor, setSelectedColor] = useState('Red/Black');
+  const [quantity, setQuantity] = useState(1);
+
+  const pricePerItem = 1500;
+  const totalPrice = pricePerItem * quantity;
+
+  const sizes = ['M(28-30)', 'L(32-34)', 'XL(36-38)', '2XL(38-42)'];
+  const colors = ['Red/Black', 'Blue/Navy', 'Gray/White'];
+  const showModal = () => {
+    if (modalRef.current) {
+      modalRef.current.showModal();
+    }
+  };
+
+  const showModal2 = () => {
+    if (modalRef2.current) {
+      modalRef2.current.showModal();
+      modalRef.current.close();
+    }
+  };
 
   return (
     <div className="container mx-auto px-4">
-
-      {/* model box pop up  */}
-      <dialog id="my_modal_1" ref={modalRef} className="modal">
+      {/* model box pop up 2  */}
+      <dialog id="my_modal_1" ref={modalRef2} className="modal">
         <div>
           <div className="w-full max-w-md mx-auto bg-white p-4 shadow-md rounded-md gap-4 items-start">
             {/* Left: Image */}
@@ -134,6 +148,141 @@ const FeaturePage = () => {
           </div>
         </div>
       </dialog>
+
+      {/* model 1 */}
+
+      <dialog
+        id="my_modal"
+        ref={modalRef}
+        className="modal rounded-lg p-0 w-full max-w-2xl mx-auto overflow-y-scroll"
+      >
+        <div className="bg-white rounded-lg overflow-hidden">
+          {/* Header */}
+          <div className="flex justify-between items-center p-5 border-b border-gray-200">
+            <h2 className="text-xl font-bold text-gray-800">Price Details</h2>
+            <div className="modal-action pt-0 mt-0">
+              <form method="dialog">
+                <button className="text-[#D6A74E] hover:text-[#f6c262] text-2xl font-semibold leading-none cursor-pointer">
+                  X
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* Product Info */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+            {/* Image */}
+            <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
+              <Image
+                src={slick}
+                alt="Mens Premium Trouser"
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            {/* Details */}
+            <div className="flex flex-col justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-800">
+                  Mens Premium Trouser - {selectedColor}
+                </h3>
+                <p className="text-gray-500 mt-1">Premium Quality Fabric</p>
+
+                {/* Color Selection */}
+                <div className="mt-4">
+                  <p className="text-sm font-semibold text-gray-700 mb-2">
+                    Color
+                  </p>
+                  <div className="flex gap-2">
+                    {colors.map((color) => (
+                      <button
+                        key={color}
+                        onClick={() => setSelectedColor(color)}
+                        className={`px-3 py-1 rounded-full border text-sm ${
+                          selectedColor === color
+                            ? 'bg-yellow-500 text-white border-yellow-500'
+                            : 'border-gray-300 text-gray-700 hover:border-yellow-500'
+                        }`}
+                      >
+                        {color}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Size Selection */}
+                <div className="mt-4">
+                  <p className="text-sm font-semibold text-gray-700 mb-2">
+                    Choose Size
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {sizes.map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => setSelectedSize(size)}
+                        className={`px-3 py-1 rounded-md border text-sm ${
+                          selectedSize === size
+                            ? 'bg-yellow-500 text-white border-yellow-500'
+                            : 'border-gray-300 text-gray-700 hover:border-yellow-500'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quantity Selector */}
+                <div className="mt-4 flex items-center gap-4">
+                  <p className="text-sm font-semibold text-gray-700">
+                    Quantity
+                  </p>
+                  <div className="flex items-center border rounded-md overflow-hidden">
+                    <button
+                      onClick={() =>
+                        setQuantity((q: number) => Math.max(1, q - 1))
+                      }
+                      className="px-3 text-3xl font-semibold py-1 text-gray-800 cursor-pointer"
+                    >
+                      -
+                    </button>
+                    <span className="px-4 py-1 text-gray-800 font-medium">
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={() => setQuantity((q: number) => q + 1)}
+                      className="px-3 text-3xl font-semibold py-1 text-gray-800 cursor-pointer"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Price */}
+              <div className="mt-6 border-t pt-4 flex justify-between items-center">
+                <span className="text-lg font-semibold text-gray-800">
+                  Total:
+                </span>
+                <span className="text-xl font-bold text-yellow-600">
+                  Tk {totalPrice.toLocaleString()}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Buttons */}
+          <div className="flex justify-end p-5 border-t border-gray-200">
+            <button
+              onClick={showModal2}
+              className="cursor-pointer px-6 py-2 rounded-md bg-gray-800 hover:bg-gray-950 text-white font-semibold shadow"
+            >
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </dialog>
       {/* Feature title  */}
       <div className="text-center mb-5 md:mb-10">
         <h2 className="text-md md:text-2xl font-semibold text-gray-800 uppercase tracking-widest font-rajdhani animate-fade-in-down">
@@ -159,7 +308,7 @@ const FeaturePage = () => {
                   <h4 className="font-raleway md:font-semibold text-md md:text-lg text-gray-800">
                     Women Denim Jewelry - Skythread
                   </h4>
-                  <p className="text-sm text-green-600 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
+                  <p className="text-sm text-red-500 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
                     Save TK 540
                   </p>
                   <div className="mt-2 text-sm">
@@ -170,7 +319,7 @@ const FeaturePage = () => {
                   </div>
                 </div>
                 <div
-                  className="bg-yellow-600 hover:bg-yellow-700 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer"
+                  className="bg-gray-900 hover:bg-gray-950 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer"
                   onClick={showModal}
                 >
                   <span className="inline-flex items-center justify-center gap-1">
