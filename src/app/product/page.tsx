@@ -3,6 +3,10 @@ import { useState } from 'react';
 import slick from '../../assets/slick1.jpeg';
 import Image from 'next/image';
 
+import React from 'react';
+
+const props = { width: 400, height: 250, zoomWidth: 500, img: '1.jpg' };
+
 interface SizeOption {
   label: string;
   value: string;
@@ -30,11 +34,11 @@ export default function ProductDetails() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="grid md:grid-cols-2 gap-8">
-        <div className="flex justify-center">
+        <div className="flex items-center justify-center">
           <Image
             src={slick} // replace with actual image
             alt="Premium Designer Polo"
-            className="w-full h-full max-w-md object-contain rounded-xl"
+            className="w-full object-contain rounded-xl"
           />
         </div>
 
@@ -114,49 +118,6 @@ export default function ProductDetails() {
               <strong>GSM:</strong> 210-220
             </p>
           </div>
-        </div>
-      </div>
-      <hr className="text-gray-400 mt-5" />
-      {/* Size Chart */}
-      <div className="mt-10">
-        <h2 className="text-lg font-bold text-gray-800">Size Chart</h2>
-        <div className="overflow-x-auto mt-4">
-          <table className="w-full text-gray-800 border border-gray-800 text-sm">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="border px-4 py-2">Size</th>
-                <th className="border px-4 py-2">Chest (in)</th>
-                <th className="border px-4 py-2">Length (in)</th>
-                <th className="border px-4 py-2">Sleeve (in)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border px-4 py-2">M</td>
-                <td className="border px-4 py-2">39</td>
-                <td className="border px-4 py-2">27.5</td>
-                <td className="border px-4 py-2">8.25</td>
-              </tr>
-              <tr>
-                <td className="border px-4 py-2">L</td>
-                <td className="border px-4 py-2">40.5</td>
-                <td className="border px-4 py-2">28.5</td>
-                <td className="border px-4 py-2">8.5</td>
-              </tr>
-              <tr>
-                <td className="border px-4 py-2">XL</td>
-                <td className="border px-4 py-2">43</td>
-                <td className="border px-4 py-2">29</td>
-                <td className="border px-4 py-2">9</td>
-              </tr>
-              <tr>
-                <td className="border px-4 py-2">2XL</td>
-                <td className="border px-4 py-2">45</td>
-                <td className="border px-4 py-2">30</td>
-                <td className="border px-4 py-2">9.5</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
     </div>
