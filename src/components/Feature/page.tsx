@@ -61,7 +61,7 @@ const settings = {
 };
 
 type FeaturePageProps = {
-  feature: any[]; // Replace `any` with your real type
+  feature: object[]; // Replace `any` with your real type
   title: string;
 };
 
