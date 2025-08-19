@@ -5,7 +5,7 @@ import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import dynamic from 'next/dynamic';
 import slick1 from '../../assets/slick1.jpeg';
 import Link from 'next/link';
-
+import { StaticImageData } from 'next/image';
 const Slider = dynamic(() => import('react-slick'), { ssr: false });
 
 const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
@@ -61,7 +61,7 @@ const settings = {
 };
 
 type FeaturePageProps = {
-  feature: object[]; // Replace `any` with your real type
+  feature: StaticImageData; // Replace `any` with your real type
   title: string;
 };
 
