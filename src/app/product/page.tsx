@@ -183,8 +183,8 @@ export default function ProductDetails() {
             Product Details
           </h2>
           <p className="text-gray-700 mb-6 leading-relaxed text-sm sm:text-base">
-            Weekend adventures call for black casual comfort that doesn't
-            sacrifice style. These shoes from{' '}
+            Weekend adventures call for black casual comfort that sacrifice
+            style. These shoes from{' '}
             <span className="font-semibold">North Star</span> let you stay
             trendy and relaxed all day. Lightweight soles make casual styles for
             men easy to wear without compromising on fashion.
