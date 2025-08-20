@@ -1,10 +1,9 @@
 'use client';
 import { IoCall } from 'react-icons/io5';
-import { FaBoxOpen, FaSignInAlt, FaUserPlus, FaRegHeart } from 'react-icons/fa';
+import { FaSignInAlt, FaUserPlus, FaRegHeart } from 'react-icons/fa';
 import { BsCartCheckFill } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
-
-
+import { IoLocation } from 'react-icons/io5';
 import product from '../../assets/slick3.jpeg'; // Replace with your image path
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,7 +17,7 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 100);
+      setIsSticky(window.scrollY > 1);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -42,8 +41,8 @@ const Header = () => {
     <div className="w-full bg-gray-100">
       {/* Top Header */}
       <div>
-        <header className="px-4 md:container mx-auto py-2 flex justify-between items-center text-xs sm:text-sm">
-          <div className="flex items-center gap-0 font-medium text-gray-800">
+        <header className="md:px-4 md:container mx-auto md:py-2 flex justify-between items-center text-xs sm:text-sm">
+          <div className="hidden lg:flex items-center gap-0 font-medium text-gray-800">
             <IoCall />
             <span className="uppercase font-medium text-[13px]">
               <a href="tel:+8801999498887">+8801999498887</a>
@@ -52,7 +51,7 @@ const Header = () => {
 
           <div className="hidden sm:flex items-center gap-6 text-gray-800 font-medium">
             <div className="flex items-center gap-1 hover:text-[#D6A74E] cursor-pointer">
-              <FaBoxOpen />
+              <IoLocation />
               <span>Track Order</span>
             </div>
             <span className="cursor-pointer hover:text-[#D6A74E]">Help</span>
@@ -67,12 +66,12 @@ const Header = () => {
           </div>
 
           {/* Show only on small screens */}
-          <div className="flex sm:hidden items-center gap-3">
+          {/* <div className="flex hid items-center gap-3">
             <div className="text-gray-800 flex items-center gap-1 hover:text-[#D6A74E] cursor-pointer text-sm">
               <FaBoxOpen />
               <span>Track Order</span>
             </div>
-          </div>
+          </div> */}
         </header>
         <div
           className={`z-50 w-full bg-white transition-shadow duration-300 ${
@@ -194,28 +193,33 @@ const Header = () => {
           </div>
 
           <div
-            className={`block my-3 px-2 md:hidden ${isSticky ? 'hidden' : ''}`}
+            className={`flex justify-center items-center my-3 px-2 md:hidden ${
+              isSticky ? 'hidden' : ''
+            }`}
           >
-            <form action="" className="relative w-full">
+            <form action="" className=" relative w-2/3">
               <input
                 type="text"
                 placeholder="Search your products"
-                className="w-full pl-4 pr-10 py-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
+                className="w-full pl-2 py-1 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
               />
               <button
                 type="submit"
-                className="absolute inset-y-0 right-3 flex items-center text-gray-600 cursor-pointer z-50"
+                className="absolute inset-y-0 right-2 flex items-center text-gray-600 cursor-pointer z-50"
               >
                 <AiOutlineSearch className="w-6 h-6" />
               </button>
             </form>
+
+            <div className="text-gray-800 flex ml-3 items-center hover:text-[#D6A74E] cursor-pointer text-sm">
+              <span className="mr-1">Track Order</span>
+              <IoLocation />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Logo + Icons */}
-
-      {/* Search Box */}
 
       {/* Desktop Menu */}
       <nav className="hidden sm:block w-full bg-white shadow-sm">

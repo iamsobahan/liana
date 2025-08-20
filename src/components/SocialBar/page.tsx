@@ -37,14 +37,14 @@ export default function SocialBar() {
   ];
 
   return (
-    <div className="fixed top-1/3 right-0 z-50 flex flex-col">
+    <div className="fixed top-1/3 left-0 z-50 flex flex-col">
       {socials.map((item, i) => (
         <Link
           key={i}
           href={item.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center w-10 h-10 text-white"
+          className="flex items-center justify-center w-8 h-8 text-white"
           style={{ backgroundColor: item.bg }}
         >
           {item.icon}

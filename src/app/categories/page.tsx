@@ -1,6 +1,8 @@
 'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FiFilter } from 'react-icons/fi'; // filter icon
 
 import slick from '../../assets/slick.jpeg';
 import slick3 from '../../assets/slick3.jpeg';
@@ -31,104 +33,77 @@ const feature = [
 ];
 
 export default function ShopPage() {
+  const [showFilter, setShowFilter] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-8 text-gray-800">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* FILTER SIDEBAR */}
-        <aside className="bg-white shadow-md rounded-xl p-5 h-fit">
-          <h2 className="text-lg font-semibold mb-4">Filter By</h2>
-
-          {/* Color */}
-          <div className="mb-6">
-            <h3 className="font-medium mb-2">Color</h3>
-            <div className="space-y-2 text-sm">
-              {[
-                'Lavender',
-                'Slate Blue',
-                'Bottle Green',
-                'Yellow',
-                'Burnt Orange',
-                'Peanut',
-                'Red',
-                'Coffee',
-              ].map((color) => (
-                <label key={color} className="flex items-center gap-2">
-                  <input type="checkbox" className="bg-yellow-600" />
-                  {color}
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Price */}
-          <div className="mb-6">
-            <h3 className="font-medium mb-2">Price</h3>
-            <div className="space-y-2 text-sm">
-              {[
-                '100 to 300',
-                '301 to 500',
-                '501 to 1000',
-                '1001 to 2500',
-                '2501 to 5000',
-                '5001 to 10000',
-              ].map((price) => (
-                <label key={price} className="flex items-center gap-2">
-                  <input type="checkbox" className="bg-yellow-600" />
-                  {price}
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Size */}
-          <div className="mb-6">
-            <h3 className="font-medium mb-2">Size</h3>
-            <div className="space-y-2 text-sm">
-              {['Free Size', '90x30 Inch', '80x30 Inch'].map((size) => (
-                <label key={size} className="flex items-center gap-2">
-                  <input type="checkbox" className="bg-yellow-600" />
-                  {size}
-                </label>
-              ))}
-            </div>
-          </div>
-
-          {/* Category */}
-          <div>
-            <h3 className="font-medium mb-2">Category</h3>
-            <div className="space-y-2 text-sm">
-              {[
-                'Abaya & Gown',
-                'Hijab & Niqab',
-                'Khimar & Jilbab',
-                'Cape & Cover Up',
-                'Undergarments',
-                'Accessories & Others',
-              ].map((cat) => (
-                <label key={cat} className="flex items-center gap-2">
-                  <input type="checkbox" className="bg-yello-600" />
-                  {cat}
-                </label>
-              ))}
-            </div>
-          </div>
+        {/* FILTER SIDEBAR (desktop) */}
+        <aside className="hidden lg:block bg-white shadow-md rounded-xl p-5 h-fit">
+          <FilterContent />
         </aside>
 
-        {/* PRODUCT GRID */}
-        <main className="lg:col-span-3">
-          {/* Sort Bar */}
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">Shop</h2>
-            <select className="border rounded-lg px-3 py-2 text-sm">
-              <option value="default">Default</option>
+        {/* FILTER ICON for Mobile */}
+        <div className="lg:hidden">
+          <h2 className="text-xl font-semibold mb-2">Gold Hand Ring</h2>
+          <div className="flex justify-between items-center">
+            <select className="border rounded-md p-1.5">
+              <option value="default">Sort by</option>
               <option value="latest">Latest</option>
               <option value="low-high">Price: Low to High</option>
               <option value="high-low">Price: High to Low</option>
             </select>
+
+            <button
+              onClick={() => setShowFilter(true)}
+              className="flex items-center gap-2 p-1.5 border rounded-md shadow-sm bg-white hover:bg-gray-100"
+            >
+              <span className="text-sm font-medium">Filter</span>
+              <FiFilter className="text-lg" />
+            </button>
+          </div>
+        </div>
+
+        {/* Overlay + Mobile Sidebar */}
+        {showFilter && (
+          <>
+            <div
+              className="fixed inset-0 bg-black bg-opacity-40 z-40"
+              onClick={() => setShowFilter(false)}
+            />
+            <aside className="fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-lg p-5 overflow-y-auto transition-transform duration-300">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-semibold">Filter By</h2>
+                <button
+                  onClick={() => setShowFilter(false)}
+                  className="text-gray-600 hover:text-black"
+                >
+                  ✕
+                </button>
+              </div>
+              <FilterContent />
+            </aside>
+          </>
+        )}
+
+        {/* PRODUCT GRID */}
+        <main className="lg:col-span-3">
+          {/* Sort Bar */}
+          <div className="hidden lg:flex justify-between items-center mb-6">
+            <h2 className="text-xl font-semibold">Gold Hand Ring</h2>
+            <label>
+              <span className="font-medium mr-5">sort by:</span>
+              <select className="border rounded-lg px-1 py-1 text-sm">
+                <option value="default">Default</option>
+                <option value="latest">Latest</option>
+                <option value="low-high">Price: Low to High</option>
+                <option value="high-low">Price: High to Low</option>
+              </select>
+            </label>
           </div>
 
           {/* Grid */}
-          <div className="grid gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+          <div className="grid gap-y-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
             {feature.map((product, idx) => (
               <div key={idx} className="px-1 md:px-2 cursor-pointer">
                 <div className="bg-white shadow-md rounded-sm overflow-hidden hover:shadow-lg border-gray-100 transition">
@@ -138,7 +113,7 @@ export default function ShopPage() {
                         src={product.image}
                         alt={`Product ${idx + 1}`}
                         fill
-                        className="rounded-tr-sm  object-cover h-[120px] w-[400px] md:h-[240px] md:w-[500px]"
+                        className="rounded-tr-sm object-cover h-[120px] w-[400px] md:h-[240px] md:w-[500px]"
                       />
                     </div>
                     <div className="mt-0.5 md:mt-2 md:p-1 text-center">
@@ -179,8 +154,142 @@ export default function ShopPage() {
               </div>
             ))}
           </div>
+
+          <div className="join flex justify-end mt-10">
+            <input
+              className="join-item btn btn-square"
+              type="radio"
+              name="options"
+              aria-label="prev"
+            />
+            <input
+              className="join-item btn btn-square"
+              type="radio"
+              name="options"
+              aria-label="1"
+              checked
+            />
+            <input
+              className="join-item btn btn-square"
+              type="radio"
+              name="options"
+              aria-label="2"
+            />
+            <input
+              className="join-item btn btn-square"
+              type="radio"
+              name="options"
+              aria-label="3"
+            />
+            <input
+              className="join-item btn btn-square"
+              type="radio"
+              name="options"
+              aria-label="4"
+            />
+            <input
+              className="join-item btn btn-square"
+              type="radio"
+              name="options"
+              aria-label="5"
+            />
+            <input
+              className="join-item btn btn-square"
+              type="radio"
+              name="options"
+              aria-label="6"
+            />
+            <input
+              className="join-item btn btn-square"
+              type="radio"
+              name="options"
+              aria-label="next"
+            />
+          </div>
         </main>
       </div>
     </div>
+  );
+}
+
+/* Sidebar Filter Extracted into Component */
+function FilterContent() {
+  return (
+    <>
+      {/* Color */}
+      <div className="mb-6">
+        <h3 className="font-medium mb-2">Color</h3>
+        <div className="space-y-2 text-sm">
+          {[
+            'Lavender',
+            'Slate Blue',
+            'Bottle Green',
+            'Yellow',
+            'Burnt Orange',
+            'Peanut',
+            'Red',
+            'Coffee',
+          ].map((color) => (
+            <label key={color} className="flex items-center gap-2">
+              <input type="checkbox" className="accent-yellow-600" />
+              {color}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Price */}
+      <div className="mb-6">
+        <h3 className="font-medium mb-2">Price</h3>
+        <div className="space-y-2 text-sm">
+          {[
+            '100 to 300',
+            '301 to 500',
+            '501 to 1000',
+            '1001 to 2500',
+            '2501 to 5000',
+            '5001 to 10000',
+          ].map((price) => (
+            <label key={price} className="flex items-center gap-2">
+              <input type="checkbox" className="accent-yellow-600" />
+              {price}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Size */}
+      <div className="mb-6">
+        <h3 className="font-medium mb-2">Size</h3>
+        <div className="space-y-2 text-sm">
+          {['Free Size', '90x30 Inch', '80x30 Inch'].map((size) => (
+            <label key={size} className="flex items-center gap-2">
+              <input type="checkbox" className="accent-yellow-600" />
+              {size}
+            </label>
+          ))}
+        </div>
+      </div>
+
+      {/* Category */}
+      <div>
+        <h3 className="font-medium mb-2">Category</h3>
+        <div className="space-y-2 text-sm">
+          {[
+            'Abaya & Gown',
+            'Hijab & Niqab',
+            'Khimar & Jilbab',
+            'Cape & Cover Up',
+            'Undergarments',
+            'Accessories & Others',
+          ].map((cat) => (
+            <label key={cat} className="flex items-center gap-2">
+              <input type="checkbox" className="accent-yellow-600" />
+              {cat}
+            </label>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }

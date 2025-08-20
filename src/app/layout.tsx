@@ -4,12 +4,12 @@ import './globals.css';
 import { Rajdhani, Raleway } from 'next/font/google';
 import Header from '@/components/header/page';
 import FooterPage from '@/components/Footer/page';
+import MobileBottomNav from '@/components/Tab/page';
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '700'], // only available weights
   display: 'swap',
-  variable: '--font-rajdhani', // ✅ Added
 });
 
 const raleway = Raleway({
@@ -29,8 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${rajdhani.variable} ${raleway.variable} bg-white`}>
+      <body className={`${rajdhani} ${raleway.variable} bg-white`}>
         <Header />
+        <MobileBottomNav />
         {children}
         <FooterPage />
       </body>
