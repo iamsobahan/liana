@@ -155,56 +155,32 @@ export default function ShopPage() {
             ))}
           </div>
 
-          <div className="join flex justify-end mt-10">
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="prev"
-            />
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="1"
-              checked
-            />
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="2"
-            />
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="3"
-            />
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="4"
-            />
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="5"
-            />
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="6"
-            />
-            <input
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label="next"
-            />
+          <div className="flex justify-center md:justify-end mt-10">
+            <nav className="inline-flex items-center space-x-2">
+              {/* Prev Button */}
+              <button className="px-3 py-2 border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+                ‹
+              </button>
+
+              {/* Page Numbers */}
+              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+                1
+              </button>
+              <button className="px-4 py-2 rounded-full border border-yellow-600 bg-yellow-600 text-white shadow-md transition duration-200">
+                2
+              </button>
+              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+                3
+              </button>
+              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+                4
+              </button>
+
+              {/* Next Button */}
+              <button className="px-3 py-2 border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+                ›
+              </button>
+            </nav>
           </div>
         </main>
       </div>
