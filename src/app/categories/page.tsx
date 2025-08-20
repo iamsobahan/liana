@@ -158,27 +158,26 @@ export default function ShopPage() {
           <div className="flex justify-center md:justify-end mt-10">
             <nav className="inline-flex items-center space-x-2">
               {/* Prev Button */}
-              <button className="w-15 h-15 flex justify-center items-center  text-xl border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
-              <HiChevronLeft/>
+              <button className="w-10 h-10 md:w-15 md:h-15 flex justify-center items-center  text-xl border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
+                <HiChevronLeft />
               </button>
               {/* Page Numbers */}
-              <button className="w-15 h-15 flex justify-center items-center  text-xl rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer text-xl">
+              <button className="w-10 h-10 md:w-15 md:h-15 flex justify-center items-center rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer text-xl">
                 1
               </button>
-              <button className=" w-15 h-15 flex justify-center items-center  text-xl rounded-full border border-yellow-600 bg-yellow-600 text-white shadow-md transition duration-200 cursor-pointer">
+              <button className="w-10 h-10 md:w-15 md:h-15 flex justify-center items-center  text-xl rounded-full border border-yellow-600 bg-yellow-600 text-white shadow-md transition duration-200 cursor-pointer">
                 2
               </button>
-              <button className=" w-15 h-15 flex justify-center items-center  text-xl rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
+              <button className="w-10 h-10 md:w-15 md:h-15 flex justify-center items-center  text-xl rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
                 3
               </button>
-              <button className="w-15 h-15 flex justify-center items-center  text-xl rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
+              <button className="w-10 h-10 md:w-15 md:h-15 flex justify-center items-center  text-xl rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
                 4
               </button>
               {/* Next Button */}
-              <button className="w-15 h-15 flex justify-center items-center  text-xl border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer text-xxl">
-               <HiChevronRight/>
+              <button className="w-10 h-10 md:w-15 md:h-15 flex justify-center items-center  text-xl border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer text-xxl">
+                <HiChevronRight />
               </button>
-             
             </nav>
           </div>
         </main>
