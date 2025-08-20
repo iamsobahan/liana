@@ -22,6 +22,7 @@ import slick7 from '../../assets/slick7.jpeg';
 import slick8 from '../../assets/slick8.jpeg';
 import slick9 from '../../assets/slick9.jpeg';
 import slick10 from '../../assets/slick10.jpeg';
+import Link from 'next/link';
 
 type Product = {
   image: string;
@@ -131,18 +132,23 @@ export default function ProductDetails() {
                 +
               </button>
             </div>
+            <Link href="/checkout">
+              <button className="flex items-center justify-center flex-1 min-w-[140px] px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm">
+                ＋ Add to Cart
+              </button>
+            </Link>
 
-            <button className="flex items-center justify-center flex-1 min-w-[140px] px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm">
-              ＋ Add to Cart
-            </button>
+            <Link href="/checkout">
+              <button className="flex items-center justify-center flex-1 min-w-[120px] gap-2 px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm">
+                Buy Now
+              </button>
+            </Link>
 
-            <button className="flex items-center justify-center flex-1 min-w-[120px] px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm">
-              Buy Now
-            </button>
-
-            <button className="flex items-center justify-center flex-1 min-w-[120px] gap-2 px-4 py-2 bg-green-700 text-white rounded-md font-semibold shadow hover:bg-green-600 transition text-sm">
-              <FaWhatsapp size={16} /> WhatsApp
-            </button>
+            <Link href={`https://wa.me/qr/EQ5A6SDYHL2IP1`}>
+              <button className="flex items-center justify-center flex-1 min-w-[120px] gap-2 px-4 py-2 bg-green-700 text-white rounded-md font-semibold shadow hover:bg-green-600 transition text-sm">
+                <FaWhatsapp size={16} /> WhatsApp
+              </button>
+            </Link>
           </div>
 
           {/* Short Description */}

@@ -56,12 +56,9 @@ const settings = {
 const Banner = () => {
   return (
     <div className="w-full relative">
-      <Slider {...settings}>
+      <Slider  {...settings}>
         {slides.map((slide, index) => (
-          <div
-            key={index}
-            className="relative w-full aspect-[16/11] md:aspect-[16/5]"
-          >
+          <div key={index} className="relative w-full">
             <Image
               src={slide.image}
               alt={`Banner ${index + 1}`}

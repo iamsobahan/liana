@@ -36,10 +36,12 @@ span {
 .tabs-lift > .tab:is(input:checked, label:has(:checked)) {
   background-color: black;
   color: white !important;
+
   border-radius: 5px 5px 0px 0px !important;
 }
 
 .tabs-lift > .tab {
   background-color: rgb(255, 255, 255);
   border-radius: 0;
+  border: none !important;
 }

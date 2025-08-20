@@ -112,7 +112,7 @@ const CategoryPage = () => {
         </h2>
         <span className="block h-[2px] w-32 mx-auto mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"></span>
       </div>
-      <div className="relative">
+      <div className="relative"> 
         {/* Slider */}
         <Slider ref={sliderRef} {...settings}>
           {categories.map((cat, index) => (

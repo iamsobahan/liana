@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiFilter } from 'react-icons/fi'; // filter icon
-
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import slick from '../../assets/slick.jpeg';
 import slick3 from '../../assets/slick3.jpeg';
 import slick4 from '../../assets/slick4.jpeg';
@@ -158,28 +158,27 @@ export default function ShopPage() {
           <div className="flex justify-center md:justify-end mt-10">
             <nav className="inline-flex items-center space-x-2">
               {/* Prev Button */}
-              <button className="px-4 py-2 border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
-                ‹
+              <button className="w-15 h-15 flex justify-center items-center  text-xl border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
+              <HiChevronLeft/>
               </button>
-
               {/* Page Numbers */}
-              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
+              <button className="w-15 h-15 flex justify-center items-center  text-xl rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer text-xl">
                 1
               </button>
-              <button className="px-4 py-2 rounded-full border border-yellow-600 bg-yellow-600 text-white shadow-md transition duration-200 cursor-pointer">
+              <button className=" w-15 h-15 flex justify-center items-center  text-xl rounded-full border border-yellow-600 bg-yellow-600 text-white shadow-md transition duration-200 cursor-pointer">
                 2
               </button>
-              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
+              <button className=" w-15 h-15 flex justify-center items-center  text-xl rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
                 3
               </button>
-              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
+              <button className="w-15 h-15 flex justify-center items-center  text-xl rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
                 4
               </button>
-
               {/* Next Button */}
-              <button className="px-4 py-2 border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
-                ›
+              <button className="w-15 h-15 flex justify-center items-center  text-xl border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer text-xxl">
+               <HiChevronRight/>
               </button>
+             
             </nav>
           </div>
         </main>
