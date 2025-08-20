@@ -1,8 +1,18 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 import Banner from '@/components/Banner/page';
-import CategoryPage from '@/components/Category/page';
-import FeaturePage from '@/components/Feature/page';
-import SocialBar from '@/components/SocialBar/page';
+
+const CategoryPage = dynamic(() => import('@/components/Category/page'), {
+  ssr: true, // set to true if you want server-side rendering
+});
+
+const FeaturePage = dynamic(() => import('@/components/Feature/page'), {
+  ssr: true,
+});
+
+const SocialBar = dynamic(() => import('@/components/SocialBar/page'), {
+  ssr: true,
+});
 
 // ✅ Correctly import images
 import slick from '../assets/slick.jpeg';

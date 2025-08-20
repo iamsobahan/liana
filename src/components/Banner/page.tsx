@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import banner1 from '../../assets/banner.webp';
 import banner from '../../assets/banner2.webp';
@@ -20,7 +19,7 @@ const PrevArrow: FC<ArrowProps> = ({ onClick }) => (
   <button
     type="button"
     onClick={onClick}
-    className="absolute z-10 left-2 sm:left-5 top-1/2 transform -translate-y-1/2 text-white bg-black/40 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
+    className="absolute z-10 left-2 sm:left-5 top-1/2 transform -translate-y-1/2 text-gray-900 bg-gray-300 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
   >
     <HiChevronLeft size={20} />
   </button>
@@ -30,7 +29,7 @@ const NextArrow: FC<ArrowProps> = ({ onClick }) => (
   <button
     type="button"
     onClick={onClick}
-    className="absolute z-10 right-2 sm:right-5 top-1/2 transform -translate-y-1/2 text-white bg-black/40 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
+    className="absolute z-10 right-2 sm:right-5 top-1/2 transform -translate-y-1/2 text-gray-900 bg-gray-300 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
   >
     <HiChevronRight size={20} />
   </button>
@@ -39,7 +38,7 @@ const NextArrow: FC<ArrowProps> = ({ onClick }) => (
 // Slider Settings
 const settings = {
   dots: true,
-  fade: true,
+  fade: false,
   infinite: true,
   autoplay: true,
   autoplaySpeed: 5000,
@@ -66,7 +65,6 @@ const Banner = () => {
             <Image
               src={slide.image}
               alt={`Banner ${index + 1}`}
-              fill
               priority
               className="object-cover"
               placeholder="blur"
