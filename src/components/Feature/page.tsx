@@ -294,6 +294,7 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
                     <Image
                       src={item.image}
                       alt={`Product ${idx + 1}`}
+                      priority
                       fill
                       className="rounded-tr-sm  object-cover h-[120px] w-[400px] md:h-[240px] md:w-[500px]"
                     />

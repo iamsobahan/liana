@@ -178,10 +178,8 @@ export default function ProductDetails() {
           aria-label="Descriptions"
           defaultChecked
         />
-        <div className="tab-content text-gray-800 p-4 sm:p-6">
-          <h2 className="text-xl sm:text-2xl font-bold mb-4">
-            Product Details
-          </h2>
+        <div className="tab-content text-gray-800 p-4 sm:p-6 shadow">
+          <h3 className="text-xl font-bold mb-4">Product Details</h3>
           <p className="text-gray-700 mb-6 leading-relaxed text-sm sm:text-base">
             Weekend adventures call for black casual comfort that sacrifice
             style. These shoes from{' '}
@@ -213,7 +211,7 @@ export default function ProductDetails() {
           className="tab"
           aria-label="Terms & Conditions"
         />
-        <div className="tab-content text-gray-800 p-4 sm:p-6">
+        <div className="tab-content text-gray-800 p-4 sm:p-6 shadow">
           <p className="text-sm sm:text-base">
             {/* Your T&C content (shortened for brevity) */}
             Dear Customer, we try our best to provide you the best experience...
@@ -227,7 +225,7 @@ export default function ProductDetails() {
           className="tab"
           aria-label="Sizes"
         />
-        <div className="tab-content text-gray-800 p-4 sm:p-6 text-sm sm:text-base">
+        <div className="tab-content text-gray-800 p-4 sm:p-6 text-sm sm:text-base shadow">
           This is Size Section
         </div>
       </div>

@@ -36,8 +36,8 @@ export default function ShopPage() {
   const [showFilter, setShowFilter] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-8 text-gray-800">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <div className="container bg-gray-50 py-8 text-gray-800">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* FILTER SIDEBAR (desktop) */}
         <aside className="hidden lg:block bg-white shadow-md rounded-xl p-5 h-fit">
           <FilterContent />
@@ -158,26 +158,26 @@ export default function ShopPage() {
           <div className="flex justify-center md:justify-end mt-10">
             <nav className="inline-flex items-center space-x-2">
               {/* Prev Button */}
-              <button className="px-3 py-2 border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+              <button className="px-4 py-2 border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
                 ‹
               </button>
 
               {/* Page Numbers */}
-              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
                 1
               </button>
-              <button className="px-4 py-2 rounded-full border border-yellow-600 bg-yellow-600 text-white shadow-md transition duration-200">
+              <button className="px-4 py-2 rounded-full border border-yellow-600 bg-yellow-600 text-white shadow-md transition duration-200 cursor-pointer">
                 2
               </button>
-              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
                 3
               </button>
-              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+              <button className="px-4 py-2 rounded-full border border-gray-300 text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
                 4
               </button>
 
               {/* Next Button */}
-              <button className="px-3 py-2 border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200">
+              <button className="px-4 py-2 border border-gray-300 rounded-full text-gray-600 hover:text-black hover:border-yellow-600 transition duration-200 cursor-pointer">
                 ›
               </button>
             </nav>

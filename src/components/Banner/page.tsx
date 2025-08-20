@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import banner1 from '../../assets/banner3.jpg';
-import banner from '../../assets/banner2.jpg';
+import banner1 from '../../assets/banner.webp';
+import banner from '../../assets/banner2.webp';
 import dynamic from 'next/dynamic';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import type { FC, MouseEventHandler } from 'react';
@@ -67,6 +67,7 @@ const Banner = () => {
               src={slide.image}
               alt={`Banner ${index + 1}`}
               fill
+              priority
               className="object-cover"
               placeholder="blur"
               sizes="100vw"
