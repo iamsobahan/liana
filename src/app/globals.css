@@ -25,3 +25,21 @@ span {
 .btn:where(input:checked:not(.filter .btn)) {
   --btn-color: #d6a74e !important;
 }
+
+.tab {
+  color: black !important;
+  font-size: 18px !important;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.tabs-lift > .tab:is(input:checked, label:has(:checked)) {
+  background-color: black;
+  color: white !important;
+  border-radius: 5px 5px 0px 0px !important;
+}
+
+.tabs-lift > .tab {
+  background-color: rgb(255, 255, 255);
+  border-radius: 0;
+}

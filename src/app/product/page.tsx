@@ -1,14 +1,45 @@
 'use client';
 import { useState } from 'react';
-import slick from '../../assets/slick1.jpeg';
 import Image from 'next/image';
-
+import { FaWhatsapp } from 'react-icons/fa';
 import React from 'react';
+import FeaturePage from '@/components/Feature/page';
 
 interface SizeOption {
   label: string;
   value: string;
 }
+
+// ✅ Correctly import images
+import slick from '../../assets/slick.jpeg';
+import slick1 from '../../assets/slick1.jpeg';
+import slick2 from '../../assets/slick2.jpeg';
+import slick3 from '../../assets/slick3.jpeg';
+import slick4 from '../../assets/slick4.jpeg';
+import slick5 from '../../assets/slick5.jpeg';
+import slick6 from '../../assets/slick6.jpeg';
+import slick7 from '../../assets/slick7.jpeg';
+import slick8 from '../../assets/slick8.jpeg';
+import slick9 from '../../assets/slick9.jpeg';
+import slick10 from '../../assets/slick10.jpeg';
+
+type Product = {
+  image: string;
+};
+
+const feature: Product[] = [
+  { image: slick.src },
+  { image: slick1.src },
+  { image: slick2.src },
+  { image: slick3.src },
+  { image: slick4.src },
+  { image: slick5.src },
+  { image: slick6.src },
+  { image: slick7.src },
+  { image: slick8.src },
+  { image: slick9.src },
+  { image: slick10.src },
+];
 
 export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState<string>('M');
@@ -30,38 +61,46 @@ export default function ProductDetails() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="grid md:grid-cols-2 gap-8">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 py-6 sm:py-10">
+      {/* GRID LAYOUT */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+        {/* LEFT: IMAGE */}
         <div className="flex items-center justify-center">
           <Image
-            src={slick} // replace with actual image
+            src={slick}
             alt="Premium Designer Polo"
-            className="w-full object-contain rounded-xl"
+            className="w-full h-auto max-h-[450px] object-contain rounded-lg sm:rounded-xl"
+            priority
           />
         </div>
 
+        {/* RIGHT: DETAILS */}
         <div>
-          <h1 className="text-2xl font-bold text-gray-800">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-800 leading-snug">
             Premium Designer Edition Double PK Cotton Polo - Glorious
           </h1>
 
           {/* Price */}
-          <div className="mt-4 flex items-center gap-3">
-            <span className="text-gray-400 line-through text-lg">৳1600</span>
-            <span className="text-3xl font-bold text-green-600">৳1260</span>
+          <div className="mt-3 sm:mt-4 flex items-center gap-3">
+            <span className="text-gray-400 line-through text-base sm:text-lg">
+              ৳1600
+            </span>
+            <span className="text-2xl sm:text-3xl font-bold text-green-600">
+              ৳1260
+            </span>
           </div>
 
-          {/* Size Selection */}
-          <div className="mt-6">
+          {/* Sizes */}
+          <div className="mt-5 sm:mt-6">
             <h3 className="text-sm font-semibold text-gray-600">
               Select Size:
             </h3>
-            <div className="flex gap-3 mt-2">
+            <div className="flex flex-wrap gap-2 mt-2">
               {sizes.map((size) => (
                 <button
                   key={size.value}
                   onClick={() => setSelectedSize(size.value)}
-                  className={`px-4 py-2 border rounded-md font-semibold transition-all ${
+                  className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
                     selectedSize === size.value
                       ? 'bg-black text-white border-black'
                       : 'bg-white text-gray-700 border-gray-300 hover:border-black'
@@ -73,8 +112,8 @@ export default function ProductDetails() {
             </div>
           </div>
 
-          {/* Quantity & Add to Cart */}
-          <div className="mt-6 flex items-center gap-4">
+          {/* Quantity + Actions */}
+          <div className="mt-5 sm:mt-6 flex flex-wrap gap-3">
             <div className="flex items-center border rounded-md">
               <button
                 onClick={() => handleQuantity('dec')}
@@ -93,19 +132,29 @@ export default function ProductDetails() {
               </button>
             </div>
 
-            <button className="flex items-center gap-2 px-6 py-3 bg-black text-white rounded-md font-semibold shadow-md hover:bg-gray-800 transition">
-              <span className="text-xl">＋</span> Add to Cart
+            <button className="flex items-center justify-center flex-1 min-w-[140px] px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm">
+              ＋ Add to Cart
+            </button>
+
+            <button className="flex items-center justify-center flex-1 min-w-[120px] px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm">
+              Buy Now
+            </button>
+
+            <button className="flex items-center justify-center flex-1 min-w-[120px] gap-2 px-4 py-2 bg-green-700 text-white rounded-md font-semibold shadow hover:bg-green-600 transition text-sm">
+              <FaWhatsapp size={16} /> WhatsApp
             </button>
           </div>
 
-          <div className="mt-6 text-gray-600 leading-relaxed">
+          {/* Short Description */}
+          <div className="mt-5 sm:mt-6 text-gray-600 text-sm sm:text-base leading-relaxed">
             The Polo t-shirt is made with Double PK fabric which features
             premium 80% combed compact organic cotton and 20% polyester. The
             t-shirt has a soft touch which makes it very comfortable for
             day-long usage.
           </div>
 
-          <div className="mt-6 text-sm text-gray-700">
+          {/* Specs */}
+          <div className="mt-5 sm:mt-6 text-sm text-gray-700 space-y-1">
             <p>
               <strong>Fabric type:</strong> Double PK
             </p>
@@ -119,75 +168,72 @@ export default function ProductDetails() {
         </div>
       </div>
 
-      {/* name of each tab group should be unique */}
-      {/* name of each tab group should be unique */}
-      <div className="tabs tabs-lift">
-        <label className="tab bg-gray-100 text-gray-900">
-          <input type="radio" name="my_tabs_4" />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-4 me-2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z"
-            />
-          </svg>
-          Live
-        </label>
-        <div className="tab-content bg-base-100 border-base-300 p-6">
-          Tab content 1
+      {/* Tabs */}
+      <div className="tabs tabs-lift mt-8 sm:mt-12">
+        {/* Tab 1 */}
+        <input
+          type="radio"
+          name="tabs_group"
+          className="tab"
+          aria-label="Descriptions"
+          defaultChecked
+        />
+        <div className="tab-content text-gray-800 p-4 sm:p-6">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4">
+            Product Details
+          </h2>
+          <p className="text-gray-700 mb-6 leading-relaxed text-sm sm:text-base">
+            Weekend adventures call for black casual comfort that doesn't
+            sacrifice style. These shoes from{' '}
+            <span className="font-semibold">North Star</span> let you stay
+            trendy and relaxed all day. Lightweight soles make casual styles for
+            men easy to wear without compromising on fashion.
+          </p>
+
+          <h3 className="text-lg sm:text-xl font-semibold mb-3">Features</h3>
+          <ul className="list-disc pl-5 text-gray-700 mb-6 space-y-1 text-sm sm:text-base">
+            <li>Type: Casual Shoes</li>
+            <li>Gender: Men</li>
+            <li>Color: Black</li>
+            <li>Upper Material: Synthetic</li>
+            <li>Sole: PVC</li>
+          </ul>
+
+          <h3 className="text-lg sm:text-xl font-semibold mb-3">Style Tip</h3>
+          <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
+            Style up these cool casual shoes with a cotton t-shirt and ripped
+            jeans for a trendy look.
+          </p>
         </div>
 
-        <label className="tab bg-gray-100 text-gray-900">
-          <input type="radio" name="my_tabs_4" defaultChecked />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-4 me-2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"
-            />
-          </svg>
-          Laugh
-        </label>
-        <div className="tab-content bg-base-100 border-base-300 p-6">
-          Tab content 2
+        {/* Tab 2 */}
+        <input
+          type="radio"
+          name="tabs_group"
+          className="tab"
+          aria-label="Terms & Conditions"
+        />
+        <div className="tab-content text-gray-800 p-4 sm:p-6">
+          <p className="text-sm sm:text-base">
+            {/* Your T&C content (shortened for brevity) */}
+            Dear Customer, we try our best to provide you the best experience...
+          </p>
         </div>
 
-        <label className="tab bg-gray-100 text-gray-900:important">
-          <input type="radio" name="my_tabs_4" />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-4 me-2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-            />
-          </svg>
-          Love
-        </label>
-        <div className="tab-content bg-base-100 border-base-300 p-6">
-          Tab content 3
+        {/* Tab 3 */}
+        <input
+          type="radio"
+          name="tabs_group"
+          className="tab"
+          aria-label="Sizes"
+        />
+        <div className="tab-content text-gray-800 p-4 sm:p-6 text-sm sm:text-base">
+          This is Size Section
         </div>
       </div>
+
+      {/* Similar Products */}
+      <FeaturePage feature={feature} title="Similar Products" />
     </div>
   );
 }

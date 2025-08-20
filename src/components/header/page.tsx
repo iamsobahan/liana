@@ -3,7 +3,7 @@ import { IoCall } from 'react-icons/io5';
 import { FaSignInAlt, FaUserPlus, FaRegHeart } from 'react-icons/fa';
 import { BsCartCheckFill } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { IoLocation } from 'react-icons/io5';
+import { IoLocationOutline } from 'react-icons/io5';
 import product from '../../assets/slick3.jpeg'; // Replace with your image path
 import Image from 'next/image';
 import Link from 'next/link';
@@ -51,7 +51,7 @@ const Header = () => {
 
           <div className="hidden sm:flex items-center gap-6 text-gray-800 font-medium">
             <div className="flex items-center gap-1 hover:text-[#D6A74E] cursor-pointer">
-              <IoLocation />
+              <IoLocationOutline />
               <span>Track Order</span>
             </div>
             <span className="cursor-pointer hover:text-[#D6A74E]">Help</span>
@@ -213,7 +213,7 @@ const Header = () => {
 
             <div className="text-gray-800 flex ml-3 items-center hover:text-[#D6A74E] cursor-pointer text-sm">
               <span className="mr-1">Track Order</span>
-              <IoLocation />
+              <IoLocationOutline />
             </div>
           </div>
         </div>

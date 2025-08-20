@@ -1,7 +1,7 @@
 // components/MobileBottomNav.tsx
 'use client';
 
-import { FaShoppingCart, FaFacebookF } from 'react-icons/fa';
+import { FaFacebookF } from 'react-icons/fa';
 
 import { IoHomeOutline, IoCartOutline } from 'react-icons/io5';
 import { RiMessengerLine } from 'react-icons/ri';
