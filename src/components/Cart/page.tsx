@@ -25,9 +25,9 @@ export default function Cart() {
       <div className="fixed top-1/3 right-0 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="flex flex-col items-center  cursor-pointer overflow-hidden rounded-l-3xl shadow-2xl backdrop-blur-md bg-gradient-to-b from-[#5C4424] to-[#A98153] hover:scale-105 transition duration-300 p-3"
+          className="flex flex-col items-center  cursor-pointer overflow-hidden  shadow-2xl backdrop-blur-md bg-gradient-to-b from-[rgb(169,129,83)] to-[black] hover:scale-105 transition duration-300 p-1 md:p-3"
         >
-          <IoCartOutline className="h-7 w-7 text-white" />
+          <IoCartOutline className="h-6 w-6 text-white" />
           <span className="text-xs font-semibold text-white mt-1">
             {cartItems.length} items
           </span>
@@ -61,7 +61,8 @@ export default function Cart() {
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="flex items-center text-xl font-bold text-gray-800">
-                  <IoCartOutline size={30}/> <span className='ml-3'>My Cart</span>
+                  <IoCartOutline size={30} />{' '}
+                  <span className="ml-3">My Cart</span>
                 </h2>
                 <button
                   onClick={() => setIsOpen(false)}
