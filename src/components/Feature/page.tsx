@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import dynamic from 'next/dynamic';
 import slick1 from '../../assets/slick1.jpeg';
+import { IoCheckmarkCircle } from 'react-icons/io5';
+import slick from '../../assets/slick.jpeg';
 import Link from 'next/link';
 
 const Slider = dynamic(() => import('react-slick'), { ssr: false });
@@ -96,48 +98,59 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
   return (
     <div className="container mx-auto my-10 px-4">
       {/* model box pop up 2  */}
+
       <dialog id="my_modal_1" ref={modalRef2} className="modal">
-        <div>
-          <div className="w-full max-w-md mx-auto bg-white p-4 shadow-md rounded-md gap-4 items-start">
-            {/* Left: Image */}
-            <div className="modal-action pt-0 mt-0">
-              <form method="dialog">
-                <button className="text-[#D6A74E] hover:text-[#f6c262] text-2xl font-semibold leading-none cursor-pointer">
-                  X
-                </button>
-              </form>
-            </div>
-            <div className="flex min-w-[80px]">
-              <Image
-                src={slick1}
-                alt="Gift Card"
-                className="rounded mr-3"
-                width={80}
-                height={80}
-                style={{ objectFit: 'cover' }}
-              />
+        {/* Modal Box */}
 
-              {/* Right: Content */}
-              <div className="flex-1">
-                <div className="items-start">
-                  <h2 className="text-lg font-semibold cursor-pointer text-gray-900">
-                    Bata Digital Gift Card 15000Tk
-                  </h2>
-                </div>
+        <div className="bg-white rounded-xl shadow-lg max-w-md  mx-3 md:mx-0 md:width-full text-gray-800">
+          <div className="modal-action mr-5">
+            <form method="dialog">
+              <button className="text-[#D6A74E] hover:text-[#f6c262] text-2xl font-semibold leading-none cursor-pointer">
+                X
+              </button>
+            </form>
+          </div>
+          {/* Success Icon & Title */}
+          <div className="flex flex-col items-center p-6">
+            <IoCheckmarkCircle className="text-green-500 text-5xl mb-2" />
+            <h2 className="text-lg md:text-xl font-semibold text-green-600">
+              Item added to your cart!
+            </h2>
+          </div>
 
-                <p className="text-sm text-gray-400 cursor-pointer italic mt-1">
-                  Added to your shopping cart.
-                </p>
-              </div>
+          {/* Product Info */}
+          <div className="flex items-center gap-4 border-t border-b px-6 py-4">
+            <Image
+              src={slick} // Replace with your product image
+              alt="Product"
+              width={80}
+              height={80}
+              className="rounded-lg object-cover border"
+            />
+            <div>
+              <h3 className="text-sm md:text-base font-semibold text-gray-800">
+                Gazi Smiss Infrared Cooker IF-HL01
+              </h3>
+              <p className="text-sm text-gray-600 mt-1">
+                Price:
+                <span className="text-lg font-bold text-[#46351F]">
+                  {' '}
+                  ৳6,547.20{' '}
+                </span>
+              </p>
             </div>
-            <div className="mt-3">
-              <button className="flex cursor-pointer mb-1 items-center gap-1 text-sm font-semibold text-gray-800 hover:text-yellow-600 border-b-2 border-transparent hover:border-yellow-600 transition duration-150">
-                CONTINUE SHOPPING →
-              </button>
-              <button className="flex cursor-pointer items-center gap-1 text-sm font-semibold text-gray-800 hover:text-yellow-600 border-b-2 border-transparent hover:border-yellow-600 transition duration-150">
-                VIEW CART →
-              </button>
-            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex justify-between gap-3 px-6 py-4">
+            <button className="flex-1 border border-[#46351F] text-[#46351F] hover:bg-[#46351F] hover:text-white transition rounded-lg py-1 font-medium">
+              Back to Shopping
+            </button>
+            <button
+              className="flex-1 bg-[#A98153] hover:bg-[#46351F] text-white transition rounded-lg py-1 font-medium text-center"
+            >
+              Proceed to Checkout
+            </button>
           </div>
         </div>
       </dialog>
@@ -147,11 +160,11 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
       <dialog
         id="my_modal"
         ref={modalRef}
-        className="rounded-lg p-0 mx-auto overflow-y-scroll"
+        className="rounded-lg mt-7 p-0 mx-auto overflow-y-scroll"
       >
         <div className="bg-white rounded-lg overflow-hidden">
           {/* Header */}
-          <div className="flex justify-between items-center p-5 border-b border-gray-200">
+          <div className="flex justify-between items-center p-3 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-800">Price Details</h2>
             <div className="modal-action pt-0 mt-0">
               <form method="dialog">

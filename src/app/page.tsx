@@ -26,6 +26,7 @@ import slick7 from '../assets/slick7.jpeg';
 import slick8 from '../assets/slick8.jpeg';
 import slick9 from '../assets/slick9.jpeg';
 import slick10 from '../assets/slick10.jpeg';
+import Cart from '@/components/Cart/page';
 
 // ✅ Define type for product
 type Product = {
@@ -65,6 +66,7 @@ const Page = () => {
   return (
     <div>
       <SocialBar />
+      <Cart/>
       <Banner />
       <CategoryPage />
       <FeaturePage feature={feature} title="Feature Products" />

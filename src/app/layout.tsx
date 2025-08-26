@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${rajdhani} ${raleway.variable} bg-white`}>
+      <body className={`${rajdhani} ${raleway.variable} bg-white scroll-smooth`}>
         <Header />
         <MobileBottomNav />
         {children}
