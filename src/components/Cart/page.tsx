@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { IoCartOutline } from 'react-icons/io5';
+import { BiSolidShoppingBags } from 'react-icons/bi';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Cart() {
@@ -25,16 +25,18 @@ export default function Cart() {
       <div className="fixed top-1/3 right-0 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="flex flex-col items-center  cursor-pointer overflow-hidden  shadow-2xl backdrop-blur-md bg-gradient-to-b from-[rgb(169,129,83)] to-[black] hover:scale-105 transition duration-300 p-1 md:p-3"
+          className="flex flex-col items-center  cursor-pointer overflow-hidden  shadow-2xl bg-[#46351F] hover:scale-105 transition duration-300 pt-2 md:pt-3"
         >
-          <IoCartOutline className="h-6 w-6 text-white" />
-          <span className="text-xs font-semibold text-white mt-1">
+          <BiSolidShoppingBags className="h-6 w-6 text-[#EBA659]" />
+          <span className="text-xs font-semibold text-[#EBA659] mt-1">
             {cartItems.length} items
           </span>
-          <div className="w-full h-[1px] bg-white/20 my-2"></div>
-          <span className="text-sm font-bold text-white tracking-wide">
-            ৳ {totalPrice}
-          </span>
+          <p className="bg-[#A98153] text-sm font-bold text-white tracking-wide mt-2 px-[10px] md:px-[20px]">
+            <span className='text-xl font-bold mr-.5'>
+              ৳
+            </span>
+            {totalPrice}
+          </p>
         </button>
       </div>
 
