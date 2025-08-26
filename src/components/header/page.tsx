@@ -41,7 +41,7 @@ const Header = () => {
     <div className="w-full bg-gray-100">
       {/* Top Header */}
       <div>
-        <header className="md:px-4 md:container mx-auto md:py-2 flex justify-between items-center text-xs sm:text-sm">
+        <header className="md:px-4 md:container mx-auto py-0 md:py-2 flex justify-between items-center text-xs sm:text-sm">
           <div className="hidden lg:flex items-center gap-0 font-medium text-gray-800">
             <IoCall />
             <span className="uppercase font-medium text-[13px]">
@@ -74,20 +74,18 @@ const Header = () => {
           </div> */}
         </header>
         <div
-          className={`z-50 w-full bg-white transition-shadow duration-300 ${
+          className={`z-50 w-full bg-white transition-shadow duration-300 scroll-smooth ${
             isSticky ? 'fixed top-0 shadow-lg' : 'relative'
           }`}
         >
-          <div className="bg-white py-3 border-b border-gray-300">
+          <div className="bg-white py-1.5 md:py-3 border-b border-gray-300">
             <div className="md:container px-4 mx-auto flex justify-between items-center">
               {/* Logo */}
               <Link href="/">
                 <Image
                   src={logo}
                   alt="Logo"
-                  width={160}
-                  height={60}
-                  className="object-contain"
+                  className="w-24 md:w-40 object-contain"
                 />
               </Link>
 
@@ -96,7 +94,7 @@ const Header = () => {
                   <input
                     type="text"
                     placeholder="Search your products"
-                    className="w-full pl-4 pr-10 py-2 border border-gray-400 rounded-3xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
+                    className="w-full pl-4 pr-10 py-1 md:py-2 border border-gray-400 rounded-3xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
                   />
                   <button
                     type="submit"
@@ -193,7 +191,7 @@ const Header = () => {
           </div>
 
           <div
-            className={`flex justify-center items-center my-3 px-2 md:hidden ${
+            className={`flex justify-center items-center my-1.5 md:my-3 px-2 md:hidden ${
               isSticky ? 'hidden' : ''
             }`}
           >

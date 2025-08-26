@@ -96,7 +96,7 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
   };
 
   return (
-    <div className="container mx-auto my-10 px-4">
+    <div className="container mx-auto my-2 md:my-10 px-4">
       {/* model box pop up 2  */}
 
       <dialog id="my_modal_1" ref={modalRef2} className="modal">
@@ -146,9 +146,7 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
             <button className="flex-1 border border-[#46351F] text-[#46351F] hover:bg-[#46351F] hover:text-white transition rounded-lg py-1 font-medium">
               Back to Shopping
             </button>
-            <button
-              className="flex-1 bg-[#A98153] hover:bg-[#46351F] text-white transition rounded-lg py-1 font-medium text-center"
-            >
+            <button className="flex-1 bg-[#A98153] hover:bg-[#46351F] text-white transition rounded-lg py-1 font-medium text-center">
               Proceed to Checkout
             </button>
           </div>
@@ -290,11 +288,11 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
         </div>
       </dialog>
       {/* Feature title  */}
-      <div className="text-center mb-5 md:mb-10">
-        <h2 className="text-md md:text-2xl font-semibold text-gray-800 uppercase tracking-widest font-rajdhani animate-fade-in-down">
+      <div className="text-center mb-3 md:mb-10">
+        <h2 className="text-xs md:text-2xl font-semibold text-gray-800 uppercase tracking-widest font-rajdhani animate-fade-in-down">
           {title}
         </h2>
-        <span className="block h-[2px] w-32 mx-auto mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"></span>
+        <span className="block h-[2px] w-32 mx-auto mt-1 md:mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"></span>
       </div>
 
       <div className="-mx-2">

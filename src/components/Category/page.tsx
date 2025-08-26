@@ -71,23 +71,23 @@ const CategoryPage = () => {
 
   const categories = [
     {
-      title: 'Ear Rings',
+      title: 'EAR RINGS',
       image: category,
     },
     {
-      title: 'Bracelet',
+      title: 'BRACELETS',
       image: category1,
     },
     {
-      title: 'Bangles',
+      title: 'BANGLES',
       image: category3,
     },
     {
-      title: 'Hand Ring',
+      title: 'HAND RINGS',
       image: category5,
     },
     {
-      title: 'Belly Chain',
+      title: 'BELLY CHAIN',
       image: category4,
     },
     {
@@ -105,12 +105,12 @@ const CategoryPage = () => {
   ];
 
   return (
-    <div className="container mx-auto my-10 px-4">
-      <div className="text-center mb-5 md:mb-10">
-        <h2 className="text-md md:text-2xl font-semibold text-gray-800 uppercase tracking-widest font-rajdhani animate-fade-in-down">
+    <div className="container mx-auto my-2 md:my-10 px-4">
+      <div className="text-center mb-3 md:mb-10">
+        <h2 className="text-xs md:text-2xl font-semibold text-gray-800 uppercase tracking-widest font-rajdhani animate-fade-in-down">
           Feature Catagories
         </h2>
-        <span className="block h-[2px] w-32 mx-auto mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"></span>
+        <span className="block h-[2px] w-32 mx-auto mt-1 md:mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"></span>
       </div>
       <div className="relative"> 
         {/* Slider */}
@@ -122,13 +122,12 @@ const CategoryPage = () => {
                   <Image
                     src={cat.image}
                     alt={cat.title}
-                    width={500}
-                    height={500}
-                    className="object-cover w-full h-64"
+                    
+                    className="object-cover w-full h-22 md:h-64"
                   />
                 </Link>
                 {/* Title Overlay */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white cursor-pointer hover:bg-black hover:text-white transition px-4 py-2 rounded-lg shadow text-center font-semibold text-sm md:text-lg text-gray-800">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white cursor-pointer hover:bg-black hover:text-white transition px-6 md:px-4 w-30 md:w-50 py-1 md:py-2 rounded-lg shadow text-center font-normal md:font-semibold text-xs md:text-lg text-gray-800">
                   {cat.title}
                 </div>
               </div>
