@@ -32,9 +32,7 @@ export default function Cart() {
             {cartItems.length} items
           </span>
           <p className="bg-[#A98153] text-sm font-bold text-white tracking-wide mt-2 px-[10px] md:px-[20px]">
-            <span className='text-xl font-bold mr-.5'>
-              ৳
-            </span>
+            <span className="text-xl font-bold mr-.5">৳</span>
             {totalPrice}
           </p>
         </button>
@@ -63,7 +61,7 @@ export default function Cart() {
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="flex items-center text-xl font-bold text-gray-800">
-                  <IoCartOutline size={30} />{' '}
+                  <BiSolidShoppingBags size={30} />{' '}
                   <span className="ml-3">My Cart</span>
                 </h2>
                 <button
