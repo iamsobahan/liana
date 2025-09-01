@@ -1,44 +1,27 @@
 'use client';
-import { IoCall } from 'react-icons/io5';
+import { IoCall, IoLocationOutline } from 'react-icons/io5';
 import { FaSignInAlt, FaUserPlus, FaRegHeart } from 'react-icons/fa';
 import { BsCartCheckFill } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { IoLocationOutline } from 'react-icons/io5';
-import product from '../../assets/slick3.jpeg'; // Replace with your image path
+import { useEffect, useState } from 'react';
+import { HiMenu } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '../../assets/logo.png';
-import { useEffect, useState } from 'react';
-import { HiMenu } from 'react-icons/hi';
+import product from '../../assets/slick3.jpeg';
 
 const Header = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsSticky(window.scrollY > 1);
-    };
-
+    const handleScroll = () => setIsSticky(window.scrollY > 1);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const menuItems = [
-    { name: 'HOME', active: true },
-    { name: 'MEGA DEALS' },
-    { name: 'BRAND' },
-    { name: 'MEN' },
-    { name: 'WOMEN' },
-    { name: 'CHILDREN' },
-    { name: 'ACCESSORIES' },
-    { name: 'HELP' },
-    { name: 'LOGIN' },
-    { name: 'REGISTER' },
-  ];
-
   return (
-    <div className="w-full bg-gray-100">
+    <div className="w-full bg-gray-100 text-gray-800">
       {/* Top Header */}
       <div>
         <header className="md:px-4 md:container mx-auto py-0 md:py-2 flex justify-between items-center text-xs sm:text-sm">
@@ -64,15 +47,9 @@ const Header = () => {
               <span>Register</span>
             </div>
           </div>
-
-          {/* Show only on small screens */}
-          {/* <div className="flex hid items-center gap-3">
-            <div className="text-gray-800 flex items-center gap-1 hover:text-[#D6A74E] cursor-pointer text-sm">
-              <FaBoxOpen />
-              <span>Track Order</span>
-            </div>
-          </div> */}
         </header>
+
+        {/* Sticky Navbar */}
         <div
           className={`z-50 w-full bg-white transition-shadow duration-300 scroll-smooth ${
             isSticky ? 'fixed top-0 shadow-lg' : 'relative'
@@ -89,6 +66,7 @@ const Header = () => {
                 />
               </Link>
 
+              {/* Search */}
               <div className="hidden md:block w-[600px] bg-white px-4 py-3">
                 <form action="" className="relative w-full">
                   <input
@@ -113,6 +91,8 @@ const Header = () => {
                     0
                   </span>
                 </div>
+
+                {/* Cart Dropdown */}
                 <div className="dropdown dropdown-hover">
                   <div className="relative cursor-pointer">
                     <BsCartCheckFill className="text-gray-800 text-xl cursor-pointer" />
@@ -125,7 +105,6 @@ const Header = () => {
                     className="dropdown-content menu z-50 absolute top-5 right-[-50px] p-2 w-80"
                   >
                     <div className="bg-white rounded-md shadow p-4 font-sans text-gray-800">
-                      {/* Header */}
                       <div className="flex justify-between items-start">
                         <div className="flex items-start gap-3">
                           <div className="w-20 h-20 relative cursor-pointer">
@@ -157,16 +136,11 @@ const Header = () => {
                         </button>
                       </div>
 
-                      {/* Divider */}
                       <hr className="my-4 border-gray-300" />
-
-                      {/* Total */}
                       <div className="flex justify-between items-center text-sm font-semibold">
                         <span>Total:</span>
                         <span className="text-lg">Tk 12,000.00</span>
                       </div>
-
-                      {/* Buttons */}
                       <div className="mt-4 flex flex-col gap-2">
                         <button className="bg-[#D6A74E] hover:bg-[#e9ad3e] text-white font-semibold py-2 rounded cursor-pointer">
                           CHECK OUT NOW
@@ -190,8 +164,9 @@ const Header = () => {
             </div>
           </div>
 
+          {/* Mobile Search */}
           <div
-            className={`flex justify-center items-center my-1.5 md:my-3 px-2 md:hidden ${
+            className={`flex justify-center items-center my-1 md:my-3 px-2 md:hidden ${
               isSticky ? 'hidden' : ''
             }`}
           >
@@ -199,7 +174,7 @@ const Header = () => {
               <input
                 type="text"
                 placeholder="Search your products"
-                className="w-full pl-2 py-1 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
+                className="w-full pl-2 py-1 px-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
               />
               <button
                 type="submit"
@@ -217,24 +192,85 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Logo + Icons */}
-
       {/* Desktop Menu */}
       <nav className="hidden sm:block w-full bg-white shadow-sm">
-        <ul className="flex justify-center items-center space-x-5 text-sm uppercase font-medium py-3 tracking-wide">
-          {menuItems.slice(0, 7).map((item, index) => (
-            <li
-              key={item.name}
-              className="flex text-base items-center space-x-6"
-            >
-              {index !== 0 && (
-                <span className="text-gray-400 text-base">|</span>
-              )}
-              <span className="cursor-pointer text-gray-800 hover:text-[#D6A74E] font-semibold">
-                {item.name}
-              </span>
-            </li>
-          ))}
+        <ul className="flex justify-center items-center text-sm uppercase font-medium py-3 tracking-wide">
+          {/* HOME */}
+          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            HOME
+          </li>
+
+          {/* MEGA DEALS (dropdown) */}
+          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            <span className="inline-flex items-center cursor-pointer">
+              MEGA DEALS
+            </span>
+            {/* Hover buffer + submenu */}
+            <div className="absolute left-[-10px] top-full pt-2 z-50">
+              <ul className="hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Deal 1
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Deal 2
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Deal 3
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          {/* BRAND */}
+          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            BRAND
+          </li>
+
+          {/* MEN (dropdown) */}
+          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            <span className="inline-flex items-center">MEN</span>
+            <div className="absolute left-[-10px] top-full pt-2 z-50">
+              <ul className="hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Shirts
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Pants
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Shoes
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          {/* WOMEN (dropdown) */}
+          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            <span className="inline-flex items-center">WOMEN</span>
+            <div className="absolute left-[-10px] top-full pt-2 z-50">
+              <ul className="hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200 transition">
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Dresses
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Bags
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                  Shoes
+                </li>
+              </ul>
+            </div>
+          </li>
+
+          {/* CHILDREN */}
+          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            CHILDREN
+          </li>
+
+          {/* ACCESSORIES */}
+          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            ACCESSORIES
+          </li>
         </ul>
       </nav>
 
@@ -251,11 +287,51 @@ const Header = () => {
           ✕ Close
         </button>
         <ul className="flex flex-col gap-4 px-4 text-lg uppercase font-medium">
-          {menuItems.map((item) => (
-            <li key={item.name} className="text-gray-800 hover:text-[#D6A74E]">
-              {item.name}
-            </li>
-          ))}
+          <li className="hover:text-[#D6A74E]">HOME</li>
+
+          <li>
+            <details>
+              <summary className="hover:text-[#D6A74E] cursor-pointer">
+                MEGA DEALS
+              </summary>
+              <ul className="pl-6 text-base">
+                <li className="py-1">Deal 1</li>
+                <li className="py-1">Deal 2</li>
+                <li className="py-1">Deal 3</li>
+              </ul>
+            </details>
+          </li>
+
+          <li className="hover:text-[#D6A74E]">BRAND</li>
+
+          <li>
+            <details>
+              <summary className="hover:text-[#D6A74E] cursor-pointer">
+                MEN
+              </summary>
+              <ul className="pl-6 text-base">
+                <li className="py-1">Shirts</li>
+                <li className="py-1">Pants</li>
+                <li className="py-1">Shoes</li>
+              </ul>
+            </details>
+          </li>
+
+          <li>
+            <details>
+              <summary className="hover:text-[#D6A74E] cursor-pointer">
+                WOMEN
+              </summary>
+              <ul className="pl-6 text-base">
+                <li className="py-1">Dresses</li>
+                <li className="py-1">Bags</li>
+                <li className="py-1">Shoes</li>
+              </ul>
+            </details>
+          </li>
+
+          <li className="hover:text-[#D6A74E]">CHILDREN</li>
+          <li className="hover:text-[#D6A74E]">ACCESSORIES</li>
         </ul>
       </div>
     </div>
