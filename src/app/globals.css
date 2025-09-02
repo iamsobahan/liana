@@ -45,3 +45,11 @@ span {
   border-radius: 0;
   border: none !important;
 }
+
+.dropdown_class {
+  transition: .4s ;
+}
+
+.dropdown_class:hover > ul {
+  display: block!important;
+}

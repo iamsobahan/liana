@@ -201,24 +201,41 @@ const Header = () => {
           </li>
 
           {/* MEGA DEALS (dropdown) */}
-          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+          <li className="relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
             <span className="inline-flex items-center cursor-pointer">
               MEGA DEALS
             </span>
-            {/* Hover buffer + submenu */}
-            <div className="absolute left-[-10px] top-full pt-2 z-50">
-              <ul className="hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Deal 1
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Deal 2
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Deal 3
-                </li>
-              </ul>
-            </div>
+
+            {/* 1st level dropdown */}
+            <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                Deal 1
+              </li>
+
+              {/* Deal 2 with nested submenu */}
+              <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <span className="flex justify-between items-center cursor-pointer">
+                  Deal 2 <span className="ml-2">▶</span>
+                </span>
+
+                {/* 2nd level dropdown */}
+                <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Deal 4
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Deal 5
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Deal 6
+                  </li>
+                </ul>
+              </li>
+
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                Deal 3
+              </li>
+            </ul>
           </li>
 
           {/* BRAND */}
@@ -227,39 +244,77 @@ const Header = () => {
           </li>
 
           {/* MEN (dropdown) */}
-          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            <span className="inline-flex items-center">MEN</span>
-            <div className="absolute left-[-10px] top-full pt-2 z-50">
-              <ul className="hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Shirts
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Pants
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Shoes
-                </li>
-              </ul>
-            </div>
+          <li className="relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            <span className="inline-flex items-center cursor-pointer">MEN</span>
+
+            {/* 1st level dropdown */}
+            <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                Shirts
+              </li>
+
+              {/* Deal 2 with nested submenu */}
+              <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <span className="flex justify-between items-center cursor-pointer">
+                  Pants <span className="ml-2">▶</span>
+                </span>
+
+                {/* 2nd level dropdown */}
+                <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Deal 4
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Deal 5
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Deal 6
+                  </li>
+                </ul>
+              </li>
+
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                Shoes
+              </li>
+            </ul>
           </li>
 
           {/* WOMEN (dropdown) */}
-          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            <span className="inline-flex items-center">WOMEN</span>
-            <div className="absolute left-[-10px] top-full pt-2 z-50">
-              <ul className="hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200 transition">
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Dresses
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Bags
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                  Shoes
-                </li>
-              </ul>
-            </div>
+          <li className="relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            <span className="inline-flex items-center cursor-pointer">
+              WOMEN
+            </span>
+
+            {/* 1st level dropdown */}
+            <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                BAGS
+              </li>
+
+              {/* Deal 2 with nested submenu */}
+              <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <span className="flex justify-between items-center cursor-pointer">
+                  RINGS <span className="ml-2">▶</span>
+                </span>
+
+                {/* 2nd level dropdown */}
+                <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Deal 4
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Deal 5
+                  </li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    Deal 6
+                  </li>
+                </ul>
+              </li>
+
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                WATCHES
+              </li>
+            </ul>
           </li>
 
           {/* CHILDREN */}
@@ -286,7 +341,8 @@ const Header = () => {
         >
           ✕ Close
         </button>
-        <ul className="flex flex-col gap-4 px-4 text-lg uppercase font-medium">
+
+        <ul className="flex flex-col gap-4 px-4 text-lg uppercase font-medium overflow-y-auto h-[calc(100vh-250px)]">
           <li className="hover:text-[#D6A74E]">HOME</li>
 
           <li>
@@ -296,7 +352,18 @@ const Header = () => {
               </summary>
               <ul className="pl-6 text-base">
                 <li className="py-1">Deal 1</li>
-                <li className="py-1">Deal 2</li>
+                <li className="py-1">
+                  <details>
+                    <summary className="hover:text-[#D6A74E] cursor-pointer">
+                      Deal 2
+                    </summary>
+                    <ul className="pl-6 text-base">
+                      <li className="py-1">Deal 4</li>
+                      <li className="py-1">Deal 5</li>
+                      <li className="py-1">Deal 6</li>
+                    </ul>
+                  </details>
+                </li>
                 <li className="py-1">Deal 3</li>
               </ul>
             </details>
@@ -312,7 +379,18 @@ const Header = () => {
               <ul className="pl-6 text-base">
                 <li className="py-1">Shirts</li>
                 <li className="py-1">Pants</li>
-                <li className="py-1">Shoes</li>
+                <li className="py-1">
+                  <details>
+                    <summary className="hover:text-[#D6A74E] cursor-pointer">
+                      Shoes
+                    </summary>
+                    <ul className="pl-6 text-base">
+                      <li className="py-1">Shoes 1</li>
+                      <li className="py-1">Shoes 2</li>
+                      <li className="py-1">Shoes 3</li>
+                    </ul>
+                  </details>
+                </li>
               </ul>
             </details>
           </li>
@@ -323,7 +401,18 @@ const Header = () => {
                 WOMEN
               </summary>
               <ul className="pl-6 text-base">
-                <li className="py-1">Dresses</li>
+                <li className="py-1">
+                  <details>
+                    <summary className="hover:text-[#D6A74E] cursor-pointer">
+                      Dress
+                    </summary>
+                    <ul className="pl-6 text-base">
+                      <li className="py-1">Dresses 1 </li>
+                      <li className="py-1">Dresses 2</li>
+                      <li className="py-1">Dresses 3</li>
+                    </ul>
+                  </details>
+                </li>
                 <li className="py-1">Bags</li>
                 <li className="py-1">Shoes</li>
               </ul>

@@ -9,16 +9,16 @@ export default function CheckoutPage() {
   const [deliveryArea, setDeliveryArea] = useState('outside');
 
   return (
-    <div className="min-h-screen text-gray-800 py-10 px-4">
+    <div className="min-h-screen text-gray-800 py-0 md:py-10 px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* LEFT SECTION */}
-        <div className="lg:col-span-2 bg-white shadow-md rounded-2xl p-6">
-          <h1 className="text-2xl font-semibold mb-6 border-b pb-3">
+        <div className="lg:col-span-2 bg-white shadow-md rounded-2xl pt-3 md:p-6">
+          <h1 className="text-2xl font-semibold mb-3 md:mb-6 border-b pb-1 md:pb-3">
             Checkout
           </h1>
 
           {/* Returning Customer */}
-          <p className="text-sm mb-6">
+          <p className="text-sm mb-3 md:mb-6">
             Returning customer?{' '}
             <a href="#" className="text-blue-600 hover:underline">
               Click here to login
