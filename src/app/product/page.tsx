@@ -153,7 +153,7 @@ export default function ProductDetails() {
           </div>
 
           {/* Quantity + Actions */}
-          <div className="mt-5 sm:mt-6 flex flex-wrap gap-3">
+          <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-3">
             <div className="flex items-center border rounded-md">
               <button
                 onClick={() => handleQuantity('dec')}

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 import dynamic from 'next/dynamic';
 import slick1 from '../../assets/slick1.jpeg';
-import { IoCheckmarkCircle } from 'react-icons/io5';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
 import slick from '../../assets/slick.jpeg';
 import Link from 'next/link';
 
@@ -105,21 +105,21 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
         <div className="bg-white rounded-xl shadow-lg max-w-md  mx-3 md:mx-0 md:width-full text-gray-800">
           <div className="modal-action mr-5">
             <form method="dialog">
-              <button className="text-[#D6A74E] hover:text-[#f6c262] text-2xl font-semibold leading-none cursor-pointer">
+              <button className="text-gray-500  text-2xl font-semibold leading-none cursor-pointer">
                 X
               </button>
             </form>
           </div>
           {/* Success Icon & Title */}
           <div className="flex flex-col items-center p-6">
-            <IoCheckmarkCircle className="text-green-500 text-5xl mb-2" />
-            <h2 className="text-lg md:text-xl font-semibold text-green-600">
+            <AiOutlineCheckCircle className="text-[#00C851] text-5xl mb-2" />
+            <h2 className="text-lg md:text-2xl font-semibold text-[#00C851]">
               Item added to your cart!
             </h2>
           </div>
 
           {/* Product Info */}
-          <div className="flex items-center gap-4 border-t border-b px-6 py-4">
+          <div className="flex items-center gap-4   px-6 py-4">
             <Image
               src={slick} // Replace with your product image
               alt="Product"
@@ -133,7 +133,7 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
               </h3>
               <p className="text-sm text-gray-600 mt-1">
                 Price:
-                <span className="text-lg font-bold text-[#46351F]">
+                <span className="text-lg font-bold ml-3 text-gray-800">
                   {' '}
                   ৳6,547.20{' '}
                 </span>
@@ -143,10 +143,10 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
 
           {/* Action Buttons */}
           <div className="flex justify-between gap-3 px-6 py-4">
-            <button className="flex-1 border border-[#46351F] text-[#46351F] hover:bg-[#46351F] hover:text-white transition rounded-lg py-1 font-medium">
+            <button className="flex-1 border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition rounded-md py-2 cursor-pointer font-medium">
               Back to Shopping
             </button>
-            <button className="flex-1 bg-[#A98153] hover:bg-[#46351F] text-white transition rounded-lg py-1 font-medium text-center">
+            <button className="flex-1 bg-gray-800 hover:bg-gray-900 text-white cursor-pointer transition rounded-md py-2 font-medium text-center">
               Proceed to Checkout
             </button>
           </div>
