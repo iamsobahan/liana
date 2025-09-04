@@ -26,7 +26,7 @@ export default function CheckoutPage() {
           </p>
 
           {/* Delivery Info */}
-          <h2 className="text-lg font-medium mb-4">Delivery & Billing Info</h2>
+          <h2 className="text-lg font-medium mb-4">Customer Info</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <input
@@ -41,35 +41,60 @@ export default function CheckoutPage() {
             />
           </div>
 
-          <input
-            type="text"
-            placeholder="Detail Address"
-            className="w-full border rounded-lg px-4 py-2 mb-4 focus:outline-blue-500"
-          />
+          <h2 className="text-lg font-medium mb-4">
+            Shipping Info and Address
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2  gap-4 mb-4">
+            <input
+              type="text"
+              placeholder="Receiver Name"
+              className="w-full border rounded-lg px-4 py-2 focus:outline-blue-500"
+            />
+            <input
+              type="text"
+              placeholder="Receiver Phone Number"
+              className="w-full border rounded-lg px-4 py-2 focus:outline-blue-500"
+            />
+            <textarea
+              placeholder="Shipping Address"
+              className="w-full border rounded-lg px-4 col-span-2 py-2 mb-6 focus:outline-blue-500"
+              rows={3}
+            />
+          </div>
 
           {/* Delivery Area */}
           <div className="mb-4">
             <p className="mb-2 font-medium">Select Delivery Area *</p>
-            <div className="flex gap-4">
+            <div className="flex gap-2 md:gap-3">
               <button
                 onClick={() => setDeliveryArea('inside')}
-                className={`px-4 py-2 rounded-full border transition font-medium ${
+                className={`px-4 py-2 rounded-full border cursor-pointer transition font-medium ${
                   deliveryArea === 'inside'
                     ? 'bg-yellow-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                Inside Dhaka
+                Inside City
+              </button>
+              <button
+                onClick={() => setDeliveryArea('Subcity')}
+                className={`px-4 py-2 rounded-full border transition font-medium cursor-pointer ${
+                  deliveryArea === 'Subcity'
+                    ? 'bg-yellow-600 text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                Subcity City
               </button>
               <button
                 onClick={() => setDeliveryArea('outside')}
-                className={`px-4 py-2 rounded-full border transition font-medium ${
+                className={`px-4 py-2 rounded-full border cursor-pointer transition font-medium ${
                   deliveryArea === 'outside'
                     ? 'bg-yellow-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                Outside Dhaka
+                Outside City
               </button>
             </div>
           </div>

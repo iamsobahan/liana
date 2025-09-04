@@ -47,9 +47,33 @@ span {
 }
 
 .dropdown_class {
-  transition: .4s ;
+  transition: transform .4s ;
 }
 
 .dropdown_class:hover > ul {
   display: block!important;
 }
+
+.dropdown_parent {
+  transition: transform .4s ease-in;
+}
+.dropdown_parent:hover .dropdown_arrow {
+  transform: rotate(180deg);
+}
+
+.dropdown_parent {
+  transition: transform .4s ease-in;
+}
+
+.dropdown_class .dropdown_arrow_right {
+  transition: transform .4s ease-in;
+} 
+
+
+.dropdown_class:hover .dropdown_arrow_right {
+  transform: rotate(180deg);
+}
+
+
+
+

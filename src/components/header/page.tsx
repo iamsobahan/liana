@@ -3,7 +3,9 @@ import { IoCall, IoLocationOutline } from 'react-icons/io5';
 import { FaSignInAlt, FaUserPlus, FaRegHeart } from 'react-icons/fa';
 import { BsCartCheckFill } from 'react-icons/bs';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 import { useEffect, useState } from 'react';
+import { IoIosArrowDown } from 'react-icons/io';
 import { HiMenu } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -201,9 +203,9 @@ const Header = () => {
           </li>
 
           {/* MEGA DEALS (dropdown) */}
-          <li className="relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+          <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
             <span className="inline-flex items-center cursor-pointer">
-              MEGA DEALS
+              MEGA DEALS <IoIosArrowDown className="dropdown_arrow" size={18} />
             </span>
 
             {/* 1st level dropdown */}
@@ -215,7 +217,11 @@ const Header = () => {
               {/* Deal 2 with nested submenu */}
               <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
                 <span className="flex justify-between items-center cursor-pointer">
-                  Deal 2 <span className="ml-2">▶</span>
+                  Deal 2
+                  <MdKeyboardArrowRight
+                    className="dropdown_arrow_right"
+                    size={25}
+                  />
                 </span>
 
                 {/* 2nd level dropdown */}
@@ -244,8 +250,11 @@ const Header = () => {
           </li>
 
           {/* MEN (dropdown) */}
-          <li className="relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            <span className="inline-flex items-center cursor-pointer">MEN</span>
+
+          <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            <span className="inline-flex items-center cursor-pointer">
+              MEN <IoIosArrowDown className="dropdown_arrow" size={18} />
+            </span>
 
             {/* 1st level dropdown */}
             <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
@@ -256,7 +265,11 @@ const Header = () => {
               {/* Deal 2 with nested submenu */}
               <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
                 <span className="flex justify-between items-center cursor-pointer">
-                  Pants <span className="ml-2">▶</span>
+                  Pants
+                  <MdKeyboardArrowRight
+                    className="dropdown_arrow_right"
+                    size={25}
+                  />
                 </span>
 
                 {/* 2nd level dropdown */}
@@ -274,27 +287,31 @@ const Header = () => {
               </li>
 
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Shoes
+                Belts
               </li>
             </ul>
           </li>
 
           {/* WOMEN (dropdown) */}
-          <li className="relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+          <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
             <span className="inline-flex items-center cursor-pointer">
-              WOMEN
+              WOMEN <IoIosArrowDown className="dropdown_arrow" size={18} />
             </span>
 
             {/* 1st level dropdown */}
             <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                BAGS
+               Bags
               </li>
 
               {/* Deal 2 with nested submenu */}
               <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
                 <span className="flex justify-between items-center cursor-pointer">
-                  RINGS <span className="ml-2">▶</span>
+                 Jewelry
+                  <MdKeyboardArrowRight
+                    className="dropdown_arrow_right"
+                    size={25}
+                  />
                 </span>
 
                 {/* 2nd level dropdown */}
@@ -312,7 +329,7 @@ const Header = () => {
               </li>
 
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                WATCHES
+                Sandals
               </li>
             </ul>
           </li>

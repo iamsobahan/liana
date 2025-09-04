@@ -8,7 +8,7 @@ import slick from '../../assets/slick.jpeg';
 import slick2 from '../../assets/slick2.jpeg';
 import slick3 from '../../assets/slick3.jpeg';
 import slick4 from '../../assets/slick4.jpeg';
-
+import { RiDeleteBin6Line } from 'react-icons/ri';
 export default function CartPage() {
   const [cartItems, setCartItems] = useState([
     {
@@ -78,26 +78,36 @@ export default function CartPage() {
       ) : (
         <>
           {/* ✅ Mobile: grid with 2 items per row | Desktop: normal flex */}
-          <div className="grid grid-cols-2 gap-3 md:flex md:flex-col md:gap-6">
+          <div className="flex flex-col md:gap-3">
             {cartItems.map((item) => (
               <div
+                style={{ alignItems: 'center' }}
                 key={item.id}
-                className="flex flex-col md:flex-row items-center md:items-stretch justify-between gap-2 md:gap-4 p-3 md:p-4 rounded-xl shadow-sm bg-white transition"
+                className="flex flex-wrap  flex-row md:flex-row  md:items-stretch justify-between gap-2 md:gap-5 p-3 md:p-2 rounded-xl shadow-sm bg-white transition"
               >
+                <RiDeleteBin6Line className='cursor-pointer' size={30}/>
                 {/* Product Image + Info */}
-                <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 w-full md:w-2/5">
+                <div className="flex flex-row md:flex-row md:items-center gap-2 md:gap-4 w-full md:w-2/5">
                   <Image
                     src={item.image}
                     alt={item.name}
-                    className="rounded-lg object-cover shadow-sm w-full md:w-[80px] h-[80px]"
+                    className="rounded-lg object-cover shadow-sm w-[80px] h-[80px]"
                   />
-                  <div className="text-center md:text-left">
+                  <div className="text-left md:text-left">
                     <h2 className="font-semibold text-sm md:text-lg">
                       {item.name}
                     </h2>
                     <p className="text-xs md:text-sm text-gray-500">
                       {item.variant}
                     </p>
+                    <div className="flex items-center">
+                      <p className="text-xs md:text-sm mr-2 text-gray-500 ">
+                        Price-
+                      </p>
+                      <p className="font-semibold text-sm md:text-base">
+                        {item.price}৳
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -121,15 +131,11 @@ export default function CartPage() {
                 </div>
 
                 {/* Price & Subtotal */}
-                <div className="text-center md:text-right mt-2 md:mt-0">
-                  <div className="flex">
-                    <p className="text-xs md:text-sm text-gray-500 mr-10">Price-</p>
-                    <p className="font-semibold text-sm md:text-base">
-                      {item.price}৳
+                <div className="text-center md:text-right">
+                  <div className="flex items-center">
+                    <p className="text-xs md:text-sm text-gray-500 mr-2">
+                      Subtotal-
                     </p>
-                  </div>
-                  <div className="flex">
-                    <p className="text-xs md:text-sm text-gray-500 mr-5">Subtotal-</p>
                     <p className="font-semibold text-sm md:text-base">
                       {item.price * item.qty}৳
                     </p>
@@ -140,7 +146,7 @@ export default function CartPage() {
           </div>
 
           {/* Summary */}
-          <div className="mt-0 md:mt-10 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 bg-gray-50 p-4 md:p-6 rounded-xl md:rounded-2xl shadow-md">
+          <div className="mt-0 md:mt-10 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 bg-gray-50 p-4 md:p-4 rounded-xl md:rounded-2xl shadow-md">
             <div className="text-lg md:text-xl font-bold">
               Total: <span className="text-[#A98153]">৳ {total}</span>
             </div>

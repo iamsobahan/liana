@@ -4,7 +4,9 @@ import Image from 'next/image';
 import { FaWhatsapp } from 'react-icons/fa';
 import React from 'react';
 import FeaturePage from '@/components/Feature/page';
-
+import Link from 'next/link';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 interface SizeOption {
   label: string;
   value: string;
@@ -22,7 +24,6 @@ import slick7 from '../../assets/slick7.jpeg';
 import slick8 from '../../assets/slick8.jpeg';
 import slick9 from '../../assets/slick9.jpeg';
 import slick10 from '../../assets/slick10.jpeg';
-import Link from 'next/link';
 
 type Product = {
   image: string;
@@ -42,9 +43,17 @@ const feature: Product[] = [
   { image: slick10.src },
 ];
 
+
+const feature1: Product[] = [
+  { image: slick.src },
+  { image: slick1.src },
+  { image: slick2.src }
+]
+
 export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState<string>('M');
   const [quantity, setQuantity] = useState<number>(1);
+  const [selectedImage, setSelectedImage] = useState<string>(feature[0].image);
 
   const sizes: SizeOption[] = [
     { label: 'M', value: 'M' },
@@ -65,14 +74,44 @@ export default function ProductDetails() {
     <div className="max-w-7xl mx-auto px-3 sm:px-6 py-6 sm:py-10">
       {/* GRID LAYOUT */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-        {/* LEFT: IMAGE */}
-        <div className="flex items-center justify-center">
-          <Image
-            src={slick}
-            alt="Premium Designer Polo"
-            className="w-full h-auto max-h-[450px] object-contain rounded-lg sm:rounded-xl"
-            priority
-          />
+        {/* LEFT: IMAGE + GALLERY */}
+        <div>
+          {/* Main Image with Zoom on Hover */}
+          <div className="relative overflow-hidden group border rounded-lg">
+            <Zoom>
+              <Image
+                src={selectedImage}
+                alt="Product"
+                width={500}
+                height={500}
+                className="object-contain w-full h-[450px] transition-transform duration-300 ease-in-out group-hover:scale-110"
+                priority
+              />
+            </Zoom>
+          </div>
+
+          {/* Gallery Thumbnails */}
+          <div className="mt-4 flex flex-wrap gap-2 justify-center">
+            {feature1.map((item, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedImage(item.image)}
+                className={`border-2 ${
+                  selectedImage === item.image
+                    ? 'border-black'
+                    : 'border-transparent'
+                } rounded-md overflow-hidden`}
+              >
+                <Image
+                  src={item.image}
+                  alt={`Thumbnail ${index + 1}`}
+                  width={70}
+                  height={70}
+                  className="object-cover w-[70px] h-[70px]"
+                />
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* RIGHT: DETAILS */}
@@ -176,7 +215,6 @@ export default function ProductDetails() {
 
       {/* Tabs */}
       <div className="tabs tabs-lift mt-8 sm:mt-12">
-        {/* Tab 1 */}
         <input
           type="radio"
           name="tabs_group"
@@ -210,7 +248,6 @@ export default function ProductDetails() {
           </p>
         </div>
 
-        {/* Tab 2 */}
         <input
           type="radio"
           name="tabs_group"
@@ -219,12 +256,10 @@ export default function ProductDetails() {
         />
         <div className="tab-content text-gray-800 p-4 sm:p-6 shadow">
           <p className="text-sm sm:text-base">
-            {/* Your T&C content (shortened for brevity) */}
             Dear Customer, we try our best to provide you the best experience...
           </p>
         </div>
 
-        {/* Tab 3 */}
         <input
           type="radio"
           name="tabs_group"
