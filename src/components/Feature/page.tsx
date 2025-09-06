@@ -146,7 +146,7 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
             <button className="flex-1 border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition rounded-md py-2 cursor-pointer font-medium">
               Back to Shopping
             </button>
-            <button className="flex-1 bg-gray-800 hover:bg-gray-900 text-white cursor-pointer transition rounded-md py-2 font-medium text-center">
+            <button className="flex-1 bg-gray-800 hover:bg-gray-900 text-white cursor-pointer transition rounded-md py-2  font-medium text-center">
               Proceed to Checkout
             </button>
           </div>
