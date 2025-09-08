@@ -1,19 +1,23 @@
 import ProductInfo from "@/components/product-details";
+import config from "@/config";
 import { fetchAllProducts, getSingleProduct } from "@/lib/data/prodcuts";
+import type { Metadata } from "next";
 import React from "react";
-interface ProductPageProps {
-  params: { slug: string };
-}
 
-export async function generateStaticParams({}) {
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+export async function generateStaticParams() {
   const products = await fetchAllProducts(1, 20);
 
-  return products.data.map((product) => product.slug);
+  return products.data.map((product) => ({
+    slug: product.slug,
+  }));
 }
 
-/* export async function generateMetadata({
-  params: { slug },
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = (await params).slug;
   const product = await getSingleProduct(slug);
   if (!product) {
     return {};
@@ -22,18 +26,20 @@ export async function generateStaticParams({}) {
   return {
     title: product.data.product.name,
     description: product.data.product.sortDescription,
-    // openGraph: {
-    //   images: [
-    //     {
-    //       url: post.imageUrl
-    //     }
-    //   ]
-    // }
+    openGraph: {
+      images: [
+        {
+          url: `${config.API_URL}/images/products/${product.data.product.thumbnail}`,
+        },
+      ],
+    },
   };
-} */
-const ProductDetails = async ({ params }: ProductPageProps) => {
-  const product = await getSingleProduct(params.slug);
+}
 
+// ✅ page function must match Next.js Page signature
+const ProductDetails = async ({ params }: Props) => {
+  const slug = (await params).slug;
+  const product = await getSingleProduct(slug);
   return (
     <div>
       <ProductInfo />
