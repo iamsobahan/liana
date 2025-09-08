@@ -1,32 +1,36 @@
-import dynamic from 'next/dynamic';
-import React from 'react';
-import Banner from '@/components/Banner/page';
-
-const CategoryPage = dynamic(() => import('@/components/Category/page'), {
+import dynamic from "next/dynamic";
+import React from "react";
+// import Banner from "@/components/Banner";
+const Banner = dynamic(() => import("@/components/Banner"), {
+  ssr: true,
+});
+const CategoryPage = dynamic(() => import("@/components/Category/page"), {
   ssr: true, // set to true if you want server-side rendering
 });
 
-const FeaturePage = dynamic(() => import('@/components/Feature/page'), {
+const FeaturePage = dynamic(() => import("@/components/Feature"), {
   ssr: true,
 });
 
-const SocialBar = dynamic(() => import('@/components/SocialBar/page'), {
+const SocialBar = dynamic(() => import("@/components/SocialBar/page"), {
   ssr: true,
 });
 
 // ✅ Correctly import images
-import slick from '../assets/slick.jpeg';
-import slick1 from '../assets/slick1.jpeg';
-import slick2 from '../assets/slick2.jpeg';
-import slick3 from '../assets/slick3.jpeg';
-import slick4 from '../assets/slick4.jpeg';
-import slick5 from '../assets/slick5.jpeg';
-import slick6 from '../assets/slick6.jpeg';
-import slick7 from '../assets/slick7.jpeg';
-import slick8 from '../assets/slick8.jpeg';
-import slick9 from '../assets/slick9.jpeg';
-import slick10 from '../assets/slick10.jpeg';
-import Cart from '@/components/Cart/page';
+import slick from "../assets/slick.jpeg";
+import slick1 from "../assets/slick1.jpeg";
+import slick2 from "../assets/slick2.jpeg";
+import slick3 from "../assets/slick3.jpeg";
+import slick4 from "../assets/slick4.jpeg";
+import slick5 from "../assets/slick5.jpeg";
+import slick6 from "../assets/slick6.jpeg";
+import slick7 from "../assets/slick7.jpeg";
+import slick8 from "../assets/slick8.jpeg";
+import slick9 from "../assets/slick9.jpeg";
+import slick10 from "../assets/slick10.jpeg";
+import Cart from "@/components/Cart/page";
+import { fetchHomeProducts } from "@/lib/data/prodcuts";
+import { fetchSliders } from "@/lib/data/slider";
 
 // ✅ Define type for product
 type Product = {
@@ -62,12 +66,16 @@ const best_products: Product[] = [
 ];
 
 // ✅ Page Component
-const Page = () => {
+const Page = async () => {
+  const [products, sliders] = await Promise.all([
+    fetchHomeProducts(),
+    fetchSliders(),
+  ]);
   return (
     <div>
       <SocialBar />
-      <Cart/>
-      <Banner />
+      <Cart />
+      <Banner slides={sliders.data} />
       <CategoryPage />
       <FeaturePage feature={feature} title="Feature Products" />
       <FeaturePage feature={new_products} title="New Arrival Products" />
