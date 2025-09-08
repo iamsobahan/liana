@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Slider from 'react-slick';
-import Image from 'next/image';
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
-import { useRef } from 'react';
+import React from "react";
+import Slider from "react-slick";
+import Image from "next/image";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
+import { useRef } from "react";
 
-import category from './../../assets/category1.png';
-import category1 from './../../assets/category2.png';
-import category2 from './../../assets/category3.png';
-import category3 from './../../assets/category4.png';
-import category4 from './../../assets/category5.png';
-import category5 from './../../assets/category6.png';
-import Link from 'next/link';
+import category from "./../../assets/category1.png";
+import category1 from "./../../assets/category2.png";
+import category2 from "./../../assets/category3.png";
+import category3 from "./../../assets/category4.png";
+import category4 from "./../../assets/category5.png";
+import category5 from "./../../assets/category6.png";
+import Link from "next/link";
 
 const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
   <div
@@ -71,35 +71,35 @@ const CategoryPage = () => {
 
   const categories = [
     {
-      title: 'EAR RINGS',
+      title: "EAR RINGS",
       image: category,
     },
     {
-      title: 'BRACELETS',
+      title: "BRACELETS",
       image: category1,
     },
     {
-      title: 'BANGLES',
+      title: "BANGLES",
       image: category3,
     },
     {
-      title: 'HAND RINGS',
+      title: "HAND RINGS",
       image: category5,
     },
     {
-      title: 'BELLY CHAIN',
+      title: "BELLY CHAIN",
       image: category4,
     },
     {
-      title: 'IDK',
+      title: "IDK",
       image: category,
     },
     {
-      title: 'IFU',
+      title: "IFU",
       image: category2,
     },
     {
-      title: 'COVER UP',
+      title: "COVER UP",
       image: category5,
     },
   ];
@@ -112,7 +112,7 @@ const CategoryPage = () => {
         </h2>
         <span className="block h-[2px] w-32 mx-auto mt-1 md:mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"></span>
       </div>
-      <div className="relative"> 
+      <div className="relative">
         {/* Slider */}
         <Slider ref={sliderRef} {...settings}>
           {categories.map((cat, index) => (
@@ -122,7 +122,6 @@ const CategoryPage = () => {
                   <Image
                     src={cat.image}
                     alt={cat.title}
-                    
                     className="object-cover w-full h-22 md:h-64"
                   />
                 </Link>
