@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'eliana.com.bd',
+        hostname: 'api.eliana.com.bd',
         pathname: '/images/**',
       },
       {

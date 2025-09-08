@@ -64,6 +64,7 @@ const Header = () => {
                 <Image
                   src={logo}
                   alt="Logo"
+                  priority
                   className="w-40 md:w-52 object-contain"
                 />
               </Link>
@@ -113,7 +114,6 @@ const Header = () => {
                             <Image
                               src={product}
                               alt="Product"
-                              fill
                               className="object-cover rounded"
                             />
                           </div>

@@ -1,8 +1,10 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import dynamic from "next/dynamic";
-const ProductCart = dynamic(() => import("../card"), { ssr: false });
+import ProductCard from "../card";
+import { IProduct } from "@/types/product";
+
 
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
@@ -59,21 +61,12 @@ const settings = {
 };
 
 type FeaturePageProps = {
-  feature: { image: string }[]; // Replace `any` with your real type
+  feature: IProduct[]; // Replace `any` with your real type
   title: string;
 };
 
 const FeaturePage = ({ feature, title }: FeaturePageProps) => {
-  const modalRef = useRef<HTMLDialogElement>(null);
-  const modalRef2 = useRef<HTMLDialogElement>(null);
-
-  const [selectedSize, setSelectedSize] = useState("M(28-30)");
-  const [selectedColor, setSelectedColor] = useState("Red/Black");
-  const [quantity, setQuantity] = useState(1);
-
-  const pricePerItem = 1500;
-  const totalPrice = pricePerItem * quantity;
-
+ 
   return (
     <div className="container mx-auto my-2 md:my-10 px-4">
       {/* Feature title  */}
@@ -87,7 +80,7 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
       <div className="-mx-2">
         <Slider {...settings}>
           {feature.map((item, idx) => (
-            <ProductCart key={idx} item={item} />
+            <ProductCard key={idx} item={item} />
           ))}
         </Slider>
       </div>

@@ -1,13 +1,14 @@
 "use client";
+import config from "@/config";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { FC } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 type IProps = {
-  item: { image: string };
+  item: { thumbnail: string; name: string; regularPrice: number; salePrice: number };
 };
-const ProductCart: FC<IProps> = ({ item }) => {
+const ProductCard: FC<IProps> = ({ item }) => {
   const modalRef = React.useRef<HTMLDialogElement>(null);
   const modalRef2 = React.useRef<HTMLDialogElement>(null);
   const safeArea = React.useRef<HTMLDivElement>(null);
@@ -33,13 +34,13 @@ const ProductCart: FC<IProps> = ({ item }) => {
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      console.log(event.target);
+      
       if (
         safeArea.current &&
         !safeArea.current.contains(event.target as Node)
       ) {
-        modalRef.current.close();
-        modalRef2.current.close();
+        modalRef.current?.close();
+        modalRef2.current?.close();
       }
     };
     document.addEventListener("mousedown", handleOutsideClick);
@@ -76,7 +77,7 @@ const ProductCart: FC<IProps> = ({ item }) => {
           {/* Product Info */}
           <div className="flex items-center gap-4   px-6 py-4">
             <Image
-              src={item.image}
+              src={`${config.API_URL}/images/products/${item?.thumbnail}`}
               alt="Product"
               width={80}
               height={80}
@@ -89,8 +90,8 @@ const ProductCart: FC<IProps> = ({ item }) => {
               <p className="text-sm text-gray-600 mt-1">
                 Price:
                 <span className="text-lg font-bold ml-3 text-gray-800">
-                  {" "}
-                  ৳6,547.20{" "}
+                  {' '}
+                  ৳6,547.20{' '}
                 </span>
               </p>
             </div>
@@ -133,8 +134,8 @@ const ProductCart: FC<IProps> = ({ item }) => {
             {/* Image */}
             <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
               <Image
-                src={item.image}
-                alt="Mens Premium Trouser"
+                src={`${config.API_URL}/images/products/${item?.thumbnail}`}
+                alt={item.name}
                 fill
                 className="object-cover"
               />
@@ -160,8 +161,8 @@ const ProductCart: FC<IProps> = ({ item }) => {
                         onClick={() => setSelectedColor(color)}
                         className={`px-3 py-1 rounded-full border text-sm ${
                           selectedColor === color
-                            ? "bg-yellow-500 text-white border-yellow-500"
-                            : "border-gray-300 text-gray-700 hover:border-yellow-500"
+                            ? 'bg-yellow-500 text-white border-yellow-500'
+                            : 'border-gray-300 text-gray-700 hover:border-yellow-500'
                         }`}
                       >
                         {color}
@@ -182,8 +183,8 @@ const ProductCart: FC<IProps> = ({ item }) => {
                         onClick={() => setSelectedSize(size)}
                         className={`px-3 py-1 rounded-md border text-sm ${
                           selectedSize === size
-                            ? "bg-yellow-500 text-white border-yellow-500"
-                            : "border-gray-300 text-gray-700 hover:border-yellow-500"
+                            ? 'bg-yellow-500 text-white border-yellow-500'
+                            : 'border-gray-300 text-gray-700 hover:border-yellow-500'
                         }`}
                       >
                         {size}
@@ -247,23 +248,25 @@ const ProductCart: FC<IProps> = ({ item }) => {
           <Link href="/product">
             <div className="relative h-32 md:h-60 w-full">
               <Image
-                src={item.image}
+                src={`${config.API_URL}/images/products/${item?.thumbnail}`}
                 width={400}
-                height={240}
-                alt={`Product`}
-                className="rounded-tr-sm  object-cover h-[120px] w-[400px] md:h-[240px] md:w-[500px]"
+                height={140}
+                alt={item.name}
+                className="rounded-tr-sm  object-cover   md:h-[240px] md:w-[500px]"
               />
             </div>
             <div className="mt-0.5 md:mt-2 md:p-1 text-center">
-              <h4 className="font-raleway md:font-semibold text-md md:text-lg text-gray-800">
-                Women Denim Jewelry - Skythread
+              <h4 className="truncate font-raleway md:font-semibold text-md md:text-lg text-gray-800">
+                {item.name}
               </h4>
               <p className="text-sm text-red-500 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
-                Save TK 540
+                Save TK {item.regularPrice - item.salePrice}
               </p>
               <div className="mt-2 text-sm">
-                <span className="line-through text-gray-500 mr-1">৳2500</span>
-                <span className="text-black font-bold">৳1900</span>
+                <span className="line-through text-gray-500 mr-1">
+                  ৳{item.regularPrice}
+                </span>
+                <span className="text-black font-bold">৳{item.salePrice}</span>
               </div>
             </div>
           </Link>
@@ -295,4 +298,4 @@ const ProductCart: FC<IProps> = ({ item }) => {
   );
 };
 
-export default ProductCart;
+export default ProductCard;

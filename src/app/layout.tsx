@@ -32,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${rajdhani.variable} ${raleway.variable} bg-white scroll-smooth`}
+        cz-shortcut-listen="true"
       >
         <Header />
         <MobileBottomNav />

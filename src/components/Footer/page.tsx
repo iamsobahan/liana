@@ -20,6 +20,7 @@ const FooterPage = () => {
         <div className="space-y-5 md:col-span-1">
           <div className="flex items-center space-x-2">
             <Image
+            className='w-auto h-auto'
               src={logo_white}
               alt="Joice Jewelry"
               width={160}
