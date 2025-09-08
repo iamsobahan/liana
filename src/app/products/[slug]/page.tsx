@@ -1,15 +1,15 @@
 import ProductInfo from "@/components/product-details";
-import { getSingleProduct } from "@/lib/data/prodcuts";
+import { fetchAllProducts, getSingleProduct } from "@/lib/data/prodcuts";
 import React from "react";
 interface ProductPageProps {
   params: { slug: string };
 }
 
-/* export async function generateStaticParams({}) {
+export async function generateStaticParams({}) {
   const products = await fetchAllProducts(1, 20);
 
   return products.data.map((product) => product.slug);
-} */
+}
 
 /* export async function generateMetadata({
   params: { slug },
