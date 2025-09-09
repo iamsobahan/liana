@@ -34,10 +34,12 @@ export default function RootLayout({
         className={`${rajdhani.variable} ${raleway.variable} bg-white scroll-smooth`}
         cz-shortcut-listen="true"
       >
-        <Header />
-        <MobileBottomNav />
-        {children}
-        <FooterPage />
+        <main>
+          <Header />
+          <MobileBottomNav />
+          {children}
+          <FooterPage />
+        </main>
       </body>
     </html>
   );
