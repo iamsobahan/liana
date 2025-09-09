@@ -1,11 +1,14 @@
 "use client";
 import config from "@/config";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { IProduct } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { FC } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import { RxCross2 } from "react-icons/rx";
 type IProps = {
   item: IProduct;
 };
@@ -13,6 +16,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
   const modalRef = React.useRef<HTMLDialogElement>(null);
   const modalRef2 = React.useRef<HTMLDialogElement>(null);
   const safeArea = React.useRef<HTMLDivElement>(null);
+  const dispatch = useAppDispatch();
   const sizes = ["M(28-30)", "L(32-34)", "XL(36-38)", "2XL(38-42)"];
   const colors = ["Red/Black", "Blue/Navy", "Gray/White"];
   const [selectedSize, setSelectedSize] = React.useState("M(28-30)");
@@ -23,7 +27,6 @@ const ProductCard: FC<IProps> = ({ item }) => {
       modalRef.current.showModal();
     }
   };
-
   const showModal2 = () => {
     if (modalRef2.current) {
       modalRef2.current.showModal();
@@ -31,6 +34,19 @@ const ProductCard: FC<IProps> = ({ item }) => {
     if (modalRef.current) {
       modalRef.current.close();
     }
+  };
+
+  const handleAddToCart = (data: IProduct) => {
+    const cardData = {
+      productId: data.id,
+      title: data.name,
+      image: data.thumbnail,
+      price: data.salePrice,
+      regularPrice: data.regularPrice,
+      quantity: quantity,
+    };
+    dispatch(addToCart(cardData));
+    showModal2();
   };
 
   useEffect(() => {
@@ -48,6 +64,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
   }, []);
+
   return (
     <>
       {/* model box pop up 2  */}
@@ -62,7 +79,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
           <div className="modal-action mr-5">
             <form method="dialog">
               <button className="text-gray-500  text-2xl font-semibold leading-none cursor-pointer">
-                X
+                <RxCross2 />
               </button>
             </form>
           </div>
@@ -273,7 +290,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
           </Link>
           <div
             className="bg-gray-900 hover:bg-gray-950 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer"
-            onClick={showModal}
+            onClick={() => handleAddToCart(item)}
           >
             <span className="inline-flex items-center justify-center gap-1">
               <svg
