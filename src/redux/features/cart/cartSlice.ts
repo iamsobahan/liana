@@ -1,6 +1,6 @@
 import { ICartItem } from '@/types/cart';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
+import toast from 'react-hot-toast';
 
 interface CartState {
   cart: ICartItem[];
@@ -24,7 +24,7 @@ export const cartSlice = createSlice({
       );
 
       if (existingItem) {
-        toast.warning('Item already added in your cart!');
+        toast.error('Item already added in your cart!');
         existingItem.quantity += newItem.quantity ?? 1;
       } else {
         state.cart = [...state.cart, newItem];
