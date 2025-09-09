@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Rajdhani, Raleway } from "next/font/google";
-import Header from "@/components/header/page";
+import Header from "@/components/header";
 import FooterPage from "@/components/Footer/page";
 import MobileBottomNav from "@/components/Tab/page";
 import ReduxProvider from "@/redux/provider";
@@ -31,8 +31,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-
   const allCategories = await getAllCategories();
   return (
     <html lang="en">
@@ -42,7 +40,7 @@ export default async function RootLayout({
       >
         <main>
           <ReduxProvider>
-            <Header categories ={allCategories}/>
+            <Header categories={allCategories.data} />
             <MobileBottomNav />
             {children}
             <FooterPage />
