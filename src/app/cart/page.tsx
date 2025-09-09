@@ -1,172 +1,145 @@
+// app/cart/page.tsx (Next.js 13+ App Router)
 'use client';
-
-import { useState } from 'react';
-import Link from 'next/link';
+import {  FaMinus, FaPlus } from 'react-icons/fa';
+import { HiOutlineTrash } from 'react-icons/hi';
+import slick from '../../assets/slick.jpeg'
+import slick1 from '../../assets/slick1.jpeg'
 import Image from 'next/image';
-import { IoCartOutline } from 'react-icons/io5';
-import slick from '../../assets/slick.jpeg';
-import slick2 from '../../assets/slick2.jpeg';
-import slick3 from '../../assets/slick3.jpeg';
-import slick4 from '../../assets/slick4.jpeg';
-import { RiDeleteBin6Line } from 'react-icons/ri';
-export default function CartPage() {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Premium Coffee',
-      variant: '250g Pack',
-      price: 250,
-      qty: 1,
-      image: slick,
-    },
-    {
-      id: 2,
-      name: 'Dark Chocolate',
-      variant: '100g Bar',
-      price: 150,
-      qty: 2,
-      image: slick2,
-    },
-    {
-      id: 3,
-      name: 'Matcha Green Tea',
-      variant: '50g Tin',
-      price: 350,
-      qty: 1,
-      image: slick3,
-    },
-    {
-      id: 4,
-      name: 'Roasted Almonds',
-      variant: '200g Pack',
-      price: 220,
-      qty: 2,
-      image: slick4,
-    },
-  ]);
 
-  // Increase / Decrease Quantity
-  const updateQty = (id: number, action: 'inc' | 'dec') => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              qty:
-                action === 'inc'
-                  ? item.qty + 1
-                  : item.qty > 1
-                  ? item.qty - 1
-                  : 1,
-            }
-          : item
-      )
-    );
-  };
-
-  const total = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
-
+function CartItem({
+  title,
+  brand,
+  size,
+  price,
+  oldPrice,
+  quantity,
+}: {
+  title: string;
+  brand: string;
+  size: string;
+  price: number;
+  oldPrice: number;
+  quantity: number;
+}) {
   return (
-    <div className="max-w-6xl mx-auto px-3 py-3 md:py-10 text-gray-800">
-      <h1 className="flex items-center text-2xl font-bold text-gray-900 mb-2 md:mb-8 text-center md:text-left">
-        <IoCartOutline className="mr-2" size={30} />
-        <span className="text-xl uppercase ">Your Shopping Cart</span>
-      </h1>
+    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-300 pb-4">
+      {/* Left */}
+      <div className="flex items-center  gap-4 w-full sm:w-auto">
+        <input
+          type="checkbox"
+          className="w-5 h-5 appearance-none border-2 border-gray-400 rounded-sm checked:before:content-['✔'] checked:before:text-orange-500 checked:before:block checked:before:text-center checked:before:text-sm focus:outline-none cursor-pointer"
+        />
 
-      {cartItems.length === 0 ? (
-        <p className="text-gray-600 text-center">Your cart is empty.</p>
-      ) : (
-        <>
-          {/* ✅ Mobile: grid with 2 items per row | Desktop: normal flex */}
-          <div className="flex flex-col md:gap-3">
-            {cartItems.map((item) => (
-              <div
-                style={{ alignItems: 'center' }}
-                key={item.id}
-                className="flex flex-wrap  flex-row md:flex-row  md:items-stretch justify-between gap-2 md:gap-5 p-3 md:p-2 rounded-xl shadow-sm bg-white transition"
-              >
-                <RiDeleteBin6Line className='cursor-pointer' size={30}/>
-                {/* Product Image + Info */}
-                <div className="flex flex-row md:flex-row md:items-center gap-2 md:gap-4 w-full md:w-2/5">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    className="rounded-lg object-cover shadow-sm w-[80px] h-[80px]"
-                  />
-                  <div className="text-left md:text-left">
-                    <h2 className="font-semibold text-sm md:text-lg">
-                      {item.name}
-                    </h2>
-                    <p className="text-xs md:text-sm text-gray-500">
-                      {item.variant}
-                    </p>
-                    <div className="flex items-center">
-                      <p className="text-xs md:text-sm mr-2 text-gray-500 ">
-                        Price-
-                      </p>
-                      <p className="font-semibold text-sm md:text-base">
-                        {item.price}৳
-                      </p>
-                    </div>
-                  </div>
-                </div>
+        <Image
+          src={slick}
+          alt="slick"
+          className="w-20 h-20 object-contain rounded"
+        />
 
-                {/* Gorgeous Premium Quantity Controls */}
-                <div className="flex items-center justify-center gap-1 md:gap-2 mt-2 md:mt-0">
-                  <button
-                    onClick={() => updateQty(item.id, 'dec')}
-                    className="w-8 h-8 flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-300 rounded-full text-lg font-bold text-gray-700 hover:from-gray-300 hover:to-gray-400 shadow active:scale-90 transition"
-                  >
-                    −
-                  </button>
-                  <span className="px-2 w-6 text-center font-semibold text-sm md:text-base">
-                    {item.qty}
-                  </span>
-                  <button
-                    onClick={() => updateQty(item.id, 'inc')}
-                    className="w-8 h-8 flex items-center justify-center bg-gradient-to-r from-[#A98153] to-[#8c6942] rounded-full text-lg font-bold text-white hover:from-[#8c6942] hover:to-[#705232] shadow active:scale-90 transition"
-                  >
-                    +
-                  </button>
-                </div>
+        <div className="flex flex-col">
+          <h2 className="whitespace-break-spaces text-sm sm:text-base font-medium">
+            {title}
+          </h2>
+          <p className="whitespace-break-spaces text-xs text-gray-500">
+            {brand}, {size}
+          </p>
+          <span className="mt-1 text-xs  text-orange-600 py-0.5 rounded">
+            BEST PRICE
+          </span>
+        </div>
+      </div>
 
-                {/* Price & Subtotal */}
-                <div className="text-center md:text-right">
-                  <div className="flex items-center">
-                    <p className="text-xs md:text-sm text-gray-500 mr-2">
-                      Subtotal-
-                    </p>
-                    <p className="font-semibold text-sm md:text-base">
-                      {item.price * item.qty}৳
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
+      {/* Right */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+        {/* Price */}
+        <div className="flex flex-col">
+          <p className="text-orange-600 font-semibold text-lg ">{price}৳</p>
+          <p className="line-through text-gray-400 text-sm"> {oldPrice}৳</p>
+        </div>
+
+        {/* Quantity */}
+        <div className="flex items-center border rounded">
+          <button className="px-2 py-1 hover:bg-gray-100">
+            <FaMinus size={14} />
+          </button>
+          <span className="px-3">{quantity}</span>
+          <button className="px-2 py-1 hover:bg-gray-100">
+            <FaPlus size={14} />
+          </button>
+        </div>
+
+        {/* Wishlist + Delete */}
+        <div className="flex items-center gap-3">
+          <button className="text-gray-500 hover:text-red-500 cursor-pointer">
+            <HiOutlineTrash size={25} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function CartPage() {
+  return (
+    <div className="max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-6 text-gray-800">
+      {/* LEFT SIDE */}
+      <div className="lg:col-span-2 bg-white p-4 rounded shadow-sm">
+        {/* Select All + Delete */}
+        <div className="flex justify-between items-center border-b border-gray-300 pb-3 mb-3">
+          <label className="flex items-center gap-2 text-sm font-medium">
+            <input
+              type="checkbox"
+              className="w-5 h-5 appearance-none border-2 border-gray-400 rounded-sm checked:before:content-['✔'] checked:before:text-orange-500 checked:before:block checked:before:text-center checked:before:text-sm focus:outline-none cursor-pointer"
+            />
+            SELECT ALL (6 ITEM(S))
+          </label>
+          <button className="flex items-center gap-1 text-gray-600 fw-bold hover:underline hover:text-red-500 cursor-pointer">
+            <HiOutlineTrash size={25} />
+          </button>
+        </div>
+
+        {/* Items */}
+        <CartItem
+          title="Rajkonna Light Moisturizer With Rice Water And Licorice Extract (50gm)"
+          brand="RAJKONNA"
+          size="Scent: Fresh"
+          price={250}
+          oldPrice={295}
+          quantity={1}
+        />
+        <CartItem
+          title="Rajkonna Moisturizing Shower Gel - 330ml"
+          brand="RAJKONNA"
+          size="Scent: Fresh"
+          price={280}
+          oldPrice={330}
+          quantity={1}
+        />
+      </div>
+
+      {/* RIGHT SIDE */}
+      <div className="bg-gray-50 p-4 rounded shadow-sm h-fit">
+        <h3 className="font-semibold text-lg mb-4">Order Summary</h3>
+
+        <div className="flex flex-col text-md mb-2">
+          <div className="flex justify-between">
+            <p className="text-md">Subtotal (0 items)</p>
+            <p className="text-md">৳ 0</p>
           </div>
+          <small>(Shipping fee included)</small>
+        </div>
 
-          {/* Summary */}
-          <div className="mt-0 md:mt-10 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 bg-gray-50 p-4 md:p-4 rounded-xl md:rounded-2xl shadow-md">
-            <div className="text-lg md:text-xl font-bold">
-              Total: <span className="text-[#A98153]">৳ {total}</span>
-            </div>
-            <div className="flex gap-3 md:gap-4">
-              <Link
-                href="/shop"
-                className="px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl bg-gray-200 text-gray-800 font-semibold hover:bg-gray-300 transition shadow"
-              >
-                Continue Shopping
-              </Link>
-              <Link
-                href="/checkout"
-                className="px-4 py-2 md:px-6 md:py-3 rounded-lg md:rounded-xl bg-[#A98153] text-white font-semibold hover:bg-[#8c6942] transition shadow"
-              >
-                Checkout
-              </Link>
-            </div>
-          </div>
-        </>
-      )}
+        {/* Total */}
+        <div className="flex justify-between text-lg font-semibold mb-4">
+          <span>Sub Total</span>
+          <span>৳ 0</span>
+        </div>
+
+        {/* Checkout Button */}
+        <button className="w-full bg-orange-500 text-white fw-semibold py-3 rounded hover:bg-orange-600">
+          PROCEED TO CHECKOUT (0)
+        </button>
+      </div>
     </div>
   );
 }
