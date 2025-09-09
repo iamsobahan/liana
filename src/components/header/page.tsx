@@ -1,25 +1,25 @@
-'use client';
-import { IoCall, IoLocationOutline } from 'react-icons/io5';
-import { FaSignInAlt, FaUserPlus, FaRegHeart } from 'react-icons/fa';
-import { BsCartCheckFill } from 'react-icons/bs';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { MdKeyboardArrowRight } from 'react-icons/md';
-import { useEffect, useState } from 'react';
-import { IoIosArrowDown } from 'react-icons/io';
-import { HiMenu } from 'react-icons/hi';
-import Image from 'next/image';
-import Link from 'next/link';
-import logo from '../../assets/logo.png';
-import product from '../../assets/slick3.jpeg';
+"use client";
+import { IoCall, IoLocationOutline } from "react-icons/io5";
+import { FaSignInAlt, FaUserPlus, FaRegHeart } from "react-icons/fa";
+import { BsCartCheckFill } from "react-icons/bs";
+import { AiOutlineSearch } from "react-icons/ai";
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
+import { HiMenu } from "react-icons/hi";
+import Image from "next/image";
+import Link from "next/link";
+import logo from "../../assets/logo.png";
+import product from "../../assets/slick3.jpeg";
 
 const Header = () => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsSticky(window.scrollY > 1);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsSticky(window.scrollY > 60);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -53,11 +53,15 @@ const Header = () => {
 
         {/* Sticky Navbar */}
         <div
-          className={`z-50 w-full bg-white transition-shadow duration-300 scroll-smooth ${
-            isSticky ? 'fixed top-0 shadow-lg' : 'relative'
-          }`}
+          className={`z-50 w-full bg-white transition-shadow duration-300 scroll-smooth`}
         >
-          <div className="bg-white py-2 md:py-3 border-b border-gray-300">
+          <div
+            className={`bg-white py-2 md:py-3 border-b border-gray-300  ${
+              isSticky
+                ? "fixed top-0 shadow-lg w-full z-9999 transition-all duration-300"
+                : "relative"
+            }`}
+          >
             <div className="md:container px-4 mx-auto flex justify-between items-center">
               {/* Logo */}
               <Link href="/">
@@ -126,7 +130,7 @@ const Header = () => {
                               · Tk. 15000 / Black /<br /> #MPC#525
                             </p>
                             <p className="text-sm mt-1">
-                              1 x{' '}
+                              1 x{" "}
                               <span className="font-semibold">
                                 Tk 12,000.00
                               </span>
@@ -168,9 +172,7 @@ const Header = () => {
 
           {/* Mobile Search */}
           <div
-            className={`flex justify-center items-center my-1 md:my-3 px-2 md:hidden ${
-              isSticky ? 'hidden' : ''
-            }`}
+            className={`flex justify-center items-center my-1 md:my-3 px-2 md:hidden `}
           >
             <form action="" className=" relative w-2/3">
               <input
@@ -301,13 +303,13 @@ const Header = () => {
             {/* 1st level dropdown */}
             <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-               Bags
+                Bags
               </li>
 
               {/* Deal 2 with nested submenu */}
               <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
                 <span className="flex justify-between items-center cursor-pointer">
-                 Jewelry
+                  Jewelry
                   <MdKeyboardArrowRight
                     className="dropdown_arrow_right"
                     size={25}
@@ -349,7 +351,7 @@ const Header = () => {
       {/* Mobile Drawer */}
       <div
         className={`sm:hidden fixed inset-0 bg-white z-50 transform transition-transform duration-300 ease-linear ${
-          isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+          isDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <button
