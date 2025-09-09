@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import ProductCard from "../card";
 import { IProduct } from "@/types/product";
 
-
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
@@ -29,7 +28,7 @@ const NextArrow = ({ onClick }: { onClick?: () => void }) => (
 const settings = {
   dots: false,
   arrows: true,
-  infinite: true,
+  infinite: false,
   autoplay: true,
   autoplaySpeed: 3000,
   slidesToShow: 5,
@@ -66,7 +65,6 @@ type FeaturePageProps = {
 };
 
 const FeaturePage = ({ feature, title }: FeaturePageProps) => {
- 
   return (
     <div className="container mx-auto my-2 md:my-10 px-4">
       {/* Feature title  */}
