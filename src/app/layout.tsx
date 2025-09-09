@@ -6,6 +6,7 @@ import Header from "@/components/header/page";
 import FooterPage from "@/components/Footer/page";
 import MobileBottomNav from "@/components/Tab/page";
 import ReduxProvider from "@/redux/provider";
+import { Toaster } from "react-hot-toast";
 
 const rajdhani = Rajdhani({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
             {children}
             <FooterPage />
           </ReduxProvider>
+          <Toaster />
         </main>
       </body>
     </html>
