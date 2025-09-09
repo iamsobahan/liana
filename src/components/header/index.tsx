@@ -11,26 +11,21 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../assets/logo.png";
 import product from "../../assets/slick3.jpeg";
- 
+import { ICategory } from "@/types/categories";
 
+type IProps = {
+  categories: ICategory[];
+};
 
-const Header = ({categories }) => {
+const Header = ({ categories }: IProps) => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-console.log(categories);
+  console.log(categories);
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-
-  type IProps = {
-    _id: string;
-    name: string;
-    children: []
-  };
-
 
   return (
     <div className="w-full bg-gray-100 text-gray-800">
@@ -68,8 +63,8 @@ console.log(categories);
           <div
             className={`bg-white py-2 md:py-3 border-b border-gray-300  ${
               isSticky
-                ? 'fixed top-0 shadow-lg w-full z-9999 transition-all duration-300'
-                : 'relative'
+                ? "fixed top-0 shadow-lg w-full z-9999 transition-all duration-300"
+                : "relative"
             }`}
           >
             <div className="md:container px-4 mx-auto flex justify-between items-center">
@@ -140,7 +135,7 @@ console.log(categories);
                               · Tk. 15000 / Black /<br /> #MPC#525
                             </p>
                             <p className="text-sm mt-1">
-                              1 x{' '}
+                              1 x{" "}
                               <span className="font-semibold">
                                 Tk 12,000.00
                               </span>
@@ -209,54 +204,55 @@ console.log(categories);
       {/* Desktop Menu */}
       <nav className="hidden sm:block w-full bg-white shadow-sm">
         <ul className="flex justify-center items-center text-sm uppercase font-medium py-3 tracking-wide">
-          <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            Home
-          </li>
-          {categories?.data?.map((cat: IProps) => (
+          <Link href="/">
+            <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+              Home
+            </li>
+          </Link>
+          {categories?.map((cat) => (
             <li
-              key={cat._id}
+              key={cat.id}
               className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer"
             >
-              <span className="inline-flex items-center cursor-pointer">
-                {cat.name}{' '}
-                {cat.children.length > 0 && <IoIosArrowDown className="ml-1" />}
-              </span>
+              <Link href={`/categories/${cat.slug}`}>
+                <span className="inline-flex items-center cursor-pointer">
+                  {cat.name}{" "}
+                  {!!cat.children.length && <IoIosArrowDown className="ml-1" />}
+                </span>
+              </Link>
 
               {/* 1st level dropdown */}
 
-              {cat.children.length > 0 && (
+              {!!cat.children.length && (
                 <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 1
-                  </li>
+                  {cat.children.map((subCat) => (
+                    <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                      <Link href={`/categories/${subCat.slug}`}>
+                        <span className="flex justify-between items-center cursor-pointer">
+                          {subCat.name}
+                          {!!subCat.children.length && (
+                            <MdKeyboardArrowRight className="ml-1" />
+                          )}
+                        </span>
+                      </Link>
 
-                  {/* Deal 2 with nested submenu */}
-                  <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    <span className="flex justify-between items-center cursor-pointer">
-                      Deal 2
-                      <MdKeyboardArrowRight
-                        className="dropdown_arrow_right"
-                        size={25}
-                      />
-                    </span>
-
-                    {/* 2nd level dropdown */}
-                    <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                        Deal 4
-                      </li>
-                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                        Deal 5
-                      </li>
-                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                        Deal 6
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 3
-                  </li>
+                      {/* 2nd level dropdown */}
+                      {!!subCat.children.length && (
+                        <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+                          {subCat.children.map((subSubCat) => (
+                            <Link
+                              href={`/categories/${subSubCat.slug}`}
+                              key={subSubCat.id}
+                            >
+                              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                {subSubCat.name}
+                              </li>
+                            </Link>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
                 </ul>
               )}
             </li>
@@ -267,7 +263,7 @@ console.log(categories);
       {/* Mobile Drawer */}
       <div
         className={`sm:hidden fixed inset-0 bg-white z-50 transform transition-transform duration-300 ease-linear ${
-          isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+          isDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <button
