@@ -42,7 +42,7 @@ const settings = {
   fade: false,
   infinite: false,
   autoplay: true,
-  autoplaySpeed: 5000,
+  autoplaySpeed: 2000,
   slidesToShow: 1,
   slidesToScroll: 1,
   arrows: true,
@@ -63,10 +63,10 @@ const Banner = ({ slides }: IProps) => {
             <Image
               src={`${config.API_URL}/images/sliders/${slide.imageUrl}`}
               alt={`Banner ${index + 1}`}
-              priority
+              priority={index === 0}
               className="object-cover"
               // placeholder="blur"
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1920px"
               width={1920}
               height={1080}
             />
