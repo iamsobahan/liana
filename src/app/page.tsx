@@ -16,12 +16,10 @@ const SocialBar = dynamic(() => import("@/components/SocialBar/page"), {
   ssr: true,
 });
 
-
 import Cart from "@/components/Cart/page";
 import { fetchHomeProducts } from "@/lib/data/prodcuts";
 import { fetchSliders } from "@/lib/data/slider";
 import { getFeaturedCategories } from "@/lib/data/category";
-
 
 const Page = async () => {
   const [products, sliders, categories] = await Promise.all([
@@ -29,13 +27,12 @@ const Page = async () => {
     fetchSliders(),
     getFeaturedCategories(),
   ]);
-  console.log(categories)
   return (
-    <div>
+    <>
       <SocialBar />
       <Cart />
       <Banner slides={sliders.data} />
-      <CategoryPage/>
+      <CategoryPage categories={categories.data} />
       <FeaturePage
         feature={products?.data?.featuredProducts}
         title="Feature Products"
@@ -48,7 +45,7 @@ const Page = async () => {
         feature={products?.data?.bestSellingProducts}
         title="Best Selling Products"
       />
-    </div>
+    </>
   );
 };
 
