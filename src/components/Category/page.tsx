@@ -5,14 +5,9 @@ import Slider from "react-slick";
 import Image from "next/image";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import { useRef } from "react";
-
-import category from "./../../assets/category1.png";
-import category1 from "./../../assets/category2.png";
-import category2 from "./../../assets/category3.png";
-import category3 from "./../../assets/category4.png";
-import category4 from "./../../assets/category5.png";
-import category5 from "./../../assets/category6.png";
 import Link from "next/link";
+import { ICategory } from "@/types/category";
+import config from "@/config";
 
 const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
   <div
@@ -65,44 +60,11 @@ const settings = {
     },
   ],
 };
-
-const CategoryPage = () => {
+type IProps = {
+  categories: ICategory[];
+};
+const CategoryPage: React.FC<IProps> = ({ categories }) => {
   const sliderRef = useRef<Slider>(null);
-
-  const categories = [
-    {
-      title: "EAR RINGS",
-      image: category,
-    },
-    {
-      title: "BRACELETS",
-      image: category1,
-    },
-    {
-      title: "BANGLES",
-      image: category3,
-    },
-    {
-      title: "HAND RINGS",
-      image: category5,
-    },
-    {
-      title: "BELLY CHAIN",
-      image: category4,
-    },
-    {
-      title: "IDK",
-      image: category,
-    },
-    {
-      title: "IFU",
-      image: category2,
-    },
-    {
-      title: "COVER UP",
-      image: category5,
-    },
-  ];
 
   return (
     <div className="container mx-auto my-2 md:my-10 px-4">
@@ -118,16 +80,19 @@ const CategoryPage = () => {
           {categories.map((cat, index) => (
             <div key={index} className="px-2">
               <div className="relative rounded-lg overflow-hidden cursor-pointer">
-                <Link href="/categories">
+                <Link href={`/category/${cat.slug}`}>
                   <Image
-                    src={cat.image}
-                    alt={cat.title}
+                    src={`${config.API_URL}/images/category/${cat.image}`}
+                    alt={cat.name}
                     className="object-cover w-full h-22 md:h-64"
+                    width={300}
+                    height={300}
+                    loading="lazy"
                   />
                 </Link>
                 {/* Title Overlay */}
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white cursor-pointer hover:bg-black hover:text-white transition px-6 md:px-4 w-30 md:w-50 py-1 md:py-2 rounded-lg shadow text-center font-normal md:font-semibold text-xs md:text-lg text-gray-800">
-                  {cat.title}
+                  {cat.name}
                 </div>
               </div>
             </div>
