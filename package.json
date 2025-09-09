@@ -10,11 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.9.0",
-<<<<<<< HEAD
-    "axios": "^1.11.0",
-=======
     "cookies-next": "^6.1.0",
->>>>>>> c1cb0bf276baa00983a732f685b4c30bff31cd76
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.542.0",
     "next": "15.4.4",

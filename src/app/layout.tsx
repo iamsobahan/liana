@@ -7,6 +7,7 @@ import FooterPage from "@/components/Footer/page";
 import MobileBottomNav from "@/components/Tab/page";
 import ReduxProvider from "@/redux/provider";
 import ToasterProvider from "@/toast";
+import { getAllCategories } from "@/lib/data/category";
 
 const rajdhani = Rajdhani({
   subsets: ["latin"],
@@ -33,7 +34,6 @@ export default async function RootLayout({
 
 
   const allCategories = await getAllCategories();
-  console.log(allCategories);
   return (
     <html lang="en">
       <body
