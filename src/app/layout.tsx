@@ -5,6 +5,7 @@ import { Rajdhani, Raleway } from "next/font/google";
 import Header from "@/components/header/page";
 import FooterPage from "@/components/Footer/page";
 import MobileBottomNav from "@/components/Tab/page";
+import ReduxProvider from "@/redux/provider";
 
 const rajdhani = Rajdhani({
   subsets: ["latin"],
@@ -35,10 +36,12 @@ export default function RootLayout({
         cz-shortcut-listen="true"
       >
         <main>
-          <Header />
-          <MobileBottomNav />
-          {children}
-          <FooterPage />
+          <ReduxProvider>
+            <Header />
+            <MobileBottomNav />
+            {children}
+            <FooterPage />
+          </ReduxProvider>
         </main>
       </body>
     </html>
