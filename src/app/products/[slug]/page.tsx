@@ -1,4 +1,6 @@
+import FeaturePage from "@/components/Feature";
 import ProductInfo from "@/components/product-details";
+import DetailsTabs from "@/components/product-details/detailsTabs";
 import config from "@/config";
 import { fetchAllProducts, getSingleProduct } from "@/lib/data/prodcuts";
 import type { Metadata } from "next";
@@ -41,8 +43,13 @@ const ProductDetails = async ({ params }: Props) => {
   const slug = (await params).slug;
   const product = await getSingleProduct(slug);
   return (
-    <div>
+    <div className="container mx-auto px-3 sm:px-6 py-6 sm:py-10">
       <ProductInfo />
+      <DetailsTabs />
+      <FeaturePage
+        feature={product.data.relatedProducts}
+        title="Similar Products"
+      />
     </div>
   );
 };
