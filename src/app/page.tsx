@@ -16,7 +16,7 @@ const SocialBar = dynamic(() => import("@/components/SocialBar/page"), {
   ssr: true,
 });
 
-import Cart from "@/components/Cart/page";
+import Cart from "@/components/Cart";
 import { fetchHomeProducts } from "@/lib/data/prodcuts";
 import { fetchSliders } from "@/lib/data/slider";
 import { getFeaturedCategories } from "@/lib/data/category";
