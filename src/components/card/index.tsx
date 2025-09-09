@@ -1,12 +1,13 @@
 "use client";
 import config from "@/config";
+import { IProduct } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { FC } from "react";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 type IProps = {
-  item: { thumbnail: string; name: string; regularPrice: number; salePrice: number };
+  item: IProduct;
 };
 const ProductCard: FC<IProps> = ({ item }) => {
   const modalRef = React.useRef<HTMLDialogElement>(null);
@@ -34,7 +35,6 @@ const ProductCard: FC<IProps> = ({ item }) => {
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      
       if (
         safeArea.current &&
         !safeArea.current.contains(event.target as Node)
@@ -82,6 +82,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
               width={80}
               height={80}
               className="rounded-lg object-cover border"
+              loading="lazy"
             />
             <div>
               <h3 className="text-sm md:text-base font-semibold text-gray-800">
@@ -90,8 +91,8 @@ const ProductCard: FC<IProps> = ({ item }) => {
               <p className="text-sm text-gray-600 mt-1">
                 Price:
                 <span className="text-lg font-bold ml-3 text-gray-800">
-                  {' '}
-                  ৳6,547.20{' '}
+                  {" "}
+                  ৳6,547.20{" "}
                 </span>
               </p>
             </div>
@@ -161,8 +162,8 @@ const ProductCard: FC<IProps> = ({ item }) => {
                         onClick={() => setSelectedColor(color)}
                         className={`px-3 py-1 rounded-full border text-sm ${
                           selectedColor === color
-                            ? 'bg-yellow-500 text-white border-yellow-500'
-                            : 'border-gray-300 text-gray-700 hover:border-yellow-500'
+                            ? "bg-yellow-500 text-white border-yellow-500"
+                            : "border-gray-300 text-gray-700 hover:border-yellow-500"
                         }`}
                       >
                         {color}
@@ -183,8 +184,8 @@ const ProductCard: FC<IProps> = ({ item }) => {
                         onClick={() => setSelectedSize(size)}
                         className={`px-3 py-1 rounded-md border text-sm ${
                           selectedSize === size
-                            ? 'bg-yellow-500 text-white border-yellow-500'
-                            : 'border-gray-300 text-gray-700 hover:border-yellow-500'
+                            ? "bg-yellow-500 text-white border-yellow-500"
+                            : "border-gray-300 text-gray-700 hover:border-yellow-500"
                         }`}
                       >
                         {size}
@@ -245,7 +246,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
       </dialog>
       <div className="px-1 md:px-2 cursor-pointer">
         <div className="bg-white shadow-md rounded-sm overflow-hidden hover:shadow-lg border-gray-100 transition">
-          <Link href="/product">
+          <Link href={`/products/${item?.slug}`}>
             <div className="relative h-32 md:h-60 w-full">
               <Image
                 src={`${config.API_URL}/images/products/${item?.thumbnail}`}
