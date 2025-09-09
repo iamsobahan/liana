@@ -1,6 +1,5 @@
 import { ICartItem } from '@/types/cart';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import { getCookie, setCookie, deleteCookie } from 'cookies-next';
 
 interface CartState {
@@ -30,11 +29,9 @@ export const cartSlice = createSlice({
       );
 
       if (existingItem) {
-        toast.warning('Item already in your cart!');
         existingItem.quantity += newItem.quantity ?? 1;
       } else {
         state.cart.push(newItem);
-        toast.success('Item added to your cart!');
       }
 
       setCookie('cartItems', JSON.stringify(state.cart), { maxAge: 60 * 60 * 24 * 7 }); // 7 days
