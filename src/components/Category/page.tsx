@@ -66,8 +66,6 @@ type IProps = {
 const CategoryPage: React.FC<IProps> = ({ categories }) => {
   const sliderRef = useRef<Slider>(null);
 
- 
-
   return (
     <div className="container mx-auto my-2 md:my-10 px-4">
       <div className="text-center mb-3 md:mb-10">
@@ -82,14 +80,13 @@ const CategoryPage: React.FC<IProps> = ({ categories }) => {
           {categories.map((cat, index) => (
             <div key={index} className="px-2">
               <div className="relative rounded-lg overflow-hidden cursor-pointer">
-                <Link href={`/category/${cat.slug}`}>
+                <Link href={`/categories/${cat.slug}`}>
                   <Image
                     src={`${config.API_URL}/images/category/${cat?.image}`}
                     alt={cat.name}
                     className="object-cover w-full h-22 md:h-64"
                     width={300}
                     height={300}
-                 
                   />
                 </Link>
                 {/* Title Overlay */}
