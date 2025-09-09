@@ -1,21 +1,17 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { BiSolidShoppingBags } from 'react-icons/bi';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from "react";
+import Link from "next/link";
+import { BiSolidShoppingBags } from "react-icons/bi";
+import { motion, AnimatePresence } from "framer-motion";
+import { useAppSelector } from "@/redux/hooks";
 
 export default function Cart() {
+  const { cart: cartItems } = useAppSelector((state) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Dummy cart data (replace with your state/store later)
-  const cartItems = [
-    { id: 1, name: 'Premium Coffee', price: 250, qty: 1 },
-    { id: 2, name: 'Dark Chocolate', price: 150, qty: 2 },
-  ];
-
   const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.price * item.qty,
+    (sum, item) => sum + item.price * item.quantity,
     0
   );
 
@@ -57,11 +53,11 @@ export default function Cart() {
               initial={{ x: 400 }}
               animate={{ x: 0 }}
               exit={{ x: 400 }}
-              transition={{ type: 'tween', duration: 0.35 }}
+              transition={{ type: "tween", duration: 0.35 }}
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="flex items-center text-xl font-bold text-gray-800">
-                  <BiSolidShoppingBags size={30} />{' '}
+                  <BiSolidShoppingBags size={30} />{" "}
                   <span className="ml-3">My Cart</span>
                 </h2>
                 <button
@@ -76,17 +72,19 @@ export default function Cart() {
               <div className="flex-1 overflow-y-auto pr-2">
                 {cartItems.map((item) => (
                   <div
-                    key={item.id}
+                    key={item.productId}
                     className="flex justify-between items-center border-b py-4 hover:bg-gray-50 rounded-lg px-2 transition"
                   >
                     <div>
                       <p className="text-sm font-semibold text-gray-800">
-                        {item.name}
+                        {item.title}
                       </p>
-                      <p className="text-xs text-gray-500">Qty: {item.qty}</p>
+                      <p className="text-xs text-gray-500">
+                        Qty: {item.quantity}
+                      </p>
                     </div>
                     <span className="text-sm font-bold text-gray-700">
-                      ৳ {item.price * item.qty}
+                      ৳ {item.price * item.quantity}
                     </span>
                   </div>
                 ))}
