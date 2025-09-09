@@ -26,7 +26,7 @@ export const cartSlice = createSlice({
     addToCart: (state, action: PayloadAction<ICartItem>) => {
       const newItem = action.payload;
       const existingItem = state.cart.find(
-        (item) => item.product_id === newItem.product_id
+        (item) => item.productId === newItem.productId
       );
 
       if (existingItem) {
@@ -43,7 +43,7 @@ export const cartSlice = createSlice({
     // Increment quantity
     incrementQuantity: (state, action: PayloadAction<ICartItem>) => {
       const itemToIncrement = state.cart.find(
-        (item) => item.product_id === action.payload.product_id
+        (item) => item.productId === action.payload.productId
       );
 
       if (itemToIncrement && itemToIncrement.quantity < 5) {
@@ -55,7 +55,7 @@ export const cartSlice = createSlice({
     // Decrement quantity
     decrementQuantity: (state, action: PayloadAction<ICartItem>) => {
       const itemToDecrement = state.cart.find(
-        (item) => item.product_id === action.payload.product_id
+        (item) => item.productId === action.payload.productId
       );
 
       if (itemToDecrement && itemToDecrement.quantity > 1) {
@@ -67,7 +67,7 @@ export const cartSlice = createSlice({
     // Remove item
     removeFromCart: (state, action: PayloadAction<ICartItem>) => {
       state.cart = state.cart.filter(
-        (i) => i.product_id !== action.payload.product_id
+        (i) => i.productId !== action.payload.productId
       );
       setCookie('cartItems', JSON.stringify(state.cart), { maxAge: 60 * 60 * 24 * 7 });
     },
