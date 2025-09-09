@@ -11,16 +11,26 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../assets/logo.png";
 import product from "../../assets/slick3.jpeg";
+ 
 
-const Header = () => {
+
+const Header = ({categories }) => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-
+console.log(categories);
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+
+  type IProps = {
+    _id: string;
+    name: string;
+    children: []
+  };
+
 
   return (
     <div className="w-full bg-gray-100 text-gray-800">
@@ -58,8 +68,8 @@ const Header = () => {
           <div
             className={`bg-white py-2 md:py-3 border-b border-gray-300  ${
               isSticky
-                ? "fixed top-0 shadow-lg w-full z-9999 transition-all duration-300"
-                : "relative"
+                ? 'fixed top-0 shadow-lg w-full z-9999 transition-all duration-300'
+                : 'relative'
             }`}
           >
             <div className="md:container px-4 mx-auto flex justify-between items-center">
@@ -130,7 +140,7 @@ const Header = () => {
                               · Tk. 15000 / Black /<br /> #MPC#525
                             </p>
                             <p className="text-sm mt-1">
-                              1 x{" "}
+                              1 x{' '}
                               <span className="font-semibold">
                                 Tk 12,000.00
                               </span>
@@ -199,159 +209,65 @@ const Header = () => {
       {/* Desktop Menu */}
       <nav className="hidden sm:block w-full bg-white shadow-sm">
         <ul className="flex justify-center items-center text-sm uppercase font-medium py-3 tracking-wide">
-          {/* HOME */}
-          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            HOME
-          </li>
-
-          {/* MEGA DEALS (dropdown) */}
           <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            <span className="inline-flex items-center cursor-pointer">
-              MEGA DEALS <IoIosArrowDown className="dropdown_arrow" size={18} />
-            </span>
+            Home
+          </li>
+          {categories?.data?.map((cat: IProps) => (
+            <li
+              key={cat._id}
+              className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer"
+            >
+              <span className="inline-flex items-center cursor-pointer">
+                {cat.name}{' '}
+                {cat.children.length > 0 && <IoIosArrowDown className="ml-1" />}
+              </span>
 
-            {/* 1st level dropdown */}
-            <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Deal 1
-              </li>
+              {/* 1st level dropdown */}
 
-              {/* Deal 2 with nested submenu */}
-              <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <span className="flex justify-between items-center cursor-pointer">
-                  Deal 2
-                  <MdKeyboardArrowRight
-                    className="dropdown_arrow_right"
-                    size={25}
-                  />
-                </span>
-
-                {/* 2nd level dropdown */}
-                <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+              {cat.children.length > 0 && (
+                <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
                   <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 4
+                    Deal 1
                   </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 5
+
+                  {/* Deal 2 with nested submenu */}
+                  <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <span className="flex justify-between items-center cursor-pointer">
+                      Deal 2
+                      <MdKeyboardArrowRight
+                        className="dropdown_arrow_right"
+                        size={25}
+                      />
+                    </span>
+
+                    {/* 2nd level dropdown */}
+                    <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
+                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        Deal 4
+                      </li>
+                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        Deal 5
+                      </li>
+                      <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                        Deal 6
+                      </li>
+                    </ul>
                   </li>
+
                   <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 6
+                    Deal 3
                   </li>
                 </ul>
-              </li>
-
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Deal 3
-              </li>
-            </ul>
-          </li>
-
-          {/* BRAND */}
-          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            BRAND
-          </li>
-
-          {/* MEN (dropdown) */}
-
-          <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            <span className="inline-flex items-center cursor-pointer">
-              MEN <IoIosArrowDown className="dropdown_arrow" size={18} />
-            </span>
-
-            {/* 1st level dropdown */}
-            <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Shirts
-              </li>
-
-              {/* Deal 2 with nested submenu */}
-              <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <span className="flex justify-between items-center cursor-pointer">
-                  Pants
-                  <MdKeyboardArrowRight
-                    className="dropdown_arrow_right"
-                    size={25}
-                  />
-                </span>
-
-                {/* 2nd level dropdown */}
-                <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 4
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 5
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 6
-                  </li>
-                </ul>
-              </li>
-
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Belts
-              </li>
-            </ul>
-          </li>
-
-          {/* WOMEN (dropdown) */}
-          <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            <span className="inline-flex items-center cursor-pointer">
-              WOMEN <IoIosArrowDown className="dropdown_arrow" size={18} />
-            </span>
-
-            {/* 1st level dropdown */}
-            <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Bags
-              </li>
-
-              {/* Deal 2 with nested submenu */}
-              <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <span className="flex justify-between items-center cursor-pointer">
-                  Jewelry
-                  <MdKeyboardArrowRight
-                    className="dropdown_arrow_right"
-                    size={25}
-                  />
-                </span>
-
-                {/* 2nd level dropdown */}
-                <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 4
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 5
-                  </li>
-                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                    Deal 6
-                  </li>
-                </ul>
-              </li>
-
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Sandals
-              </li>
-            </ul>
-          </li>
-
-          {/* CHILDREN */}
-          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            CHILDREN
-          </li>
-
-          {/* ACCESSORIES */}
-          <li className="relative group text-gray-800 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-            ACCESSORIES
-          </li>
+              )}
+            </li>
+          ))}
         </ul>
       </nav>
 
       {/* Mobile Drawer */}
       <div
         className={`sm:hidden fixed inset-0 bg-white z-50 transform transition-transform duration-300 ease-linear ${
-          isDrawerOpen ? "translate-x-0" : "translate-x-full"
+          isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <button

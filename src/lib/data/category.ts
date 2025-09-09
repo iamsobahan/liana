@@ -17,3 +17,16 @@ export const getFeaturedCategories = async (): Promise<ApiResponse<ICategory[]>>
     const data = await res.json();
     return data;
 }
+
+export const getAllCategories = async (): Promise<
+  ApiResponse<ICategory[]>
+> => {
+  const res = await fetch(
+    `${config.API_URL}/api/v1/categories?page=1&limit=100`,
+    {
+      next: { revalidate: 60 },
+    }
+  );
+  const data = await res.json();
+  return data;
+};

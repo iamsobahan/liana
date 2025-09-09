@@ -1,9 +1,8 @@
-// app/cart/page.tsx (Next.js 13+ App Router)
-'use client';
+
 import {  FaMinus, FaPlus } from 'react-icons/fa';
 import { HiOutlineTrash } from 'react-icons/hi';
 import slick from '../../assets/slick.jpeg'
-import slick1 from '../../assets/slick1.jpeg'
+
 import Image from 'next/image';
 
 function CartItem({

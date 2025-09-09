@@ -137,7 +137,8 @@ const ProductCard: FC<IProps> = ({ item }) => {
               <Image
                 src={`${config.API_URL}/images/products/${item?.thumbnail}`}
                 alt={item.name}
-                fill
+                width={300}
+                height={200}
                 className="object-cover"
               />
             </div>
