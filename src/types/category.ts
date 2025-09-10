@@ -12,6 +12,6 @@ export type ICategory = {
     updatedAt: string;
     __v: number;
     id: string;
-    children?: ICategory[];
+    children: ICategory[];
 
 };

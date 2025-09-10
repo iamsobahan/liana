@@ -5,5 +5,5 @@ export interface ICartItem {
   price: number;
   quantity: number;
   regularPrice: number;
-  productAttribute?: any;
+  productAttribute?: string;
 }
