@@ -204,11 +204,9 @@ const Header = ({ categories }: IProps) => {
       {/* Desktop Menu */}
       <nav className="hidden sm:block w-full bg-white shadow-sm">
         <ul className="flex justify-center items-center text-sm uppercase font-medium py-3 tracking-wide">
-          <Link href="/">
-            <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
-              Home
-            </li>
-          </Link>
+          <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
+            <Link href="/">Home</Link>
+          </li>
           {categories?.map((cat) => (
             <li
               key={cat.id}
