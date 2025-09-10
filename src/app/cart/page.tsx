@@ -55,8 +55,11 @@ export default function CartPage() {
         {cartItems.length === 0 ? (
           <p className="text-center text-gray-500 py-20">Your cart is empty.</p>
         ) : (
-          cartItems.map((item) => (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-300 pb-4">
+          cartItems.map((item, index) => (
+            <div
+              key={index}
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-300 pb-4"
+            >
               {/* Left */}
               <div className="flex items-center  gap-4 w-full sm:w-auto">
                 <input

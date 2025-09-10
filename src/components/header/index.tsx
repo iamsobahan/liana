@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../assets/logo.png";
 import product from "../../assets/slick3.jpeg";
-import { ICategory } from "@/types/categories";
+import { ICategory } from "@/types/category";
 
 type IProps = {
   categories: ICategory[];
@@ -20,7 +20,6 @@ type IProps = {
 const Header = ({ categories }: IProps) => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  console.log(categories);
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 60);
     window.addEventListener("scroll", handleScroll);
@@ -224,7 +223,10 @@ const Header = ({ categories }: IProps) => {
               {!!cat.children.length && (
                 <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
                   {cat.children.map((subCat) => (
-                    <li className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                    <li
+                      key={subCat.id}
+                      className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    >
                       <Link href={`/categories/${subCat.slug}`}>
                         <span className="flex justify-between items-center cursor-pointer">
                           {subCat.name}

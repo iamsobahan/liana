@@ -16,7 +16,6 @@ import slick7 from "../../../assets/slick3.jpeg";
 import slick6 from "../../../assets/slick10.jpeg";
 import slick9 from "../../../assets/slick9.jpeg";
 import slick10 from "../../../assets/slick10.jpeg";
-import { div } from "framer-motion/client";
 
 const feature = [
   { image: slick },
