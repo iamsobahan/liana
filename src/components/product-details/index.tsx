@@ -3,7 +3,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 import React from "react";
-import FeaturePage from "@/components/Feature";
 import Link from "next/link";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
@@ -23,17 +22,11 @@ type Product = {
   image: string;
 };
 
-const feature1: Product[] = [
-  { image: slick.src },
-  { image: slick1.src },
-  { image: slick2.src },
-];
 type Props = {
   product: IProduct;
 };
 
 export default function ProductInfo({ product }: Props) {
-  console.log(product);
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [quantity, setQuantity] = useState<number>(1);
   const [selectedImage, setSelectedImage] = useState<string>(
