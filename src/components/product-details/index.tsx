@@ -16,43 +16,29 @@ interface SizeOption {
 import slick from "../../assets/slick.jpeg";
 import slick1 from "../../assets/slick1.jpeg";
 import slick2 from "../../assets/slick2.jpeg";
-import slick3 from "../../assets/slick3.jpeg";
-import slick4 from "../../assets/slick4.jpeg";
-import slick5 from "../../assets/slick5.jpeg";
-import slick6 from "../../assets/slick6.jpeg";
-import slick7 from "../../assets/slick7.jpeg";
-import slick8 from "../../assets/slick8.jpeg";
-import slick9 from "../../assets/slick9.jpeg";
-import slick10 from "../../assets/slick10.jpeg";
+import { IProduct } from "@/types/product";
+import config from "@/config";
 
 type Product = {
   image: string;
 };
-
-const feature: Product[] = [
-  { image: slick.src },
-  { image: slick1.src },
-  { image: slick2.src },
-  { image: slick3.src },
-  { image: slick4.src },
-  { image: slick5.src },
-  { image: slick6.src },
-  { image: slick7.src },
-  { image: slick8.src },
-  { image: slick9.src },
-  { image: slick10.src },
-];
 
 const feature1: Product[] = [
   { image: slick.src },
   { image: slick1.src },
   { image: slick2.src },
 ];
+type Props = {
+  product: IProduct;
+};
 
-export default function ProductInfo() {
+export default function ProductInfo({ product }: Props) {
+  console.log(product);
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [quantity, setQuantity] = useState<number>(1);
-  const [selectedImage, setSelectedImage] = useState<string>(feature[0].image);
+  const [selectedImage, setSelectedImage] = useState<string>(
+    `${config.API_URL}/images/products/${product.galleryImages[0]}`
+  );
 
   const sizes: SizeOption[] = [
     { label: "M", value: "M" },
@@ -89,19 +75,21 @@ export default function ProductInfo() {
 
         {/* Gallery Thumbnails */}
         <div className="mt-4 flex flex-wrap gap-2 justify-center">
-          {feature1.map((item, index) => (
+          {product.galleryImages.map((item, index) => (
             <button
               key={index}
-              onClick={() => setSelectedImage(item.image)}
+              onClick={() =>
+                setSelectedImage(`${config.API_URL}/images/products/${item}`)
+              }
               className={`border-2 ${
-                selectedImage === item.image
+                selectedImage === `${config.API_URL}/images/products/${item}`
                   ? "border-black"
                   : "border-transparent"
               } rounded-md overflow-hidden`}
             >
               <Image
-                src={item.image}
-                alt={`Thumbnail ${index + 1}`}
+                src={`${config.API_URL}/images/products/${item}`}
+                alt={`product ${index + 1}`}
                 width={70}
                 height={70}
                 className="object-cover w-[70px] h-[70px]"
@@ -114,16 +102,16 @@ export default function ProductInfo() {
       {/* RIGHT: DETAILS */}
       <div>
         <h1 className="text-xl sm:text-2xl font-bold text-gray-800 leading-snug">
-          Premium Designer Edition Double PK Cotton Polo - Glorious
+          {product.name}
         </h1>
 
         {/* Price */}
         <div className="mt-3 sm:mt-4 flex items-center gap-3">
           <span className="text-gray-400 line-through text-base sm:text-lg">
-            ৳1600
+            ৳{product.regularPrice}
           </span>
           <span className="text-2xl sm:text-3xl font-bold text-green-600">
-            ৳1260
+            ৳{product.salePrice}
           </span>
         </div>
 
@@ -187,13 +175,11 @@ export default function ProductInfo() {
 
         {/* Short Description */}
         <div className="mt-5 sm:mt-6 text-gray-600 text-sm sm:text-base leading-relaxed">
-          The Polo t-shirt is made with Double PK fabric which features premium
-          80% combed compact organic cotton and 20% polyester. The t-shirt has a
-          soft touch which makes it very comfortable for day-long usage.
+          {product.shortDescription}
         </div>
 
         {/* Specs */}
-        <div className="mt-5 sm:mt-6 text-sm text-gray-700 space-y-1">
+        {/*  <div className="mt-5 sm:mt-6 text-sm text-gray-700 space-y-1">
           <p>
             <strong>Fabric type:</strong> Double PK
           </p>
@@ -203,7 +189,7 @@ export default function ProductInfo() {
           <p>
             <strong>GSM:</strong> 210-220
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

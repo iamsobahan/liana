@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: product.data.product.name,
-    description: product.data.product.sortDescription,
+    description: product.data.product.shortDescription,
     openGraph: {
       images: [
         {
@@ -38,14 +38,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// ✅ page function must match Next.js Page signature
 const ProductDetails = async ({ params }: Props) => {
   const slug = (await params).slug;
   const product = await getSingleProduct(slug);
   return (
     <div className="container mx-auto px-3 sm:px-6 py-6 sm:py-10">
-      <ProductInfo />
-      <DetailsTabs />
+      <ProductInfo product={product.data.product} />
+      <DetailsTabs description={product.data.product.description} />
       <FeaturePage
         feature={product.data.relatedProducts}
         title="Similar Products"
