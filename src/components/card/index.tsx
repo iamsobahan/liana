@@ -22,11 +22,11 @@ const ProductCard: FC<IProps> = ({ item }) => {
   const [selectedSize, setSelectedSize] = React.useState("M(28-30)");
   const [selectedColor, setSelectedColor] = React.useState("Red/Black");
   const [quantity, setQuantity] = React.useState(1);
-  const showModal = () => {
+  /*  const showModal = () => {
     if (modalRef.current) {
       modalRef.current.showModal();
     }
-  };
+  }; */
   const showModal2 = () => {
     if (modalRef2.current) {
       modalRef2.current.showModal();

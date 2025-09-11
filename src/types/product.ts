@@ -13,7 +13,7 @@ export type IProduct = {
     name: string;
     slug: string;
     description: string;
-    sortDescription: string;
+    shortDescription: string;
     sku: string;
     categories: { name: string; slug: string }[];
     galleryImages: string[];

@@ -55,9 +55,15 @@ export default function CartPage() {
         {cartItems.length === 0 ? (
           <p className="text-center text-gray-500 py-20">Your cart is empty.</p>
         ) : (
+<<<<<<< HEAD
           cartItems.map((item, id) => (
             <div
               key={id}
+=======
+          cartItems.map((item, index) => (
+            <div
+              key={index}
+>>>>>>> 2fb244a757bcc366738d640ca0f0ebcd627dfdbe
               className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-300 pb-4"
             >
               {/* Left */}
