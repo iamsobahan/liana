@@ -90,7 +90,7 @@ const CategoryPage: React.FC<IProps> = ({ categories }) => {
                   />
                 </Link>
                 {/* Title Overlay */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white cursor-pointer hover:bg-black hover:text-white transition px-6 md:px-4 w-30 md:w-50 py-1 md:py-2 rounded-lg shadow text-center font-normal md:font-semibold text-xs md:text-lg text-gray-800">
+                <div className="absolute whitespace-nowrap bottom-4 left-1/2 -translate-x-1/2 bg-white cursor-pointer hover:bg-black hover:text-white transition px-6 md:px-4 w-30 md:w-50 py-1 md:py-2 rounded-lg shadow text-center font-normal md:font-semibold text-xs md:text-lg text-gray-800">
                   {cat.name}
                 </div>
               </div>

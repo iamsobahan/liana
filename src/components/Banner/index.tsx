@@ -64,11 +64,10 @@ const Banner = ({ slides }: IProps) => {
               src={`${config.API_URL}/images/sliders/${slide.imageUrl}`}
               alt={`Banner ${index + 1}`}
               priority={index === 0}
-              className="object-cover"
-              // placeholder="blur"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1920px"
+              className="w-full object-cover h-[120px] md:h-fit"
               width={1920}
               height={1080}
+              sizes="(max-width: 768px) 100vw, 1920px"
             />
             <div className="absolute inset-0 bg-black/20" />
           </Link>

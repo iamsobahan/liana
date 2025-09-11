@@ -9,10 +9,10 @@ export default function CheckoutPage() {
   const [deliveryArea, setDeliveryArea] = useState('outside');
 
   return (
-    <div className="min-h-screen text-gray-800 py-0 md:py-10 px-4">
+    <div className="min-h-screen text-gray-800 py-0 md:py-6 px-4">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* LEFT SECTION */}
-        <div className="lg:col-span-2 bg-white shadow-md rounded-2xl pt-3 md:p-6">
+        <div className="lg:col-span-2 bg-white shadow-md rounded-2xl p-4 md:p-6">
           <h1 className="text-2xl font-semibold mb-3 md:mb-6 border-b pb-1 md:pb-3">
             Checkout
           </h1>
@@ -48,12 +48,12 @@ export default function CheckoutPage() {
             <input
               type="text"
               placeholder="Receiver Name"
-              className="w-full border rounded-lg px-4 py-2 focus:outline-blue-500"
+              className="w-full col-span-2 border rounded-lg px-4 py-2 md:col-span-1 focus:outline-blue-500"
             />
             <input
               type="text"
               placeholder="Receiver Phone Number"
-              className="w-full border rounded-lg px-4 py-2 focus:outline-blue-500"
+              className="w-full col-span-2 md:col-span-1 border rounded-lg px-4 py-2 focus:outline-blue-500"
             />
             <textarea
               placeholder="Shipping Address"
@@ -117,7 +117,7 @@ export default function CheckoutPage() {
         </div>
 
         {/* RIGHT SECTION (ORDER SUMMARY) */}
-        <div className="bg-white shadow-md rounded-2xl p-6">
+        <div className="bg-white shadow-md rounded-2xl p-4 md:p-6">
           <h2 className="text-lg font-semibold mb-4 border-b pb-2">
             Order Overview
           </h2>

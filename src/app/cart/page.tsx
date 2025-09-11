@@ -46,7 +46,7 @@ export default function CartPage() {
             />
             SELECT ALL ({cartItems.length} ITEM(S))
           </label>
-          <button className="flex items-center gap-1 text-gray-600 fw-bold hover:underline hover:text-red-500 cursor-pointer">
+          <button className="flex items-center gap-1 text-gray-500 fw-bold hover:underline hover:text-red-500 cursor-pointer">
             <HiOutlineTrash size={25} />
           </button>
         </div>
@@ -55,13 +55,16 @@ export default function CartPage() {
         {cartItems.length === 0 ? (
           <p className="text-center text-gray-500 py-20">Your cart is empty.</p>
         ) : (
-          cartItems.map((item) => (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-300 pb-4">
+          cartItems.map((item, id) => (
+            <div
+              key={id}
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-gray-300 pb-4"
+            >
               {/* Left */}
               <div className="flex items-center  gap-4 w-full sm:w-auto">
                 <input
                   type="checkbox"
-                  className="w-5 h-5 appearance-none border-2 border-gray-400 rounded-sm checked:before:content-['✔'] checked:before:text-orange-500 checked:before:block checked:before:text-center checked:before:text-sm focus:outline-none cursor-pointer"
+                  className="w-8 h-5.5 md:w-5 md:h-5 appearance-none border-2 border-gray-400 rounded-sm checked:before:content-['✔'] checked:before:text-orange-500 checked:before:block checked:before:text-center checked:before:text-sm focus:outline-none cursor-pointer"
                 />
 
                 <Image
@@ -83,14 +86,14 @@ export default function CartPage() {
               </div>
 
               {/* Right */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+              <div className="flex items-center justify-between flex-row sm:flex-row  sm:items-center gap-3 w-full sm:w-auto">
                 {/* Price */}
                 <div className="flex flex-col">
                   <p className="text-orange-600 font-semibold text-lg ">
                     {item.price}৳
                   </p>
                   <p className="line-through text-gray-400 text-sm">
-                    {" "}
+                    {' '}
                     {item.regularPrice}৳
                   </p>
                 </div>
@@ -147,7 +150,7 @@ export default function CartPage() {
 
         {/* Checkout Button */}
         <Link href="/checkout">
-          <button className="w-full bg-orange-500 text-white fw-semibold py-3 rounded hover:bg-orange-600">
+          <button className="w-full bg-orange-500 text-white fw-semibold py-1.5 md:py-3 rounded hover:bg-orange-600">
             PROCEED TO CHECKOUT ({cartItems.length} ITEM(S))
           </button>
         </Link>

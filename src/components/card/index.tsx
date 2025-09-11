@@ -117,12 +117,12 @@ const ProductCard: FC<IProps> = ({ item }) => {
 
           {/* Action Buttons */}
           <div className="flex justify-between gap-3 px-6 py-4">
-            <button className="flex-1 border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition rounded-md py-2 cursor-pointer font-medium">
+            <Link href={'/'} className="flex-1 text-center border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition rounded-md py-2 cursor-pointer font-medium">
               Back to Shopping
-            </button>
-            <button className="flex-1 bg-gray-800 hover:bg-gray-900 text-white cursor-pointer transition rounded-md py-2  font-medium text-center">
+            </Link>
+            <Link href={'/checkout'} className="flex-1 bg-gray-800 hover:bg-gray-900 text-white cursor-pointer transition rounded-md py-2  font-medium text-center">
               Proceed to Checkout
-            </button>
+            </Link>
           </div>
         </div>
       </dialog>
@@ -271,7 +271,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
                 width={400}
                 height={140}
                 alt={item.name}
-                className="rounded-tr-sm  object-cover   md:h-[240px] md:w-[500px]"
+                className="rounded-tr-sm  object-cover w-[240px] h-[120px]  md:h-[240px] md:w-[500px]"
               />
             </div>
             <div className="mt-0.5 md:mt-2 md:p-1 text-center">
