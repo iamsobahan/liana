@@ -206,9 +206,9 @@ const Header = ({ categories }: IProps) => {
           <li className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer">
             <Link href="/">Home</Link>
           </li>
-          {categories?.map((cat) => (
+          {categories?.map((cat, key) => (
             <li
-              key={cat.id}
+              key={key}
               className="dropdown_parent relative group text-gray-800 z-10 hover:text-[#D6A74E] font-semibold pr-6 mr-6 border-r border-gray-400 last:border-none last:mr-0 last:pr-0 cursor-pointer"
             >
               <Link href={`/categories/${cat.slug}`}>
@@ -239,10 +239,10 @@ const Header = ({ categories }: IProps) => {
                       {/* 2nd level dropdown */}
                       {!!subCat.children.length && (
                         <ul className="absolute left-full top-0 hidden bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-                          {subCat.children.map((subSubCat) => (
+                          {subCat.children.map((subSubCat, key) => (
                             <Link
                               href={`/categories/${subSubCat.slug}`}
-                              key={subSubCat.id}
+                              key={key}
                             >
                               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                                 {subSubCat.name}
