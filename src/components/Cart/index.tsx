@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,11 +11,15 @@ import config from '@/config';
 export default function Cart() {
   const { cart: cartItems } = useAppSelector((state) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+  useEffect(() => {
+    setCartCount(cartItems?.length || 0);
+  }, [cartItems]);
 
   console.log(cartItems)
 
@@ -29,7 +33,7 @@ export default function Cart() {
         >
           <BiSolidShoppingBags className="h-6 w-6 text-[#EBA659]" />
           <span className="text-xs font-semibold text-[#EBA659] mt-1">
-            {cartItems.length} items
+            {cartCount} items
           </span>
           <p className="bg-[#A98153] text-sm font-bold text-white tracking-wide mt-2 px-[10px] md:px-[20px]">
             <span className="text-xl font-bold mr-.5">৳</span>
