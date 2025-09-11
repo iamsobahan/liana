@@ -6,22 +6,17 @@ import { BiSolidShoppingBags } from "react-icons/bi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
-import config from '@/config';
+import config from "@/config";
 
 export default function Cart() {
   const { cart: cartItems } = useAppSelector((state) => state.cart);
   const [isOpen, setIsOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(0);
 
+  const cartCount = cartItems?.length || 0;
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  useEffect(() => {
-    setCartCount(cartItems?.length || 0);
-  }, [cartItems]);
-
-  console.log(cartItems)
 
   return (
     <>
@@ -61,11 +56,11 @@ export default function Cart() {
               initial={{ x: 400 }}
               animate={{ x: 0 }}
               exit={{ x: 400 }}
-              transition={{ type: 'tween', duration: 0.35 }}
+              transition={{ type: "tween", duration: 0.35 }}
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="flex items-center text-xl font-bold text-gray-800">
-                  <BiSolidShoppingBags size={30} />{' '}
+                  <BiSolidShoppingBags size={30} />{" "}
                   <span className="ml-3">My Cart</span>
                 </h2>
                 <button

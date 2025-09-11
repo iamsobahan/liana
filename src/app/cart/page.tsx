@@ -1,5 +1,6 @@
 // app/cart/page.tsx (Next.js 13+ App Router)
 "use client";
+import { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { HiOutlineTrash } from "react-icons/hi";
 import Image from "next/image";
@@ -16,6 +17,7 @@ import {
 export default function CartPage() {
   const { cart: cartItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
+  const [cartCount, setCartCount] = useState(0);
 
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -32,6 +34,9 @@ export default function CartPage() {
   const handleDecrementQuantity = (product: ICartItem) => {
     dispatch(decrementQuantity(product));
   };
+  useEffect(() => {
+    setCartCount(cartItems?.length || 0);
+  }, [cartItems]);
 
   return (
     <div className="max-w-7xl mx-auto p-4 grid grid-cols-1 lg:grid-cols-3 gap-6 text-gray-800">
@@ -44,7 +49,7 @@ export default function CartPage() {
               type="checkbox"
               className="w-5 h-5 appearance-none border-2 border-gray-400 rounded-sm checked:before:content-['✔'] checked:before:text-orange-500 checked:before:block checked:before:text-center checked:before:text-sm focus:outline-none cursor-pointer"
             />
-            SELECT ALL ({cartItems.length} ITEM(S))
+            SELECT ALL ( {cartCount} ITEM(S))
           </label>
           <button className="flex items-center gap-1 text-gray-500 fw-bold hover:underline hover:text-red-500 cursor-pointer">
             <HiOutlineTrash size={25} />
