@@ -44,7 +44,7 @@ export default function CheckoutPage() {
           <h2 className="text-lg font-medium mb-4">
             Shipping Info and Address
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2  gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2  gap-4 mb-0 md:mb-4">
             <input
               type="text"
               placeholder="Receiver Name"
@@ -65,37 +65,37 @@ export default function CheckoutPage() {
           {/* Delivery Area */}
           <div className="mb-4">
             <p className="mb-2 font-medium">Select Delivery Area *</p>
-            <div className="flex gap-2 md:gap-3">
-              <button
+            <div className="flex items-center flex-wrap sm:flex-wrap md:flex-nowrap  gap-1 md:gap-3">
+              <span
                 onClick={() => setDeliveryArea('inside')}
-                className={`px-4 py-2 rounded-full border cursor-pointer transition font-medium ${
+                className={`px-2 py-1 whitespace-nowrap  md:px-4 md:py-2 text-md rounded-full border cursor-pointer transition font-medium ${
                   deliveryArea === 'inside'
                     ? 'bg-yellow-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
                 Inside City
-              </button>
-              <button
+              </span>
+              <span
                 onClick={() => setDeliveryArea('Subcity')}
-                className={`px-4 py-2 rounded-full border transition font-medium cursor-pointer ${
+                className={`px-2 py-1 whitespace-nowrap  md:px-4 md:py-2 text-md rounded-full border transition font-medium cursor-pointer ${
                   deliveryArea === 'Subcity'
                     ? 'bg-yellow-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
                 Subcity City
-              </button>
-              <button
+              </span>
+              <span
                 onClick={() => setDeliveryArea('outside')}
-                className={`px-4 py-2 rounded-full border cursor-pointer transition font-medium ${
+                className={`px-2 py-1 whitespace-nowrap  md:px-4 md:py-2 text-md rounded-full border cursor-pointer transition font-medium ${
                   deliveryArea === 'outside'
                     ? 'bg-yellow-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
                 Outside City
-              </button>
+              </span>
             </div>
           </div>
 
@@ -155,13 +155,13 @@ export default function CheckoutPage() {
           </div>
 
           {/* Coupon */}
-          <div className="mt-4 flex gap-2">
+          <div className="mt-4 flex flex-wrap sm:flex-wrap md:flex-nowrap gap-2">
             <input
               type="text"
               placeholder="Coupon Code"
               className="flex-1 border rounded-lg px-3 py-2"
             />
-            <button className="font-medium bg-black text-white px-4 rounded-lg hover:bg-gray-900">
+            <button className="font-medium bg-black text-white px-2 py-1 md:px-4 rounded-lg hover:bg-gray-900">
               Apply
             </button>
           </div>

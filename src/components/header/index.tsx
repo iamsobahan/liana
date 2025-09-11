@@ -57,12 +57,12 @@ const Header = ({ categories }: IProps) => {
 
         {/* Sticky Navbar */}
         <div
-          className={`z-50 w-full bg-white transition-shadow duration-300 scroll-smooth`}
+          className={`z-40 w-full bg-white transition-shadow duration-300 scroll-smooth`}
         >
           <div
             className={`bg-white py-2 md:py-3 border-b border-gray-300  ${
               isSticky
-                ? "fixed top-0 shadow-lg w-full z-9999 transition-all duration-300"
+                ? "fixed top-0 shadow-lg w-full z-40 transition-all duration-300"
                 : "relative"
             }`}
           >
@@ -87,7 +87,7 @@ const Header = ({ categories }: IProps) => {
                   />
                   <button
                     type="submit"
-                    className="absolute inset-y-0 right-3 flex items-center text-gray-600 cursor-pointer z-50"
+                    className="absolute inset-y-0 right-3 flex items-center text-gray-600 cursor-pointer z-40"
                   >
                     <AiOutlineSearch className="w-6 h-6" />
                   </button>
@@ -113,7 +113,7 @@ const Header = ({ categories }: IProps) => {
                   </div>
                   <div
                     tabIndex={0}
-                    className="dropdown-content menu z-50 absolute top-5 right-[-50px] p-2 w-80"
+                    className="dropdown-content menu z-40 absolute top-5 right-[-50px] p-2 w-80"
                   >
                     <div className="bg-white rounded-md shadow p-4 font-sans text-gray-800">
                       <div className="flex justify-between items-start">
@@ -178,17 +178,17 @@ const Header = ({ categories }: IProps) => {
           <div
             className={`flex justify-center items-center my-1 md:my-3 px-2 md:hidden `}
           >
-            <form action="" className=" relative w-2/3">
+            <form action="" className=" relative w-3/5">
               <input
                 type="text"
                 placeholder="Search your products"
-                className="w-full pl-2 py-1 px-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
+                className="w-full pl-2 border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
               />
               <button
                 type="submit"
-                className="absolute inset-y-0 right-2 flex items-center text-gray-600 cursor-pointer z-50"
+                className="absolute inset-y-0 right-2 flex items-center text-gray-600 cursor-pointer z-40"
               >
-                <AiOutlineSearch className="w-6 h-6" />
+                <AiOutlineSearch className="w-5 h-5" />
               </button>
             </form>
 
@@ -262,7 +262,7 @@ const Header = ({ categories }: IProps) => {
 
       {/* Mobile Drawer */}
       <div
-        className={`sm:hidden fixed inset-0 bg-white z-50 transform transition-transform duration-300 ease-linear ${
+        className={`sm:hidden fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-linear ${
           isDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

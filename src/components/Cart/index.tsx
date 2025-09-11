@@ -5,6 +5,8 @@ import Link from "next/link";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppSelector } from "@/redux/hooks";
+import Image from "next/image";
+import config from '@/config';
 
 export default function Cart() {
   const { cart: cartItems } = useAppSelector((state) => state.cart);
@@ -14,6 +16,8 @@ export default function Cart() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+  console.log(cartItems)
 
   return (
     <>
@@ -40,7 +44,7 @@ export default function Cart() {
           <>
             {/* Background Overlay */}
             <motion.div
-              className="fixed inset-0 bg-black/50 z-40"
+              className="fixed inset-0 bg-black/50 z-50"
               onClick={() => setIsOpen(false)}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -49,15 +53,15 @@ export default function Cart() {
 
             {/* Drawer */}
             <motion.div
-              className="fixed top-0 right-0 h-full w-96 bg-gradient-to-b from-white to-gray-100 shadow-2xl z-50 p-6 flex flex-col rounded-l-2xl"
+              className="fixed top-0 right-0 h-full w-full md:w-96 bg-gradient-to-b from-white to-gray-100 shadow-2xl z-50 p-6 flex flex-col rounded-l-2xl"
               initial={{ x: 400 }}
               animate={{ x: 0 }}
               exit={{ x: 400 }}
-              transition={{ type: "tween", duration: 0.35 }}
+              transition={{ type: 'tween', duration: 0.35 }}
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="flex items-center text-xl font-bold text-gray-800">
-                  <BiSolidShoppingBags size={30} />{" "}
+                  <BiSolidShoppingBags size={30} />{' '}
                   <span className="ml-3">My Cart</span>
                 </h2>
                 <button
@@ -73,17 +77,33 @@ export default function Cart() {
                 {cartItems.map((item) => (
                   <div
                     key={item.productId}
-                    className="flex justify-between items-center border-b py-4 hover:bg-gray-50 rounded-lg px-2 transition"
+                    className="flex justify-between items-center border-b py-3 sm:py-4 hover:bg-gray-50 rounded-lg   transition"
                   >
-                    <div>
-                      <p className="text-sm font-semibold text-gray-800">
-                        {item.title}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        Qty: {item.quantity}
-                      </p>
+                    {/* Left Side: Image + Info */}
+                    <div className="flex items-center gap-1">
+                      {/* Product Image */}
+                      <Image
+                        src={`${config.API_URL}/images/products/${item?.image}`}
+                        alt={item.title}
+                        width={60}
+                        height={60}
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg object-cover border"
+                        loading="lazy"
+                      />
+
+                      {/* Product Info */}
+                      <div className="flex flex-col">
+                        <p className="text-sm  font-semibold text-gray-800 whitespace-nowrap w-40 overflow-hidden text-ellipsis">
+                          {item.title}
+                        </p>
+                        <p className="text-xs sm:text-sm text-gray-500">
+                          Qty: {item.quantity}
+                        </p>
+                      </div>
                     </div>
-                    <span className="text-sm font-bold text-gray-700">
+
+                    {/* Right Side: Price */}
+                    <span className="text-sm sm:text-base font-bold text-gray-700 whitespace-nowrap">
                       ৳ {item.price * item.quantity}
                     </span>
                   </div>
