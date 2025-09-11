@@ -222,9 +222,9 @@ const Header = ({ categories }: IProps) => {
 
               {!!cat.children.length && (
                 <ul className="absolute left-0 top-full hidden group-hover:block bg-white text-gray-800 shadow-lg rounded-md py-2 w-48 border border-gray-200">
-                  {cat.children.map((subCat) => (
+                  {cat.children.map((subCat, key) => (
                     <li
-                      key={subCat.id}
+                      key={key}
                       className="dropdown_class relative group px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     >
                       <Link href={`/categories/${subCat.slug}`}>
