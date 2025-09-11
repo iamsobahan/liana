@@ -117,10 +117,16 @@ const ProductCard: FC<IProps> = ({ item }) => {
 
           {/* Action Buttons */}
           <div className="flex justify-between gap-3 px-6 py-4">
-            <Link href={'/'} className="flex-1 text-center border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition rounded-md py-2 cursor-pointer font-medium">
+            <Link
+              href={"/"}
+              className="flex-1 text-center border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition rounded-md py-2 cursor-pointer font-medium"
+            >
               Back to Shopping
             </Link>
-            <Link href={'/checkout'} className="flex-1 bg-gray-800 hover:bg-gray-900 text-white cursor-pointer transition rounded-md py-2  font-medium text-center">
+            <Link
+              href={"/checkout"}
+              className="flex-1 bg-gray-800 hover:bg-gray-900 text-white cursor-pointer transition rounded-md py-2  font-medium text-center"
+            >
               Proceed to Checkout
             </Link>
           </div>
@@ -196,9 +202,9 @@ const ProductCard: FC<IProps> = ({ item }) => {
                     Choose Size
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {sizes.map((size) => (
+                    {sizes.map((size, key) => (
                       <button
-                        key={size}
+                        key={key}
                         onClick={() => setSelectedSize(size)}
                         className={`px-3 py-1 rounded-md border text-sm ${
                           selectedSize === size

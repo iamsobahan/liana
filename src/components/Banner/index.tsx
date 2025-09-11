@@ -1,14 +1,12 @@
 "use client";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import type { FC, MouseEventHandler } from "react";
 import { ISlider } from "@/types/slider";
 import config from "@/config";
 import Link from "next/link";
-const Slider = dynamic(() => import("react-slick"), { ssr: false });
+import Slider from "react-slick";
 
-// Custom Arrows with proper types
 interface ArrowProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
@@ -67,7 +65,6 @@ const Banner = ({ slides }: IProps) => {
               className="w-full object-cover h-[120px] md:h-fit"
               width={1920}
               height={1080}
-              sizes="(max-width: 768px) 100vw, 1920px"
             />
             <div className="absolute inset-0 bg-black/20" />
           </Link>
