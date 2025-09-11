@@ -35,6 +35,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning={true}
         className={`${rajdhani.variable} ${raleway.variable} bg-white scroll-smooth`}
         cz-shortcut-listen="true"
       >
