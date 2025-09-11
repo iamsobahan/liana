@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
-import React from "react";
-// import Banner from "@/components/Banner";
+import React, { Suspense } from "react";
 const Banner = dynamic(() => import("@/components/Banner"), {
   ssr: true,
 });
@@ -31,7 +30,9 @@ const Page = async () => {
     <>
       <SocialBar />
       <Cart />
-      <Banner slides={sliders.data} />
+      <Suspense fallback={<div className="h-64 w-full bg-gray-100" />}>
+        <Banner slides={sliders.data} />
+      </Suspense>
       <CategoryPage categories={categories.data} />
       <FeaturePage
         feature={products?.data?.featuredProducts}
