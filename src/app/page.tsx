@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 const Banner = dynamic(() => import("@/components/Banner"), {
   ssr: true,
 });
-const CategoryPage = dynamic(() => import("@/components/Category/page"), {
+const CategoryPage = dynamic(() => import("@/components/Category"), {
   ssr: true, // set to true if you want server-side rendering
 });
 
@@ -29,7 +29,9 @@ const Page = async () => {
   return (
     <>
       <SocialBar />
-      <Cart />
+      <Suspense fallback={<div className="h-64 w-full bg-gray-100" />}>
+        <Cart />
+      </Suspense>
       <Suspense fallback={<div className="h-64 w-full bg-gray-100" />}>
         <Banner slides={sliders.data} />
       </Suspense>
