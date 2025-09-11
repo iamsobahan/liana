@@ -1,29 +1,27 @@
 import CategoryFilter from "@/components/Category/filter";
 import { fetchProductsByCategory } from "@/lib/data/prodcuts";
 import ProductCard from "@/components/card";
-import Pagination from "@/components/pagination";
+import { FilterContent } from "@/components/Category/content";
 
 type Props = {
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
+export const metadata = {
+  title: "Shop Category",
+  description: "Browse our collection of products.",
+};
 export default async function ShopPage({ params, searchParams }: Props) {
-  const { slug } = params;
-  const { page, limit } = searchParams;
+  const { slug } = await params;
 
-  const normalize = (val: string | string[] | undefined) =>
-    Array.isArray(val) ? val[0] : val;
+  // Await the searchParams prop to resolve the Promise
+  const resolvedSearchParams = await searchParams;
 
-  const toNumber = (v: string | undefined) => {
-    if (!v) return undefined;
-    const n = parseInt(v, 10);
-    return Number.isNaN(n) ? undefined : n;
-  };
+  // Now you can safely access the properties
+  const page = Number(resolvedSearchParams?.page) || 1;
+  const limit = Number(resolvedSearchParams?.limit) || 10;
 
-  const pageNum = toNumber(normalize(page));
-  const limitNum = toNumber(normalize(limit));
-
-  const products = await fetchProductsByCategory(slug, pageNum, limitNum);
+  const products = await fetchProductsByCategory(slug, page, limit);
   return (
     <div className="bg-gray-50">
       <div className="container mx-auto  py-2 md:py-8 text-gray-800">
@@ -56,92 +54,13 @@ export default async function ShopPage({ params, searchParams }: Props) {
                 <ProductCard key={idx} item={product} />
               ))}
             </div>
-            <Pagination total={products?.meta?.total} limit={limitNum} />
+            {/* <Pagination
+              total={products?.meta?.total as number}
+              limit={limitNum as number}
+            /> */}
           </main>
         </div>
       </div>
     </div>
-  );
-}
-
-/* Sidebar Filter Extracted into Component */
-function FilterContent() {
-  return (
-    <>
-      {/* Color */}
-      <div className="mb-6 container mx-auto">
-        <h3 className="font-medium mb-2">Color</h3>
-        <div className="space-y-2 text-sm">
-          {[
-            "Lavender",
-            "Slate Blue",
-            "Bottle Green",
-            "Yellow",
-            "Burnt Orange",
-            "Peanut",
-            "Red",
-            "Coffee",
-          ].map((color) => (
-            <label key={color} className="flex items-center gap-2">
-              <input type="checkbox" className="accent-yellow-600" />
-              {color}
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {/* Price */}
-      <div className="mb-6">
-        <h3 className="font-medium mb-2">Price</h3>
-        <div className="space-y-2 text-sm">
-          {[
-            "100 to 300",
-            "301 to 500",
-            "501 to 1000",
-            "1001 to 2500",
-            "2501 to 5000",
-            "5001 to 10000",
-          ].map((price) => (
-            <label key={price} className="flex items-center gap-2">
-              <input type="checkbox" className="accent-yellow-600" />
-              {price}
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {/* Size */}
-      <div className="mb-6">
-        <h3 className="font-medium mb-2">Size</h3>
-        <div className="space-y-2 text-sm">
-          {["Free Size", "90x30 Inch", "80x30 Inch"].map((size) => (
-            <label key={size} className="flex items-center gap-2">
-              <input type="checkbox" className="accent-yellow-600" />
-              {size}
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {/* Category */}
-      <div>
-        <h3 className="font-medium mb-2">Category</h3>
-        <div className="space-y-2 text-sm">
-          {[
-            "Abaya & Gown",
-            "Hijab & Niqab",
-            "Khimar & Jilbab",
-            "Cape & Cover Up",
-            "Undergarments",
-            "Accessories & Others",
-          ].map((cat) => (
-            <label key={cat} className="flex items-center gap-2">
-              <input type="checkbox" className="accent-yellow-600" />
-              {cat}
-            </label>
-          ))}
-        </div>
-      </div>
-    </>
   );
 }

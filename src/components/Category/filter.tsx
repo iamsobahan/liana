@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { FiFilter } from "react-icons/fi";
+import { FilterContent } from "./content";
 
 const CategoryFilter = () => {
   const [showFilter, setShowFilter] = useState(false);

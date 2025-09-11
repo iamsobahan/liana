@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import { motion, AnimatePresence } from "framer-motion";

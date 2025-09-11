@@ -11,16 +11,8 @@ interface SizeOption {
   value: string;
 }
 
-// ✅ Correctly import images
-import slick from "../../assets/slick.jpeg";
-import slick1 from "../../assets/slick1.jpeg";
-import slick2 from "../../assets/slick2.jpeg";
 import { IProduct } from "@/types/product";
 import config from "@/config";
-
-type Product = {
-  image: string;
-};
 
 type Props = {
   product: IProduct;
