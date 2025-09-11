@@ -60,7 +60,7 @@ const settings = {
 };
 
 type FeaturePageProps = {
-  feature: IProduct[]; // Replace `any` with your real type
+  feature: IProduct[];
   title: string;
 };
 
