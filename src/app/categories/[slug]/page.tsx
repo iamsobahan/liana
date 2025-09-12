@@ -2,29 +2,79 @@ import CategoryFilter from "@/components/Category/filter";
 import { fetchProductsByCategory } from "@/lib/data/prodcuts";
 import ProductCard from "@/components/card";
 import { FilterContent } from "@/components/Category/content";
+import { getAllCategoriesData, getSingleCategory } from "@/lib/data/category";
+import config from "@/config";
+import React from "react";
+import { Metadata } from "next";
+import Link from "next/link";
 
+// Correct Props type
 type Props = {
-  params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ slug: string }>;
+  searchParams?: Promise<{ page?: string; limit?: string }>;
 };
-export const metadata = {
-  title: "Shop Category",
-  description: "Browse our collection of products.",
-};
-export default async function ShopPage({ params, searchParams }: Props) {
+
+// ------------------ Generate Static Params ------------------
+export async function generateStaticParams() {
+  const categories = await getAllCategoriesData();
+
+  return categories.data.map((category) => ({
+    slug: category.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  // Await the searchParams prop to resolve the Promise
-  const resolvedSearchParams = await searchParams;
+  const category = await getSingleCategory(slug);
+  if (!category) {
+    return {};
+  }
 
-  // Now you can safely access the properties
-  const page = Number(resolvedSearchParams?.page) || 1;
-  const limit = Number(resolvedSearchParams?.limit) || 10;
+  return {
+    title: category.data.metaTitle || category.data.name,
+    description: category.data.metaDescription || category.data.name,
+    openGraph: {
+      images: [
+        {
+          url: `${config.API_URL}/images/category/${category.data.image}`,
+        },
+      ],
+    },
+  };
+}
+
+// ------------------ Page Component ------------------
+export default async function ShopPage({ params, searchParams }: Props) {
+  const { slug } = await params;
+  const search = await searchParams;
+
+  const page = Number(search?.page) || 1;
+  const limit = Number(search?.limit) || 10;
 
   const products = await fetchProductsByCategory(slug, page, limit);
+
+  if (products.success === false) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 px-4 text-center">
+        <h1 className="text-3xl font-semibold mb-4">Product not found</h1>
+        <p className="text-gray-500 mb-6">
+          The product you are looking for does not exist or may have been
+          removed.
+        </p>
+        <Link
+          href="/"
+          className="px-5 py-2 rounded bg-blue-600 text-white hover:bg-blue-500 transition"
+        >
+          Back to Home Page
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gray-50">
-      <div className="container mx-auto  py-2 md:py-8 text-gray-800">
+      <div className="container mx-auto py-2 md:py-8 text-gray-800">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* FILTER SIDEBAR (desktop) */}
           <aside className="hidden lg:block bg-white shadow-md rounded-xl p-5 h-fit">
@@ -32,6 +82,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
           </aside>
 
           <CategoryFilter />
+
           {/* PRODUCT GRID */}
           <main className="lg:col-span-3">
             {/* Sort Bar */}
@@ -54,10 +105,6 @@ export default async function ShopPage({ params, searchParams }: Props) {
                 <ProductCard key={idx} item={product} />
               ))}
             </div>
-            {/* <Pagination
-              total={products?.meta?.total as number}
-              limit={limitNum as number}
-            /> */}
           </main>
         </div>
       </div>
