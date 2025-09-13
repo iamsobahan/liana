@@ -4,12 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import config from "@/config";
+import { ICartItem } from "@/types/cart";
+import { removeFromCart } from "@/redux/features/cart/cartSlice";
 
 export default function Cart() {
   const { cart: cartItems } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
   const cartCount = cartItems?.length || 0;
@@ -17,6 +20,9 @@ export default function Cart() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+  const handleRemoveFromCart = (item: ICartItem) => {
+    dispatch(removeFromCart(item));
+  };
 
   return (
     <>
@@ -105,6 +111,12 @@ export default function Cart() {
                     <span className="text-sm sm:text-base font-bold text-gray-700 whitespace-nowrap">
                       ৳ {item.price * item.quantity}
                     </span>
+                    <button
+                      onClick={() => handleRemoveFromCart(item)}
+                      className="text-gray-600 hover:text-red-500 transition"
+                    >
+                      ✕
+                    </button>
                   </div>
                 ))}
               </div>

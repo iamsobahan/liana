@@ -10,14 +10,20 @@ import { HiMenu } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../assets/logo.png";
-import product from "../../assets/slick3.jpeg";
 import { ICategory } from "@/types/category";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import config from "@/config";
+import { IProduct } from "@/types/product";
+import { removeFromCart } from "@/redux/features/cart/cartSlice";
+import { ICartItem } from "@/types/cart";
 
 type IProps = {
   categories: ICategory[];
 };
 
 const Header = ({ categories }: IProps) => {
+  const { cart: cartItems } = useAppSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
@@ -25,6 +31,15 @@ const Header = ({ categories }: IProps) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleRemoveFromCart = (item: ICartItem) => {
+    dispatch(removeFromCart(item));
+  };
+  const cartCount = cartItems?.length || 0;
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 
   return (
     <div className="w-full bg-gray-100 text-gray-800">
@@ -108,7 +123,7 @@ const Header = ({ categories }: IProps) => {
                   <div className="relative cursor-pointer">
                     <BsCartCheckFill className="text-gray-800 text-xl cursor-pointer" />
                     <span className="absolute -top-2 -right-2 bg-[#D6A74E] text-xs px-1 rounded-full text-white cursor-pointer">
-                      0
+                      {cartCount}
                     </span>
                   </div>
                   <div
@@ -116,48 +131,69 @@ const Header = ({ categories }: IProps) => {
                     className="dropdown-content menu z-40 absolute top-5 right-[-50px] p-2 w-80"
                   >
                     <div className="bg-white rounded-md shadow p-4 font-sans text-gray-800">
-                      <div className="flex justify-between items-start">
-                        <div className="flex items-start gap-3">
-                          <div className="w-20 h-20 relative cursor-pointer">
-                            <Image
-                              src={product}
-                              alt="Product"
-                              className="object-cover rounded"
-                            />
+                      {cartItems.length === 0 && (
+                        <p className="text-center">No items in the cart</p>
+                      )}
+                      {cartItems.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="flex justify-between items-start mb-1"
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="w-20 h-20 relative cursor-pointer">
+                              <Image
+                                src={`${config.API_URL}/images/products/${item.image}`}
+                                alt="Product"
+                                className="object-cover rounded"
+                                width={80}
+                                height={80}
+                              />
+                            </div>
+                            <div className="text-sm cursor-pointer">
+                              <h2 className="font-semibold text-base leading-5">
+                                {item.title}
+                              </h2>
+                              <p className="text-xs text-gray-600">
+                                {item.price}TK
+                              </p>
+                              <p className="text-sm mt-1">
+                                {item.quantity} x{" "}
+                                <span className="font-semibold">
+                                  Tk {item.price}
+                                </span>
+                              </p>
+                            </div>
                           </div>
-                          <div className="text-sm cursor-pointer">
-                            <h2 className="font-semibold text-base leading-5">
-                              Bata Digital Gift Card
-                            </h2>
-                            <p className="text-xs text-gray-600">15000TK</p>
-                            <p className="text-xs text-gray-400 italic mt-1">
-                              · Tk. 15000 / Black /<br /> #MPC#525
-                            </p>
-                            <p className="text-sm mt-1">
-                              1 x{" "}
-                              <span className="font-semibold">
-                                Tk 12,000.00
-                              </span>
-                            </p>
-                          </div>
+                          <button
+                            onClick={() => handleRemoveFromCart(item)}
+                            className="cursor-pointer text-xl font-bold text-gray-600 hover:text-[#D6A74E]"
+                          >
+                            ×
+                          </button>
                         </div>
-                        <button className="cursor-pointer text-xl font-bold text-gray-600 hover:text-[#D6A74E]">
-                          ×
-                        </button>
-                      </div>
+                      ))}
 
                       <hr className="my-4 border-gray-300" />
                       <div className="flex justify-between items-center text-sm font-semibold">
                         <span>Total:</span>
-                        <span className="text-lg">Tk 12,000.00</span>
+                        <span className="text-lg">
+                          Tk {totalPrice.toFixed(2)}
+                        </span>
                       </div>
                       <div className="mt-4 flex flex-col gap-2">
-                        <button className="bg-[#D6A74E] hover:bg-[#e9ad3e] text-white font-semibold py-2 rounded cursor-pointer">
+                        <Link
+                          href="/checkout"
+                          className="bg-[#D6A74E] text-white text-center py-2 rounded font-semibold hover:bg-[#bf8e3c] transition"
+                        >
                           CHECK OUT NOW
-                        </button>
-                        <button className="border border-gray-400 hover:border-black text-black py-2 rounded font-semibold cursor-pointer">
+                        </Link>
+
+                        <Link
+                          href="/cart"
+                          className="border border-gray-400 hover:border-black text-black py-2 rounded font-semibold cursor-pointer text-center hover:bg-gray-100 transition"
+                        >
                           VIEW CART
-                        </button>
+                        </Link>
                       </div>
                     </div>
                   </div>
