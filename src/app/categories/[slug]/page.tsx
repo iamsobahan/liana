@@ -8,6 +8,7 @@ import React from "react";
 import { Metadata } from "next";
 import Link from "next/link";
 import Cart from "@/components/Cart";
+import Pagination from "@/components/pagination";
 
 // Correct Props type
 type Props = {
@@ -96,6 +97,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
                   <option value="latest">Latest</option>
                   <option value="low-high">Price: Low to High</option>
                   <option value="high-low">Price: High to Low</option>
+                  <option value="best-selling">Best Selling</option>
                 </select>
               </label>
             </div>
@@ -106,6 +108,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
                 <ProductCard key={idx} item={product} />
               ))}
             </div>
+            <Pagination total={products?.meta?.total} limit={limit} />
           </main>
         </div>
       </div>
