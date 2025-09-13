@@ -13,18 +13,24 @@ interface SizeOption {
 
 import { IProduct } from "@/types/product";
 import config from "@/config";
+import { useAppDispatch } from "@/redux/hooks";
+import { addToCart } from "@/redux/features/cart/cartSlice";
+import { ICartItem } from "@/types/cart";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 type Props = {
   product: IProduct;
 };
 
 export default function ProductInfo({ product }: Props) {
+  const dispatch = useAppDispatch();
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [quantity, setQuantity] = useState<number>(1);
   const [selectedImage, setSelectedImage] = useState<string>(
     `${config.API_URL}/images/products/${product.galleryImages[0]}`
   );
-
+  const router = useRouter();
   const sizes: SizeOption[] = [
     { label: "M", value: "M" },
     { label: "L", value: "L" },
@@ -38,6 +44,31 @@ export default function ProductInfo({ product }: Props) {
       if (type === "inc") return prev + 1;
       return prev;
     });
+  };
+  const handleAddToCart = () => {
+    const item: ICartItem = {
+      productId: product.id,
+      title: product.name,
+      price: product.salePrice,
+      regularPrice: product.regularPrice,
+      quantity,
+      image: product.galleryImages[0],
+    };
+    dispatch(addToCart(item));
+    toast.success("Product added to cart");
+  };
+
+  const handleBuyNow = () => {
+    const item: ICartItem = {
+      productId: product.id,
+      title: product.name,
+      price: product.salePrice,
+      regularPrice: product.regularPrice,
+      quantity,
+      image: product.galleryImages[0],
+    };
+    dispatch(addToCart(item));
+    router.push("/checkout");
   };
 
   return (
@@ -139,14 +170,20 @@ export default function ProductInfo({ product }: Props) {
               +
             </button>
           </div>
-          <Link href="/checkout">
-            <button className="flex items-center justify-center flex-1 min-w-[140px] px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm">
+          <Link href="#">
+            <button
+              onClick={handleAddToCart}
+              className="flex items-center justify-center flex-1 min-w-[140px] px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm"
+            >
               ＋ Add to Cart
             </button>
           </Link>
 
-          <Link href="/checkout">
-            <button className="flex items-center justify-center flex-1 min-w-[120px] gap-2 px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm">
+          <Link href="#">
+            <button
+              onClick={handleBuyNow}
+              className="flex items-center justify-center flex-1 min-w-[120px] gap-2 px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm"
+            >
               Buy Now
             </button>
           </Link>
