@@ -4,8 +4,9 @@ import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import dynamic from "next/dynamic";
 import ProductCard from "../card";
 import { IProduct } from "@/types/product";
+import Slider from "react-slick";
 
-const Slider = dynamic(() => import("react-slick"), { ssr: false });
+// const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
   <div
