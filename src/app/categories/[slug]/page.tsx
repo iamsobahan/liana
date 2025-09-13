@@ -7,6 +7,7 @@ import config from "@/config";
 import React from "react";
 import { Metadata } from "next";
 import Link from "next/link";
+import Cart from "@/components/Cart";
 
 // Correct Props type
 type Props = {
@@ -80,7 +81,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
           <aside className="hidden lg:block bg-white shadow-md rounded-xl p-5 h-fit">
             <FilterContent />
           </aside>
-
+          <Cart />
           <CategoryFilter />
 
           {/* PRODUCT GRID */}

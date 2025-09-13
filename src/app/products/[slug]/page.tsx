@@ -1,3 +1,4 @@
+import Cart from "@/components/Cart";
 import FeaturePage from "@/components/Feature";
 import ProductInfo from "@/components/product-details";
 import DetailsTabs from "@/components/product-details/detailsTabs";
@@ -49,6 +50,7 @@ const ProductDetails = async ({ params }: Props) => {
         feature={product.data.relatedProducts}
         title="Similar Products"
       />
+      <Cart />
     </div>
   );
 };
