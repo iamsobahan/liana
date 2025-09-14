@@ -179,14 +179,14 @@ export default function ProductInfo({ product }: Props) {
           </div>
           <button
             onClick={handleAddToCart}
-            className="flex items-center justify-center flex-1 px-2 md:px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm"
+            className="flex items-center justify-center flex-1 px-2 md:px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm cursor-pointer"
           >
             ＋ Add to Cart
           </button>
 
           <button
             onClick={handleBuyNow}
-            className="flex items-center justify-center flex-1  gap-2 px-2 md:px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm"
+            className="flex items-center justify-center flex-1  gap-2 px-2 md:px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm cursor-pointer"
           >
             Buy Now
           </button>
