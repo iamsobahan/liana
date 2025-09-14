@@ -4,8 +4,6 @@ import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 import React from "react";
 import Link from "next/link";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
 interface SizeOption {
   label: string;
   value: string;
@@ -18,6 +16,7 @@ import { addToCart } from "@/redux/features/cart/cartSlice";
 import { ICartItem } from "@/types/cart";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import ImageZoom from "react-image-zooom";
 
 type Props = {
   product: IProduct;
@@ -76,17 +75,15 @@ export default function ProductInfo({ product }: Props) {
       {/* LEFT: IMAGE + GALLERY */}
       <div>
         {/* Main Image with Zoom on Hover */}
-        <div className="relative overflow-hidden group border rounded-lg">
-          <Zoom>
-            <Image
-              src={selectedImage}
-              alt="Product"
-              width={500}
-              height={500}
-              className="object-contain w-full transition-transform duration-300 ease-in-out group-hover:scale-125 max-h-[350px]"
-              priority
-            />
-          </Zoom>
+        <div className="relative group rounded-lg">
+          <ImageZoom
+            src={selectedImage}
+            zoom="200"
+            alt={product.name}
+            width={800}
+            height={900}
+            className="w-full h-full object-cover rounded-lg cursor-zoom-in"
+          />
         </div>
 
         {/* Gallery Thumbnails */}
@@ -179,14 +176,14 @@ export default function ProductInfo({ product }: Props) {
           </div>
           <button
             onClick={handleAddToCart}
-            className="flex items-center justify-center flex-1 px-2 md:px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm cursor-pointer"
+            className="flex items-center justify-center flex-1 px-2 md:px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm cursor-pointer min-w-[100px]"
           >
             ＋ Add to Cart
           </button>
 
           <button
             onClick={handleBuyNow}
-            className="flex items-center justify-center flex-1  gap-2 px-2 md:px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm cursor-pointer"
+            className="flex items-center justify-center flex-1  gap-2 px-2 md:px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm cursor-pointer min-w-[100px]"
           >
             Buy Now
           </button>
