@@ -108,7 +108,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
                 <ProductCard key={idx} item={product} />
               ))}
             </div>
-            <Pagination total={products?.meta?.total} limit={limit} />
+            <Pagination total={products?.meta?.total || 0} limit={limit} />
           </main>
         </div>
       </div>
