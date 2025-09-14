@@ -17,6 +17,7 @@ import { ICartItem } from "@/types/cart";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import ImageZoom from "react-image-zooom";
+import AddToCartModal from "../modal/addToCartModal";
 
 type Props = {
   product: IProduct;
@@ -26,6 +27,7 @@ export default function ProductInfo({ product }: Props) {
   const dispatch = useAppDispatch();
   const [selectedSize, setSelectedSize] = useState<string>("M");
   const [quantity, setQuantity] = useState<number>(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string>(
     `${config.API_URL}/images/products/${product.galleryImages[0]}`
   );
@@ -54,7 +56,7 @@ export default function ProductInfo({ product }: Props) {
       image: product.galleryImages[0],
     };
     dispatch(addToCart(item));
-    toast.success("Product added to cart");
+    setIsModalOpen(true);
   };
 
   const handleBuyNow = () => {
@@ -72,6 +74,11 @@ export default function ProductInfo({ product }: Props) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+      <AddToCartModal
+        item={product}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
       {/* LEFT: IMAGE + GALLERY */}
       <div>
         {/* Main Image with Zoom on Hover */}
