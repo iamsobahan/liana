@@ -2617,7 +2617,7 @@ react-icons@^5.5.0:
 
 react-image-zooom@^1.5.5:
   version "1.5.5"
-  resolved "https://registry.npmjs.org/react-image-zooom/-/react-image-zooom-1.5.5.tgz"
+  resolved "https://registry.yarnpkg.com/react-image-zooom/-/react-image-zooom-1.5.5.tgz#0c90f555c6dc07d4dec12edf7590f537a08e62e9"
   integrity sha512-5KdVICYbA5q+bRx8e9vQaERPBgkWpYzsWnXJgPHCJhvjYOJrz4235Hbt0KpcHMWfIvpNfGhK8Q38g3rBOHZ5qQ==
 
 react-is@^16.13.1:
