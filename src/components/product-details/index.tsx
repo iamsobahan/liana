@@ -83,7 +83,7 @@ export default function ProductInfo({ product }: Props) {
               alt="Product"
               width={500}
               height={500}
-              className="object-contain w-full h-[450px] transition-transform duration-300 ease-in-out group-hover:scale-110"
+              className="object-contain w-full transition-transform duration-300 ease-in-out group-hover:scale-125 max-h-[350px]"
               priority
             />
           </Zoom>
@@ -121,14 +121,21 @@ export default function ProductInfo({ product }: Props) {
           {product.name}
         </h1>
 
+        <div>SKU: {product.sku}</div>
+
         {/* Price */}
         <div className="mt-3 sm:mt-4 flex items-center gap-3">
+          <h3>Price:</h3>
           <span className="text-gray-400 line-through text-base sm:text-lg">
             ৳{product.regularPrice}
           </span>
           <span className="text-2xl sm:text-3xl font-bold text-green-600">
             ৳{product.salePrice}
           </span>
+        </div>
+        {/* Short Description */}
+        <div className="mt-5 sm:mt-6 text-gray-600 text-sm sm:text-base leading-relaxed">
+          {product.shortDescription}
         </div>
 
         {/* Sizes */}
@@ -193,11 +200,6 @@ export default function ProductInfo({ product }: Props) {
               <FaWhatsapp size={16} /> WhatsApp
             </button>
           </Link>
-        </div>
-
-        {/* Short Description */}
-        <div className="mt-5 sm:mt-6 text-gray-600 text-sm sm:text-base leading-relaxed">
-          {product.shortDescription}
         </div>
 
         {/* Specs */}
