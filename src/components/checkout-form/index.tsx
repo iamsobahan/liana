@@ -302,7 +302,7 @@ const CheckoutForm = () => {
           <button
             disabled={isLoading}
             type="submit"
-            className="mt-6 w-full bg-black text-white font-semibold py-3 rounded-lg hover:bg-gray-900 transition"
+            className="mt-6 w-full bg-black text-white font-semibold py-3 rounded-lg hover:bg-gray-900 transition cursor-pointer"
           >
             {isLoading ? "Placing Order..." : "Place Order"}
           </button>
