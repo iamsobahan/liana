@@ -177,23 +177,19 @@ export default function ProductInfo({ product }: Props) {
               +
             </button>
           </div>
-          <Link href="#">
-            <button
-              onClick={handleAddToCart}
-              className="flex items-center justify-center flex-1 min-w-[140px] px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm"
-            >
-              ＋ Add to Cart
-            </button>
-          </Link>
+          <button
+            onClick={handleAddToCart}
+            className="flex items-center justify-center flex-1 px-2 md:px-4 py-2 bg-black text-white rounded-md font-semibold shadow hover:bg-gray-800 transition text-sm"
+          >
+            ＋ Add to Cart
+          </button>
 
-          <Link href="#">
-            <button
-              onClick={handleBuyNow}
-              className="flex items-center justify-center flex-1 min-w-[120px] gap-2 px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm"
-            >
-              Buy Now
-            </button>
-          </Link>
+          <button
+            onClick={handleBuyNow}
+            className="flex items-center justify-center flex-1  gap-2 px-2 md:px-4 py-2 bg-yellow-600 text-white rounded-md font-semibold shadow hover:bg-yellow-500 transition text-sm"
+          >
+            Buy Now
+          </button>
 
           <Link href={`https://wa.me/qr/EQ5A6SDYHL2IP1`}>
             <button className="flex items-center justify-center flex-1 min-w-[120px] gap-2 px-4 py-2 bg-green-700 text-white rounded-md font-semibold shadow hover:bg-green-600 transition text-sm">
