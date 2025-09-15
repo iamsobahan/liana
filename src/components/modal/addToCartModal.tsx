@@ -54,7 +54,7 @@ export default function AddToCartModal({ isOpen, onClose, item }: ModalProps) {
         className="bg-white rounded-lg shadow-lg w-full max-w-xl  modal-box"
       >
         {/* Close button */}
-        <div className="modal-action mr-5">
+        <div className="modal-action">
           <form method="dialog">
             <button
               type="button"
@@ -67,7 +67,7 @@ export default function AddToCartModal({ isOpen, onClose, item }: ModalProps) {
         </div>
 
         {/* Success icon + message */}
-        <div className="flex flex-col items-center p-6">
+        <div className="flex flex-col items-center px-2 md:p-6">
           <AiOutlineCheckCircle className="text-[#00C851] text-5xl mb-2" />
           <h2 className="text-lg md:text-2xl font-semibold text-[#00C851]">
             Item added to your cart!
@@ -75,7 +75,7 @@ export default function AddToCartModal({ isOpen, onClose, item }: ModalProps) {
         </div>
 
         {/* Product info */}
-        <div className="flex items-center gap-4 px-6 py-4">
+        <div className="flex items-center gap-2 md:gap-4 px-2 md:px-6 py-4">
           <Image
             src={`${config.API_URL}/images/products/${item?.thumbnail}`}
             alt="Product"
@@ -84,7 +84,7 @@ export default function AddToCartModal({ isOpen, onClose, item }: ModalProps) {
             className="rounded-lg object-cover border"
           />
           <div>
-            <h3 className="text-sm md:text-base font-semibold text-gray-800">
+            <h3 className="whitespace-wrap text-sm md:text-base font-semibold text-gray-800">
               {item.name}
             </h3>
             <p className="text-sm text-gray-600 mt-1">
@@ -97,16 +97,16 @@ export default function AddToCartModal({ isOpen, onClose, item }: ModalProps) {
         </div>
 
         {/* Actions */}
-        <div className="flex justify-between gap-3 px-6 py-4">
+        <div className="flex items-center justify-between px-2 md:px-6 gap-2 py-2 md:py-4">
           <Link
-            href={"/"}
-            className="flex-1 text-center border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition rounded-md py-2 font-medium"
+            href={'/'}
+            className="flex-1 text-center border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition rounded-md py-1 md:py-2 px-1 md:px-0 font-medium whitespace-nowrap"
           >
             Back to Shopping
           </Link>
           <Link
-            href={"/checkout"}
-            className="flex-1 bg-gray-800 hover:bg-gray-900 text-white transition rounded-md py-2 font-medium text-center"
+            href={'/checkout'}
+            className="flex-1 bg-gray-800 border border-gray-800 hover:bg-gray-900 text-white transition rounded-md py-1 md:py-2 px-1 md:px-0 font-medium text-center whitespace-nowrap"
           >
             Proceed to Checkout
           </Link>

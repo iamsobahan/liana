@@ -30,14 +30,16 @@ export default function Cart() {
       <div className="fixed top-1/3 right-0 z-50">
         <button
           onClick={() => setIsOpen(true)}
-          className="flex flex-col items-center  cursor-pointer overflow-hidden  shadow-2xl bg-[#46351F] hover:scale-105 transition duration-300 pt-2 md:pt-3"
+          className="flex flex-col items-center  cursor-pointer overflow-hidden  shadow-2xl bg-[#46351F] hover:scale-105 transition duration-300  pt-[2px] md:pt-1"
         >
-          <BiSolidShoppingBags className="h-6 w-6 text-[#EBA659]" />
-          <span className="text-xs font-semibold text-[#EBA659] mt-1">
+          <BiSolidShoppingBags className="h-3 w-3 md:h-5 md:w-5 text-[#EBA659]" />
+          <span className="text-xs font-medium md:font-semibold text-[#EBA659] mt-0 md:mt-1">
             {cartCount} items
           </span>
-          <p className="bg-[#A98153] text-sm font-bold text-white tracking-wide mt-2 px-[10px] md:px-[20px]">
-            <span className="text-xl font-bold mr-.5">৳</span>
+          <p className="bg-[#A98153] w-full text-xs font-normal md:font-bold md:text-md text-white tracking-wide pt-[2px]  md:mt-1 px-[4px] md:px-[5px]">
+            <span className="text-xs md:text-md font-normal md:font-bold mr-.5">
+              ৳
+            </span>
             {totalPrice}
           </p>
         </button>
@@ -62,18 +64,18 @@ export default function Cart() {
               initial={{ x: 400 }}
               animate={{ x: 0 }}
               exit={{ x: 400 }}
-              transition={{ type: "tween", duration: 0.35 }}
+              transition={{ type: 'tween', duration: 0.35 }}
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="flex items-center text-xl font-bold text-gray-800">
-                  <BiSolidShoppingBags size={30} />{" "}
+                  <BiSolidShoppingBags size={30} />{' '}
                   <span className="ml-3">My Cart</span>
                 </h2>
                 <button
                   onClick={() => setIsOpen(false)}
                   className="cursor-pointer text-gray-600 hover:text-red-500 transition text-lg font-bold"
                 >
-                  ✕
+                  abc
                 </button>
               </div>
 
