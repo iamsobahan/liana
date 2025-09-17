@@ -81,15 +81,11 @@ export default function ProductInfo({ product }: Props) {
       />
       {/* LEFT: IMAGE + GALLERY */}
       <div>
-        {/* Main Image with Zoom on Hover */}
-        <div className="relative group rounded-lg">
+        <div>
           <ImageZoom
             src={selectedImage}
             zoom="200"
-            alt={product.name}
-            width={800}
-            height={900}
-            className="w-full h-full object-cover rounded-lg cursor-zoom-in"
+            className="w-full h-[400px] sm:h-[500px] object-cover rounded-md border border-gray-100"
           />
         </div>
 
