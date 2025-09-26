@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         pathname: '/images/**',
       },
       {
+        protocol: 'https',
+        hostname: 'api.erambd.xyz',
+        pathname: '/images/**',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
       },
