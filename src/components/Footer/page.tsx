@@ -1,16 +1,15 @@
-import React from 'react';
+import React from "react";
 import {
   FaFacebookF,
   FaInstagram,
-  
   FaXTwitter,
   FaYoutube,
-} from 'react-icons/fa6';
-import { HiOutlineMapPin, HiOutlinePhone } from 'react-icons/hi2';
-import Image from 'next/image';
+} from "react-icons/fa6";
+import { HiOutlineMapPin, HiOutlinePhone } from "react-icons/hi2";
+import Image from "next/image";
 
-import logo_white from '../../assets/logo_white.png';
-import payment from '../../assets/payment.png';
+import logo_white from "../../assets/footer_logo.png";
+import payment from "../../assets/payment.png";
 
 const FooterPage = () => {
   return (
@@ -20,7 +19,7 @@ const FooterPage = () => {
         <div className="space-y-5 md:col-span-1">
           <div className="flex items-center space-x-2">
             <Image
-            className='w-auto h-auto'
+              className="w-auto h-auto"
               src={logo_white}
               alt="Joice Jewelry"
               width={160}

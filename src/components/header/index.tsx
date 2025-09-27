@@ -9,7 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { HiMenu } from "react-icons/hi";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/eram_logo.png";
 import { ICategory } from "@/types/category";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import config from "@/config";
