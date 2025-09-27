@@ -88,7 +88,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
                 {item.name}
               </h4>
               <p className="text-sm text-red-500 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
-                Save TK {item.regularPrice - item.salePrice}
+                Save TK {Math.abs(item.regularPrice - item.salePrice)}
               </p>
               <div className="mt-2 text-sm">
                 <span className="line-through text-gray-500 mr-1">
