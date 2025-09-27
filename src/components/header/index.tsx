@@ -49,7 +49,7 @@ const Header = ({ categories }: IProps) => {
           <div className="hidden lg:flex items-center gap-0 font-medium text-gray-800">
             <IoCall />
             <span className="uppercase font-medium text-[13px]">
-              <a href="tel:+8801999498887">+8801999498887</a>
+              <a href="tel:+8801974117106">+8801974117106</a>
             </span>
           </div>
 

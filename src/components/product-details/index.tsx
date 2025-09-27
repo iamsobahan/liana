@@ -197,7 +197,11 @@ export default function ProductInfo({ product }: Props) {
             Buy Now
           </button>
 
-          <Link href={`https://wa.me/qr/EQ5A6SDYHL2IP1`}>
+          <Link
+            href={`https://wa.me/+8801974117106?text=I'm%20interested%20in%20your%20product:%20${product.name}`}
+            target="_blank"
+            className="flex-1 min-w-[120px]"
+          >
             <button className="flex items-center justify-center flex-1 min-w-[120px] gap-2 px-4 py-2 bg-green-700 text-white rounded-md font-semibold shadow hover:bg-green-600 transition text-sm">
               <FaWhatsapp size={16} /> WhatsApp
             </button>

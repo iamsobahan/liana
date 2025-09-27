@@ -27,8 +27,8 @@ const FooterPage = () => {
             />
           </div>
           <p className="text-sm text-gray-400">
-            Unleash the radiance of your inner beauty with our premium jewelry
-            brand – a perfect blend of sophistication and style.
+            Eram Import House – 100% Authentic Imported Products for Retail &
+            Wholesale.
           </p>
           <div className="flex items-center gap-3">
             <button className="bg-gray-800 p-2 rounded hover:bg-yellow-500 transition">
@@ -109,16 +109,16 @@ const FooterPage = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">CONTACT US</h4>
             <a
-              href="https://www.google.com/maps?q=7031+N+35th+Ave,+Phoenix,+Arkansas,+United+States"
+              href="https://www.google.com/maps?sca_esv=f44b811aa6ac63b8&output=search&q=shah+ali+plaza&source=lnms&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIeuyr9ljWioGWIw0oasFed3pekTy9ejcwggIWHfXrlrOSGrh2X_EMuX3vWLEhC3RsgkgsDkY9Gc9kiPOjhkvrQhaslGB9cu-ZsZbOyCRVBvA2U_5aXyFK8-FHdNDGRDJHU96eMLVCclPLciixgmfZp2PdBX2Vl42-FHVxpcxvc12PbVgBEw&entry=mc&ved=1t:200715&ictx=111"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start gap-2 text-gray-400 text-sm hover:text-yellow-500 transition"
             >
               <HiOutlineMapPin className="mt-1 text-yellow-500" />
               <p>
-                7031 N 35th Ave, Phoenix
+                Mirpur 10, Sha Ali, 14 No floor
                 <br />
-                Arkansas United States
+                Dhaka, Bangladesh
               </p>
             </a>
             <a
@@ -127,9 +127,9 @@ const FooterPage = () => {
             >
               <HiOutlinePhone className="mt-1 text-yellow-500" />
               <p>
-                Call us 8 AM - 10 PM
+                Call us 9 AM - 10 PM
                 <br />
-                6668 5555 8464
+                +8801974117106
               </p>
             </a>
           </div>
@@ -138,7 +138,7 @@ const FooterPage = () => {
 
       {/* Bottom bar */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 text-xs text-gray-500">
-        <p>Copyright © 2025 Sobahan. All Rights Reserved</p>
+        <p>Copyright © 2025 Eram. All Rights Reserved</p>
         <div className="flex items-center gap-4">
           <p>Terms of use</p>
           <p>Privacy Policy</p>
