@@ -28,7 +28,7 @@ const Page = async () => {
   ]);
   return (
     <>
-      <SocialBar />
+      {/* <SocialBar /> */}
       <Suspense fallback={<div className="h-64 w-full bg-gray-100" />}>
         <Cart />
       </Suspense>

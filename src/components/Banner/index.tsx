@@ -18,7 +18,7 @@ const PrevArrow: FC<ArrowProps> = ({ onClick }) => (
   <button
     type="button"
     onClick={onClick}
-    className="absolute z-10 left-2 sm:left-5 top-1/2 transform -translate-y-1/2 text-gray-900 bg-gray-300 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
+    className="absolute z-10 left-2 sm:left-5 top-1/2 transform -translate-y-1/2 text-white  hover:bg-[#D6A74E] p-1 md:p-2 bg-black opacity-25 rounded-full border border-gray-300 focus:outline-none hover:border-[#D6A74E] cursor-pointer"
   >
     <HiChevronLeft size={20} />
   </button>
@@ -28,7 +28,7 @@ const NextArrow: FC<ArrowProps> = ({ onClick }) => (
   <button
     type="button"
     onClick={onClick}
-    className="absolute z-10 right-2 sm:right-5 top-1/2 transform -translate-y-1/2 text-gray-900 bg-gray-300 hover:bg-yellow-500 p-2 rounded-full focus:outline-none cursor-pointer"
+    className="absolute z-10 right-2 sm:right-5 top-1/2 transform -translate-y-1/2 bg-black hover:bg-[#D6A74E] p-1 md:p-2  rounded-full text-white  hover:bg-hover:bg-[#D6A74E]  border border-gray-300 focus:outline-none hover:border-[#D6A74E] cursor-pointer opacity-25"
   >
     <HiChevronRight size={20} />
   </button>

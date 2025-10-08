@@ -1,129 +1,55 @@
 "use client";
 import config from "@/config";
-import { addToCart } from "@/redux/features/cart/cartSlice";
-import { useAppDispatch } from "@/redux/hooks";
+
+
 import { IProduct } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
 import { FC } from "react";
-import AddToCartModal from "../modal/addToCartModal";
-import ProductModal from "../modal/productModal";
+
 type IProps = {
   item: IProduct;
 };
 const ProductCard: FC<IProps> = ({ item }) => {
-  const dispatch = useAppDispatch();
-  const sizes = ["M(28-30)", "L(32-34)", "XL(36-38)", "2XL(38-42)"];
-  const colors = ["Red/Black", "Blue/Navy", "Gray/White"];
-  const [quantity, setQuantity] = useState(1);
-  const [showModal, setShowModal] = useState(false);
-  const [showProductModal, setShowProductModal] = useState(false);
-  const [isVariant, setIsVariant] = useState(false);
 
-  const handleAddToCart = (data: IProduct) => {
-    if (isVariant) {
-      setShowProductModal(true);
-      setIsVariant(true);
-    } else {
-      const cardData = {
-        productId: data.id,
-        title: data.name,
-        image: data.thumbnail,
-        price: data.salePrice,
-        regularPrice: data.regularPrice,
-        quantity: quantity,
-      };
-      dispatch(addToCart(cardData));
-      setShowModal(true);
-    }
-  };
 
-  /*   useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (
-        safeArea.current &&
-        !safeArea.current.contains(event.target as Node)
-      ) {
-        modalRef.current?.close();
-        modalRef2.current?.close();
-      }
-    };
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []) */ return (
-    <>
-      {/* model box pop up 2  */}
-
-      <AddToCartModal
-        item={item}
-        isOpen={showModal}
-        onClose={() => setShowModal(false)}
-      />
-
-      <ProductModal
-        isOpen={showProductModal}
-        onClose={() => setShowProductModal(false)}
-        item={item}
-        colors={colors}
-        sizes={sizes}
-      />
-
-      <div className="px-1 md:px-2 cursor-pointer">
-        <div className="bg-white shadow-md rounded-sm overflow-hidden hover:shadow-lg border-gray-100 transition">
-          <Link href={`/products/${item?.slug}`}>
-            <div className="relative h-32 md:h-60 w-full">
+return (
+  <>
+    <div className="px-1 md:px-2 pb-5 cursor-pointer">
+      <div className="relative overflow-visible hover:shadow-lg transition">
+        <Link href={`/products/${item?.slug}`} className="block">
+          <div className="rounded-sm overflow-hidden">
+            {/* explicit size wrapper for next/image */}
+            <div className="relative w-[240px] h-[120px] md:w-[500px] md:h-[240px]">
               <Image
                 src={`${config.API_URL}/images/products/${item?.thumbnail}`}
-                width={400}
-                height={140}
                 alt={item.name}
-                className="rounded-tr-sm  object-cover w-[240px] h-[120px]  md:h-[240px] md:w-[500px]"
+                fill
+                sizes="(max-width: 768px) 240px, 500px"
+                className="object-cover"
               />
             </div>
-            <div className="mt-0.5 md:mt-2 md:p-1 text-center">
-              <h4 className="truncate font-raleway md:font-semibold text-md md:text-lg text-gray-800">
-                {item.name}
-              </h4>
-              <p className="text-sm text-red-500 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
-                Save TK {item.regularPrice - item.salePrice}
-              </p>
-              <div className="mt-2 text-sm">
-                <span className="line-through text-gray-500 mr-1">
-                  ৳{item.regularPrice}
-                </span>
-                <span className="text-black font-bold">৳{item.salePrice}</span>
-              </div>
-            </div>
-          </Link>
-          <div
-            className="bg-gray-900 hover:bg-gray-950 transition text-white text-center py-1 mt-2 md:mt-0 pt-1 md:pt-3 font-medium md:font-semibold font-raleway cursor-pointer"
-            onClick={() => handleAddToCart(item)}
-          >
-            <span className="inline-flex items-center justify-center gap-1">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-2 5m5-5v5m4-5v5m1 4a1 1 0 100-2 1 1 0 000 2zm-6 0a1 1 0 100-2 1 1 0 000 2z"
-                />
-              </svg>
-              ADD TO CART
+          </div>
+        </Link>
+
+        {/* price tag — half inside, half outside */}
+        <Link
+          href={`/products/${item?.slug}`}
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 z-50"
+        >
+          <div className="bg-[#FFFFFF] backdrop-blur-sm border border-gray-200 rounded-sm px-2 flex items-center gap-2 shadow-md">
+            <span className="line-through text-gray-500 text-sm">
+              ৳{item.regularPrice}
+            </span>
+            <span className="text-black font-semibold text-lg">
+              ৳{item.salePrice}
             </span>
           </div>
-        </div>
+        </Link>
       </div>
-    </>
-  );
+    </div>
+  </>
+);
 };
 
 export default ProductCard;
