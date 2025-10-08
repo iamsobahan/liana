@@ -309,84 +309,38 @@ const Header = ({ categories }: IProps) => {
         </button>
 
         <ul className="flex flex-col gap-4 px-4 text-lg uppercase font-medium overflow-y-auto h-[calc(100vh-250px)]">
-          <li className="hover:text-[#D6A74E]">HOME</li>
-
-          <li>
-            <details>
-              <summary className="hover:text-[#D6A74E] cursor-pointer">
-                MEGA DEALS
-              </summary>
-              <ul className="pl-6 text-base">
-                <li className="py-1">Deal 1</li>
-                <li className="py-1">
-                  <details>
-                    <summary className="hover:text-[#D6A74E] cursor-pointer">
-                      Deal 2
-                    </summary>
-                    <ul className="pl-6 text-base">
-                      <li className="py-1">Deal 4</li>
-                      <li className="py-1">Deal 5</li>
-                      <li className="py-1">Deal 6</li>
-                    </ul>
-                  </details>
-                </li>
-                <li className="py-1">Deal 3</li>
-              </ul>
-            </details>
+          <li className="hover:text-[#D6A74E]">
+            <Link href="/">HOME</Link>
           </li>
-
-          <li className="hover:text-[#D6A74E]">BRAND</li>
-
-          <li>
-            <details>
-              <summary className="hover:text-[#D6A74E] cursor-pointer">
-                MEN
-              </summary>
-              <ul className="pl-6 text-base">
-                <li className="py-1">Shirts</li>
-                <li className="py-1">Pants</li>
-                <li className="py-1">
-                  <details>
-                    <summary className="hover:text-[#D6A74E] cursor-pointer">
-                      Shoes
-                    </summary>
-                    <ul className="pl-6 text-base">
-                      <li className="py-1">Shoes 1</li>
-                      <li className="py-1">Shoes 2</li>
-                      <li className="py-1">Shoes 3</li>
-                    </ul>
-                  </details>
-                </li>
-              </ul>
-            </details>
-          </li>
-
-          <li>
-            <details>
-              <summary className="hover:text-[#D6A74E] cursor-pointer">
-                WOMEN
-              </summary>
-              <ul className="pl-6 text-base">
-                <li className="py-1">
-                  <details>
-                    <summary className="hover:text-[#D6A74E] cursor-pointer">
-                      Dress
-                    </summary>
-                    <ul className="pl-6 text-base">
-                      <li className="py-1">Dresses 1 </li>
-                      <li className="py-1">Dresses 2</li>
-                      <li className="py-1">Dresses 3</li>
-                    </ul>
-                  </details>
-                </li>
-                <li className="py-1">Bags</li>
-                <li className="py-1">Shoes</li>
-              </ul>
-            </details>
-          </li>
-
-          <li className="hover:text-[#D6A74E]">CHILDREN</li>
-          <li className="hover:text-[#D6A74E]">ACCESSORIES</li>
+          {categories?.map((cat, key) => (
+            <li key={key} className="hover:text-[#D6A74E]">
+              <details>
+                <summary className="hover:text-[#D6A74E] cursor-pointer">
+                  <Link href={`/categories/${cat.slug}`}>{cat.name}</Link>
+                </summary>
+                <ul className="pl-6 text-base">
+                  {cat.children.map((subCat, key) => (
+                    <li key={key}>
+                      <details>
+                        <summary className="hover:text-[#D6A74E] cursor-pointer">
+                          {subCat.name}
+                        </summary>
+                        <ul className="pl-6 text-base">
+                          {subCat.children.map((subSubCat, key) => (
+                            <li key={key} className="py-1">
+                              <Link href={`/categories/${subSubCat.slug}`}>
+                                {subSubCat.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </li>
+          ))}
         </ul>
       </div>
     </div>

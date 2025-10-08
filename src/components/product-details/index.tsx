@@ -14,9 +14,8 @@ import config from "@/config";
 import { useAppDispatch } from "@/redux/hooks";
 import { addToCart } from "@/redux/features/cart/cartSlice";
 import { ICartItem } from "@/types/cart";
-import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import ImageZoom from "react-image-zooom";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import AddToCartModal from "../modal/addToCartModal";
 
 type Props = {
@@ -81,16 +80,19 @@ export default function ProductInfo({ product }: Props) {
       />
       {/* LEFT: IMAGE + GALLERY */}
       <div>
-        {/* Main Image with Zoom on Hover */}
-        <div className="relative group rounded-lg">
-          <ImageZoom
-            src={selectedImage}
-            zoom="200"
-            alt={product.name}
-            width={800}
-            height={900}
-            className="w-full h-full object-cover rounded-lg cursor-zoom-in"
-          />
+        <div>
+          <TransformWrapper>
+            <TransformComponent>
+              <Image
+                src={selectedImage}
+                decoding="async"
+                className="rounded-md border border-gray-100 cursor-alias"
+                alt={product.name}
+                width={800}
+                height={800}
+              />
+            </TransformComponent>
+          </TransformWrapper>
         </div>
 
         {/* Gallery Thumbnails */}
