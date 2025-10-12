@@ -4,7 +4,7 @@ import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 import dynamic from "next/dynamic";
 import { IProduct } from "@/types/product";
 import Slider from "react-slick";
-import SmallProductCard from "../card/small";
+import ProductCard from "../card";
 
 const PrevArrow = ({ onClick }: { onClick?: () => void }) => (
   <div
@@ -63,7 +63,7 @@ type FeaturePageProps = {
   title: string;
 };
 
-const FeaturePage = ({ feature, title }: FeaturePageProps) => {
+const Feature = ({ feature, title }: FeaturePageProps) => {
   return (
     <div className="container mx-auto my-2 md:my-10 px-4">
       {/* Feature title  */}
@@ -77,7 +77,7 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
       <div className="-mx-2">
         <Slider {...settings}>
           {feature.map((item, idx) => (
-            <SmallProductCard key={idx} item={item} />
+            <ProductCard key={idx} item={item} />
           ))}
         </Slider>
       </div>
@@ -85,4 +85,4 @@ const FeaturePage = ({ feature, title }: FeaturePageProps) => {
   );
 };
 
-export default FeaturePage;
+export default Feature;
