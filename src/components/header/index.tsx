@@ -75,10 +75,10 @@ const Header = ({ categories }: IProps) => {
           className={`z-40 w-full bg-white transition-shadow duration-300 scroll-smooth`}
         >
           <div
-            className={`bg-white py-2 md:py-3 border-b border-gray-300  ${
+            className={`bg-white py-1.5 md:py-0 border-b border-gray-300  ${
               isSticky
-                ? "fixed top-0 shadow-lg w-full z-40 transition-all duration-300"
-                : "relative"
+                ? 'fixed top-0 shadow-lg w-full z-40 transition-all duration-300'
+                : 'relative'
             }`}
           >
             <div className="md:container px-4 mx-auto flex justify-between items-center">
@@ -88,7 +88,7 @@ const Header = ({ categories }: IProps) => {
                   src={logo}
                   alt="Logo"
                   priority
-                  className="w-40 md:w-52 object-contain"
+                  className="w-30 md:w-42 object-contain"
                 />
               </Link>
 
@@ -157,7 +157,7 @@ const Header = ({ categories }: IProps) => {
                                 {item.price}TK
                               </p>
                               <p className="text-sm mt-1">
-                                {item.quantity} x{" "}
+                                {item.quantity} x{' '}
                                 <span className="font-semibold">
                                   Tk {item.price}
                                 </span>
@@ -182,17 +182,16 @@ const Header = ({ categories }: IProps) => {
                       </div>
                       <div className="mt-4 flex flex-col gap-2">
                         <Link
-                          href="/checkout"
-                          className="bg-[#D6A74E] text-white text-center py-2 rounded font-semibold hover:bg-[#bf8e3c] transition"
-                        >
-                          CHECK OUT NOW
-                        </Link>
-
-                        <Link
                           href="/cart"
                           className="border border-gray-400 hover:border-black text-black py-2 rounded font-semibold cursor-pointer text-center hover:bg-gray-100 transition"
                         >
                           VIEW CART
+                        </Link>
+                        <Link
+                          href="/checkout"
+                          className="bg-[#D6A74E] text-white text-center py-2 rounded font-semibold hover:bg-[#bf8e3c] transition"
+                        >
+                          CHECK OUT NOW
                         </Link>
                       </div>
                     </div>
@@ -249,7 +248,7 @@ const Header = ({ categories }: IProps) => {
             >
               <Link href={`/categories/${cat.slug}`}>
                 <span className="inline-flex items-center cursor-pointer">
-                  {cat.name}{" "}
+                  {cat.name}{' '}
                   {!!cat.children.length && <IoIosArrowDown className="ml-1" />}
                 </span>
               </Link>
@@ -299,7 +298,7 @@ const Header = ({ categories }: IProps) => {
       {/* Mobile Drawer */}
       <div
         className={`sm:hidden fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-linear ${
-          isDrawerOpen ? "translate-x-0" : "translate-x-full"
+          isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <button

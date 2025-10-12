@@ -72,7 +72,7 @@ const CategoryPage: React.FC<IProps> = ({ categories }) => {
         <h2 className="text-xs md:text-2xl font-semibold text-gray-800 uppercase tracking-widest font-rajdhani animate-fade-in-down">
           Feature Catagories
         </h2>
-        <span className="block h-[2px] w-32 mx-auto mt-1 md:mt-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400"></span>
+        <span className="block h-[2px] w-40 mx-auto mt-1 md:mt-1 bg-gradient-to-r from-[#5C441A] via-[#D4AF37] to-[#5C441A] shadow-[0_0_10px_rgba(212,175,55,0.4)]"></span>
       </div>
       <div className="relative">
         {/* Slider */}

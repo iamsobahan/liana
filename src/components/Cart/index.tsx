@@ -75,7 +75,7 @@ export default function Cart() {
                   onClick={() => setIsOpen(false)}
                   className="cursor-pointer text-gray-600 hover:text-red-500 transition text-lg font-bold"
                 >
-                  abc
+                  ✕
                 </button>
               </div>
 
