@@ -9,7 +9,7 @@ const CategoryFilter = () => {
     <>
       {/* FILTER ICON for Mobile */}
       <div className="mx-2 md:mx-0 lg:hidden">
-        <h2 className="text-xl font-semibold mb-2">Gold Hand Ring</h2>
+        <h2 className="text-xl font-semibold mb-2"></h2>
         <div className="flex justify-between items-center">
           <select className="border rounded-md p-1.5">
             <option value="default">Sort by</option>
