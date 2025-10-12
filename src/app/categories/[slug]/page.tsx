@@ -89,7 +89,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
           <main className="lg:col-span-3">
             {/* Sort Bar */}
             <div className="hidden lg:flex justify-between items-center mb-6">
-              <h2 className="text-xl font-semibold">Gold Hand Ring</h2>
+              <h2 className="text-xl font-semibold"></h2>
               <label>
                 <span className="font-medium mr-5">sort by:</span>
                 <select className="border rounded-lg px-1 py-1 text-sm">
