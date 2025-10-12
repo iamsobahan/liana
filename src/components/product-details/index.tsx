@@ -24,19 +24,15 @@ type Props = {
 
 export default function ProductInfo({ product }: Props) {
   const dispatch = useAppDispatch();
-  const [selectedSize, setSelectedSize] = useState<string>("M");
+  const [isWithBox, setIsWithBox] = useState<boolean | null>(true);
+  const [selectedSize, setSelectedSize] = useState<string>("");
+  const [selectedBox, setSelectedBox] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string>(
     `${config.API_URL}/images/products/${product.galleryImages[0]}`
   );
   const router = useRouter();
-  const sizes: SizeOption[] = [
-    { label: "M", value: "M" },
-    { label: "L", value: "L" },
-    { label: "XL", value: "XL" },
-    { label: "2XL", value: "2XL" },
-  ];
 
   const handleQuantity = (type: "inc" | "dec") => {
     setQuantity((prev) => {
@@ -144,21 +140,79 @@ export default function ProductInfo({ product }: Props) {
           {product.shortDescription}
         </div>
 
+        {/* Step 1: With Box or Without Box */}
+        <div className="mt-5 sm:mt-6">
+          <h3 className="text-sm font-semibold text-gray-600">
+            Choose Option:
+          </h3>
+          <div className="flex gap-4 mt-2">
+            <button
+              onClick={() => {
+                setIsWithBox(true);
+                setSelectedBox("");
+              }}
+              className={`px-4 py-2 border rounded-md font-semibold text-sm ${
+                isWithBox === true
+                  ? "bg-black text-white border-black"
+                  : "bg-white text-gray-700 border-gray-300 hover:border-black"
+              }`}
+            >
+              With Box
+            </button>
+
+            <button
+              onClick={() => {
+                setIsWithBox(false);
+                setSelectedSize("");
+              }}
+              className={`px-4 py-2 border rounded-md font-semibold text-sm ${
+                isWithBox === false
+                  ? "bg-black text-white border-black"
+                  : "bg-white text-gray-700 border-gray-300 hover:border-black"
+              }`}
+            >
+              Without Box
+            </button>
+          </div>
+        </div>
+
+        {/* Step 2: Show Boxes if With Box */}
+        {isWithBox && product?.boxs?.length > 0 && (
+          <div className="mt-5 sm:mt-6">
+            <h3 className="text-sm font-semibold text-gray-600">Select Box:</h3>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {product.boxs.map((box) => (
+                <button
+                  key={box.id}
+                  onClick={() => setSelectedBox(box.id)}
+                  className={`px-4 py-2 border rounded-md font-semibold text-sm ${
+                    selectedBox === box.id
+                      ? "bg-black text-white border-black"
+                      : "bg-white text-gray-700 border-gray-300 hover:border-black"
+                  }`}
+                >
+                  {box?.box ? `${box.box.name}` : "Box"}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Sizes */}
         <div className="mt-5 sm:mt-6">
           <h3 className="text-sm font-semibold text-gray-600">Select Size:</h3>
           <div className="flex flex-wrap gap-2 mt-2">
-            {sizes.map((size) => (
+            {product?.size?.map((size) => (
               <button
-                key={size.value}
-                onClick={() => setSelectedSize(size.value)}
+                key={size.id}
+                onClick={() => setSelectedSize(size.name)}
                 className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
-                  selectedSize === size.value
+                  selectedSize === size.name
                     ? "bg-black text-white border-black"
                     : "bg-white text-gray-700 border-gray-300 hover:border-black"
                 }`}
               >
-                {size.label}
+                {size.name}
               </button>
             ))}
           </div>

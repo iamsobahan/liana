@@ -17,6 +17,8 @@ export type IProduct = {
     sku: string;
     categories: { name: string; slug: string }[];
     galleryImages: string[];
+    boxs?: { box: Box, quantity: number, price: number, id: string }[];
+    size?: Size[];
     thumbnail: string;
     regularPrice: number;
     salePrice: number;
@@ -37,3 +39,17 @@ export type IProduct = {
     updatedAt: string;
     __v: number;
 }
+
+
+export type Box = {
+    box: string;
+    quantity: number;
+    price: number;
+    id: string;
+};
+export type Size = {
+    name: string;
+    price: number;
+    id: string;
+    quantity: number;
+};
