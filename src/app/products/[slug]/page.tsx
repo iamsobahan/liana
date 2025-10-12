@@ -1,5 +1,5 @@
 import Cart from "@/components/Cart";
-import FeaturePage from "@/components/Feature";
+import Feature from "@/components/Feature/feature";
 import ProductInfo from "@/components/product-details";
 import DetailsTabs from "@/components/product-details/detailsTabs";
 import config from "@/config";
@@ -46,7 +46,7 @@ const ProductDetails = async ({ params }: Props) => {
     <div className="container mx-auto px-3 sm:px-6 py-6 sm:py-10">
       <ProductInfo product={product.data.product} />
       <DetailsTabs description={product.data.product.description} />
-      <FeaturePage
+      <Feature
         feature={product.data.relatedProducts}
         title="Similar Products"
       />

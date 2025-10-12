@@ -24,7 +24,7 @@ type Props = {
 
 export default function ProductInfo({ product }: Props) {
   const dispatch = useAppDispatch();
-  const [isWithBox, setIsWithBox] = useState<boolean | null>(true);
+  const [isWithBox, setIsWithBox] = useState<boolean | null>(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedBox, setSelectedBox] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
@@ -177,7 +177,7 @@ export default function ProductInfo({ product }: Props) {
         </div>
 
         {/* Step 2: Show Boxes if With Box */}
-        {isWithBox && product?.boxs?.length > 0 && (
+        {isWithBox && product && product?.boxs?.length > 0 && (
           <div className="mt-5 sm:mt-6">
             <h3 className="text-sm font-semibold text-gray-600">Select Box:</h3>
             <div className="flex flex-wrap gap-2 mt-2">
