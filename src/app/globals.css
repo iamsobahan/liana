@@ -99,4 +99,14 @@ dialog::backdrop {
 }
 
 
+.modal-box {
+  background-color: #fff;
+  padding: 15px;
+}
+
+dialog#my_modal_2 {
+  border-radius: 0%;
+}
+
+
 

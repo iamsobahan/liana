@@ -45,7 +45,7 @@ const FooterPage = () => {
           </div>
           <div className="pt-4 flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Subscription Form */}
-            <form className="flex w-full md:w-2/3 items-center gap-2">
+            <form className="flex flex-wrap md:flex-nowrap w-full md:w-2/3 items-center gap-2">
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -53,7 +53,7 @@ const FooterPage = () => {
               />
               <button
                 type="submit"
-                className="px-4 py-2 bg-yellow-500 text-black font-semibold rounded hover:bg-yellow-600 transition-colors duration-300"
+                className="px-2 md:px-4 py-1 md:py-2 bg-yellow-500 text-black font-semibold rounded hover:bg-yellow-600 transition-colors duration-300"
               >
                 Subscribe
               </button>
@@ -138,7 +138,7 @@ const FooterPage = () => {
       {/* Bottom bar */}
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 text-xs text-gray-500">
         <p>Copyright © 2025 Sobahan. All Rights Reserved</p>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4">
           <p className="whitespace-nowrap">Terms of use</p>
           <p className="whitespace-nowrap">Privacy Policy</p>
           <p className="whitespace-nowrap">Interest Based Ads</p>

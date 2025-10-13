@@ -210,7 +210,7 @@ const Header = ({ categories }: IProps) => {
           </div>
 
           {/* Mobile Search */}
-          <div
+          {/* <div
             className={`flex justify-center items-center my-1 md:my-3 px-2 md:hidden `}
           >
             <form action="" className=" relative w-3/5">
@@ -231,7 +231,7 @@ const Header = ({ categories }: IProps) => {
               <span className="mr-1">Track Order</span>
               <IoLocationOutline />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
