@@ -1,13 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 import React from "react";
 import Link from "next/link";
-interface SizeOption {
-  label: string;
-  value: string;
-}
 
 import { IProduct } from "@/types/product";
 import config from "@/config";
@@ -24,11 +20,11 @@ type Props = {
 
 export default function ProductInfo({ product }: Props) {
   const dispatch = useAppDispatch();
-  const [isWithBox, setIsWithBox] = useState<boolean | null>(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [selectedBox, setSelectedBox] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [price, setPrice] = useState<number>(product.salePrice);
   const [selectedImage, setSelectedImage] = useState<string>(
     `${config.API_URL}/images/products/${product.galleryImages[0]}`
   );
@@ -49,6 +45,8 @@ export default function ProductInfo({ product }: Props) {
       regularPrice: product.regularPrice,
       quantity,
       image: product.galleryImages[0],
+      size: selectedSize || null,
+      box: selectedBox || null,
     };
     dispatch(addToCart(item));
     setIsModalOpen(true);
@@ -62,11 +60,41 @@ export default function ProductInfo({ product }: Props) {
       regularPrice: product.regularPrice,
       quantity,
       image: product.galleryImages[0],
+      size: selectedSize || null,
+      box: selectedBox || null,
     };
     dispatch(addToCart(item));
     router.push("/checkout");
   };
+  useEffect(() => {
+    let newPrice = 0;
+    if (selectedBox) {
+      const boxItem = product.boxes?.find((box) => box.box.id === selectedBox);
+      newPrice = boxItem?.price as number;
+    }
+    if (selectedSize) {
+      const sizeItem = product.sizes?.find((size) => size._id === selectedSize);
+      newPrice += sizeItem ? sizeItem.price : 0;
+    }
+    if (newPrice === 0) {
+      newPrice = product.salePrice;
+    }
+    setPrice(newPrice);
+  }, [selectedBox, selectedSize, product]);
 
+  useEffect(() => {
+    if (product.sizes && product.sizes.length > 0) {
+      setSelectedSize(product.sizes[0]._id);
+    }
+    if (product.boxes && product.boxes.length > 0) {
+      const boxItem = product.boxes.findIndex((box) => box.isSelected);
+      if (boxItem !== -1) {
+        setSelectedBox(product.boxes[boxItem].box.id);
+        return;
+      }
+      setSelectedBox(product.boxes[0].box.id);
+    }
+  }, [product.sizes, product.boxes]);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
       <AddToCartModal
@@ -132,7 +160,7 @@ export default function ProductInfo({ product }: Props) {
             ৳{product.regularPrice}
           </span>
           <span className="text-2xl sm:text-3xl font-bold text-green-600">
-            ৳{product.salePrice}
+            ৳{price}
           </span>
         </div>
         {/* Short Description */}
@@ -140,83 +168,65 @@ export default function ProductInfo({ product }: Props) {
           {product.shortDescription}
         </div>
 
-        {/* Step 1: With Box or Without Box */}
-        <div className="mt-5 sm:mt-6">
-          <h3 className="text-sm font-semibold text-gray-600">
-            Choose Option:
-          </h3>
-          <div className="flex gap-4 mt-2">
-            <button
-              onClick={() => {
-                setIsWithBox(true);
-                setSelectedBox("");
-              }}
-              className={`px-4 py-2 border rounded-md font-semibold text-sm ${
-                isWithBox === true
-                  ? "bg-black text-white border-black"
-                  : "bg-white text-gray-700 border-gray-300 hover:border-black"
-              }`}
-            >
-              With Box
-            </button>
-
-            <button
-              onClick={() => {
-                setIsWithBox(false);
-                setSelectedSize("");
-              }}
-              className={`px-4 py-2 border rounded-md font-semibold text-sm ${
-                isWithBox === false
-                  ? "bg-black text-white border-black"
-                  : "bg-white text-gray-700 border-gray-300 hover:border-black"
-              }`}
-            >
-              Without Box
-            </button>
-          </div>
-        </div>
-
-        {/* Step 2: Show Boxes if With Box */}
-        {isWithBox && product && product?.boxs?.length > 0 && (
+        {/* Step 1: Show Boxes if With Box */}
+        {(product?.boxes?.length ?? 0) > 0 && (
           <div className="mt-5 sm:mt-6">
-            <h3 className="text-sm font-semibold text-gray-600">Select Box:</h3>
+            <h3 className="text-sm font-semibold text-gray-600">
+              {product.boxTitle ?? "Select Box"}
+            </h3>
             <div className="flex flex-wrap gap-2 mt-2">
-              {product.boxs.map((box) => (
-                <button
-                  key={box.id}
-                  onClick={() => setSelectedBox(box.id)}
-                  className={`px-4 py-2 border rounded-md font-semibold text-sm ${
-                    selectedBox === box.id
-                      ? "bg-black text-white border-black"
-                      : "bg-white text-gray-700 border-gray-300 hover:border-black"
-                  }`}
+              {product?.boxes?.map((boxItem) => (
+                <div
+                  key={boxItem.box.id}
+                  className="tooltip"
+                  data-tip={boxItem.box.name}
                 >
-                  {box?.box ? `${box.box.name}` : "Box"}
-                </button>
+                  <button
+                    key={boxItem.box.id}
+                    onClick={() => setSelectedBox(boxItem.box.id)}
+                    className={`border rounded-md font-semibold text-sm transition-all overflow-hidden ${
+                      selectedBox === boxItem.box.id
+                        ? "bg-black text-white border-yellow-600"
+                        : "bg-white text-gray-700 border-gray-300 hover:border-black"
+                    }`}
+                  >
+                    <Image
+                      src={`${config.API_URL}/images/boxes/${boxItem.box.image}`}
+                      alt={boxItem.box.name}
+                      width={50}
+                      height={50}
+                      className="object-cover w-[50px] h-[50px]"
+                    />
+                  </button>
+                </div>
               ))}
             </div>
           </div>
         )}
 
-        {/* Sizes */}
-        <div className="mt-5 sm:mt-6">
-          <h3 className="text-sm font-semibold text-gray-600">Select Size:</h3>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {product?.size?.map((size) => (
-              <button
-                key={size.id}
-                onClick={() => setSelectedSize(size.name)}
-                className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
-                  selectedSize === size.name
-                    ? "bg-black text-white border-black"
-                    : "bg-white text-gray-700 border-gray-300 hover:border-black"
-                }`}
-              >
-                {size.name}
-              </button>
-            ))}
+        {/*step2: Sizes */}
+        {(product?.sizes?.length ?? 0) > 0 && (
+          <div className="mt-5 sm:mt-6">
+            <h3 className="text-sm font-semibold text-gray-600">
+              {product.sizeTitle ?? "Select Size :"}
+            </h3>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {product?.sizes?.map((size) => (
+                <button
+                  key={size.id}
+                  onClick={() => setSelectedSize(size._id)}
+                  className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
+                    selectedSize === size._id
+                      ? "bg-black text-white border-black"
+                      : "bg-white text-gray-700 border-gray-300 hover:border-black"
+                  }`}
+                >
+                  {size.name}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Quantity + Actions */}
         <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-3">

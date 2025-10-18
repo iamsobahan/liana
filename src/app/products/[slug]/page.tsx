@@ -45,7 +45,11 @@ const ProductDetails = async ({ params }: Props) => {
   return (
     <div className="container mx-auto px-3 sm:px-6 py-6 sm:py-10">
       <ProductInfo product={product.data.product} />
-      <DetailsTabs description={product.data.product.description} />
+      <DetailsTabs
+        description={product.data.product.description}
+        policy={product.data.product.policy}
+        sizeGuide={product.data.product.sizeGuide}
+      />
       <Feature
         feature={product.data.relatedProducts}
         title="Similar Products"

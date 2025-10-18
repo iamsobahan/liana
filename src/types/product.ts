@@ -17,8 +17,12 @@ export type IProduct = {
     sku: string;
     categories: { name: string; slug: string }[];
     galleryImages: string[];
-    boxs?: { box: Box, quantity: number, price: number, id: string }[];
-    size?: Size[];
+    boxes?: BoxItem[];
+    sizes?: Size[];
+    boxTitle?: string;
+    sizeTitle?: string;
+    sizeGuide?: string;
+    policy?: string;
     thumbnail: string;
     regularPrice: number;
     salePrice: number;
@@ -42,14 +46,24 @@ export type IProduct = {
 
 
 export type Box = {
-    box: string;
-    quantity: number;
-    price: number;
+    _id: string;
+    name: string;
+    image: string;
+    color: string;
+    stock: number;
     id: string;
 };
 export type Size = {
     name: string;
     price: number;
-    id: string;
     quantity: number;
+    _id: string;
+    id: string;
+};
+export type BoxItem = {
+    box: Box;
+    price: number;
+    isSelected: boolean;
+    _id: string;
+    id: string;
 };

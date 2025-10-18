@@ -2,8 +2,10 @@
 import React from "react";
 type Props = {
   description: string;
+  policy?: string;
+  sizeGuide?: string;
 };
-const DetailsTabs = ({ description }: Props) => {
+const DetailsTabs = ({ description, policy, sizeGuide }: Props) => {
   return (
     <div className="tabs tabs-lift mt-8 sm:mt-12">
       <input
@@ -14,7 +16,6 @@ const DetailsTabs = ({ description }: Props) => {
         defaultChecked
       />
       <div className="tab-content text-gray-800 p-4 sm:p-6 shadow">
-        <h3 className="text-xl font-bold mb-4">Product Details</h3>
         {
           <div
             className="text-sm sm:text-base"
@@ -27,22 +28,36 @@ const DetailsTabs = ({ description }: Props) => {
         type="radio"
         name="tabs_group"
         className="tab"
-        aria-label="Terms & Conditions"
+        aria-label="Sizes"
       />
-      <div className="tab-content text-gray-800 p-4 sm:p-6 shadow">
-        <p className="text-sm sm:text-base">
-          Dear Customer, we try our best to provide you the best experience...
-        </p>
+      <div className="tab-content text-gray-800 p-4 sm:p-6 text-sm sm:text-base shadow">
+        {sizeGuide ? (
+          <div
+            className="text-sm sm:text-base"
+            dangerouslySetInnerHTML={{ __html: sizeGuide }}
+          ></div>
+        ) : (
+          <p className="text-sm sm:text-base">No size guide available.</p>
+        )}
       </div>
 
       <input
         type="radio"
         name="tabs_group"
         className="tab"
-        aria-label="Sizes"
+        aria-label="Terms & Conditions"
       />
-      <div className="tab-content text-gray-800 p-4 sm:p-6 text-sm sm:text-base shadow">
-        This is Size Section
+      <div className="tab-content text-gray-800 p-4 sm:p-6 shadow">
+        {policy ? (
+          <div
+            className="text-sm sm:text-base"
+            dangerouslySetInnerHTML={{ __html: policy }}
+          ></div>
+        ) : (
+          <p className="text-sm sm:text-base">
+            No terms and conditions available.
+          </p>
+        )}
       </div>
     </div>
   );
