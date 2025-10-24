@@ -41,7 +41,7 @@ export default function ProductInfo({ product }: Props) {
     const item: ICartItem = {
       productId: product.id,
       title: product.name,
-      price: product.salePrice,
+      price: price,
       regularPrice: product.regularPrice,
       quantity,
       image: product.galleryImages[0],
@@ -56,7 +56,7 @@ export default function ProductInfo({ product }: Props) {
     const item: ICartItem = {
       productId: product.id,
       title: product.name,
-      price: product.salePrice,
+      price: price,
       regularPrice: product.regularPrice,
       quantity,
       image: product.galleryImages[0],
@@ -75,6 +75,8 @@ export default function ProductInfo({ product }: Props) {
     if (selectedSize) {
       const sizeItem = product.sizes?.find((size) => size._id === selectedSize);
       newPrice += sizeItem ? sizeItem.price : 0;
+    } else {
+      newPrice += product.salePrice;
     }
     if (newPrice === 0) {
       newPrice = product.salePrice;
