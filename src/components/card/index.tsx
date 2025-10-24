@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { IProduct } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FC } from "react";
 import AddToCartModal from "../modal/addToCartModal";
 import ProductModal from "../modal/productModal";
@@ -15,17 +15,16 @@ type IProps = {
 };
 const ProductCard: FC<IProps> = ({ item }) => {
   const dispatch = useAppDispatch();
-  const sizes = ["M(28-30)", "L(32-34)", "XL(36-38)", "2XL(38-42)"];
-  const colors = ["Red/Black", "Blue/Navy", "Gray/White"];
-  const [quantity, setQuantity] = useState(1);
   const [showModal, setShowModal] = useState(false);
   const [showProductModal, setShowProductModal] = useState(false);
-  const [isVariant, setIsVariant] = useState(false);
+  const [price, setPrice] = useState<number>(item?.salePrice || 0);
 
   const handleAddToCart = (data: IProduct) => {
-    if (isVariant) {
+    if (
+      (data.sizes && data.sizes?.length > 0) ||
+      (data.boxes && data.boxes?.length > 0)
+    ) {
       setShowProductModal(true);
-      setIsVariant(true);
     } else {
       const cardData = {
         productId: data.id,
@@ -33,28 +32,35 @@ const ProductCard: FC<IProps> = ({ item }) => {
         image: data.thumbnail,
         price: data.salePrice,
         regularPrice: data.regularPrice,
-        quantity: quantity,
+        quantity: 1,
       };
       dispatch(addToCart(cardData));
       setShowModal(true);
     }
   };
 
-  /*   useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (
-        safeArea.current &&
-        !safeArea.current.contains(event.target as Node)
-      ) {
-        modalRef.current?.close();
-        modalRef2.current?.close();
-      }
-    };
-    document.addEventListener("mousedown", handleOutsideClick);
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []) */ return (
+  useEffect(() => {
+    if (!item) return;
+
+    let newPrice = item.salePrice || 0; // 👈 start from salePrice
+
+    // Handle sizes
+    if (Array.isArray(item.sizes) && item.sizes.length > 0) {
+      const firstSize = item.sizes[0];
+      newPrice = firstSize?.price || 0;
+    }
+    // Handle boxes
+    if (Array.isArray(item.boxes) && item.boxes.length > 0) {
+      const selectedBoxItem =
+        item.boxes.find((box) => box.isSelected) || item.boxes[0];
+      console.log(selectedBoxItem);
+      newPrice += selectedBoxItem?.price || 0;
+    }
+
+    setPrice(newPrice);
+  }, [item]);
+
+  return (
     <>
       {/* model box pop up 2  */}
 
@@ -62,14 +68,13 @@ const ProductCard: FC<IProps> = ({ item }) => {
         item={item}
         isOpen={showModal}
         onClose={() => setShowModal(false)}
+        price={price}
       />
 
       <ProductModal
         isOpen={showProductModal}
         onClose={() => setShowProductModal(false)}
-        item={item}
-        colors={colors}
-        sizes={sizes}
+        product={item}
       />
 
       <div className="px-1 md:px-2 cursor-pointer">
@@ -80,7 +85,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
                 src={`${config.API_URL}/images/products/${item?.thumbnail}`}
                 width={400}
                 height={140}
-                alt={item.name}
+                alt={item.name ?? "Product Image"}
                 className="rounded-tr-sm  object-cover w-[240px] h-[120px]  md:h-[240px] md:w-[500px]"
                 quality={90}
               />
@@ -90,14 +95,14 @@ const ProductCard: FC<IProps> = ({ item }) => {
                 {item.name}
               </h4>
               <p className="text-sm text-red-500 mt-2 bg-yellow-100 px-2 py-1 inline-block rounded font-bold">
-                Save TK {item.regularPrice - item.salePrice}
+                Save TK {Math.ceil(item.regularPrice - price)}
               </p>
               <div className="mt-2 text-sm">
                 <span className="line-through text-gray-500 mr-1">
                   ৳{item.regularPrice}
                 </span>
                 <span className="text-black font-bold text-lg">
-                  ৳{item.salePrice}
+                  ৳{Math.ceil(price)}
                 </span>
               </div>
             </div>

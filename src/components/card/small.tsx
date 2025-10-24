@@ -4,12 +4,34 @@ import config from "@/config";
 import { IProduct } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 
 type IProps = {
   item: IProduct;
 };
 const SmallProductCard: FC<IProps> = ({ item }) => {
+  const [price, setPrice] = useState<number>(item.salePrice);
+  useEffect(() => {
+    if (!item) return;
+
+    let newPrice = item.salePrice || 0;
+
+    // Handle sizes
+    if (Array.isArray(item.sizes) && item.sizes.length > 0) {
+      const firstSize = item.sizes[0];
+      newPrice += firstSize?.price || 0;
+    }
+
+    // Handle boxes
+    if (Array.isArray(item.boxes) && item.boxes.length > 0) {
+      const selectedBoxItem =
+        item.boxes.find((box) => box.isSelected) || item.boxes[0];
+      newPrice += selectedBoxItem?.price || 0;
+    }
+
+    setPrice(newPrice);
+  }, [item]);
+
   return (
     <>
       <div className="px-1 md:px-2 pb-5 cursor-pointer">
@@ -20,7 +42,7 @@ const SmallProductCard: FC<IProps> = ({ item }) => {
               <div className="relative w-[240px] h-[120px] md:w-[500px] md:h-[240px]">
                 <Image
                   src={`${config.API_URL}/images/products/${item?.thumbnail}`}
-                  alt={item.name}
+                  alt={item.name ?? "Product Image"}
                   className="object-cover"
                   width={250}
                   height={120}
@@ -40,7 +62,7 @@ const SmallProductCard: FC<IProps> = ({ item }) => {
                 ৳{item.regularPrice}
               </span>
               <span className="text-black font-semibold text-lg">
-                ৳{item.salePrice}
+                ৳{Math.ceil(price)}
               </span>
             </div>
           </Link>
