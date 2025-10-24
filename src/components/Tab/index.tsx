@@ -1,11 +1,11 @@
 // components/MobileBottomNav.tsx
-'use client';
+"use client";
 
-import { AiOutlineSearch } from 'react-icons/ai';
-import {  IoLocationOutline } from 'react-icons/io5';
-import { IoHomeOutline, IoCartOutline } from 'react-icons/io5';
-import { BiCategory } from 'react-icons/bi';
-import Link from 'next/link';
+import { AiOutlineSearch } from "react-icons/ai";
+import { IoLocationOutline } from "react-icons/io5";
+import { IoHomeOutline, IoCartOutline } from "react-icons/io5";
+import { BiCategory } from "react-icons/bi";
+import Link from "next/link";
 
 export default function MobileBottomNav() {
   return (
@@ -55,7 +55,7 @@ export default function MobileBottomNav() {
         {/* Messenger */}
         <span
           className="flex flex-col items-center  hover:text-yellow-600 transition-colors  duration-200"
-          onClick={() => document.getElementById('my_modal_2').showModal()}
+          // onClick={() => document.getElementById("my_modal_2").showModal()}
         >
           <AiOutlineSearch className="text-gray-800" size={20} />
           <span className="text-gray-600 text-[11px]  font-semibold">
