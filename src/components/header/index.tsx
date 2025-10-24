@@ -13,7 +13,6 @@ import logo from "../../assets/logo.png";
 import { ICategory } from "@/types/category";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import config from "@/config";
-import { IProduct } from "@/types/product";
 import { removeFromCart } from "@/redux/features/cart/cartSlice";
 import { ICartItem } from "@/types/cart";
 
@@ -77,8 +76,8 @@ const Header = ({ categories }: IProps) => {
           <div
             className={`bg-white py-1.5 md:py-0 border-b border-gray-300  ${
               isSticky
-                ? 'fixed top-0 shadow-lg w-full z-40 transition-all duration-300'
-                : 'relative'
+                ? "fixed top-0 shadow-lg w-full z-40 transition-all duration-300"
+                : "relative"
             }`}
           >
             <div className="md:container px-4 mx-auto flex justify-between items-center">
@@ -157,7 +156,7 @@ const Header = ({ categories }: IProps) => {
                                 {item.price}TK
                               </p>
                               <p className="text-sm mt-1">
-                                {item.quantity} x{' '}
+                                {item.quantity} x{" "}
                                 <span className="font-semibold">
                                   Tk {item.price}
                                 </span>
@@ -248,7 +247,7 @@ const Header = ({ categories }: IProps) => {
             >
               <Link href={`/categories/${cat.slug}`}>
                 <span className="inline-flex items-center cursor-pointer">
-                  {cat.name}{' '}
+                  {cat.name}{" "}
                   {!!cat.children.length && <IoIosArrowDown className="ml-1" />}
                 </span>
               </Link>
@@ -298,7 +297,7 @@ const Header = ({ categories }: IProps) => {
       {/* Mobile Drawer */}
       <div
         className={`sm:hidden fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-linear ${
-          isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+          isDrawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <button
