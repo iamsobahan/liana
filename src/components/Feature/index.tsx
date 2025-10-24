@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import dynamic from "next/dynamic";
 import { IProduct } from "@/types/product";
 import Slider from "react-slick";
 import SmallProductCard from "../card/small";
