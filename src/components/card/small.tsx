@@ -43,9 +43,9 @@ const SmallProductCard: FC<IProps> = ({ item }) => {
                 <Image
                   src={`${config.API_URL}/images/products/${item?.thumbnail}`}
                   alt={item.name ?? "Product Image"}
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                   width={250}
-                  height={120}
+                  height={250}
                   quality={90}
                 />
               </div>
