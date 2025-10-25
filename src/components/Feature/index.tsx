@@ -52,7 +52,12 @@ const settings = {
     },
     {
       breakpoint: 640,
-      settings: { slidesToShow: 2, arrows: false },
+      settings: {
+        slidesToShow: 2,
+        arrows: false,
+        slidesPerRow: 4,
+        autoplay: false,
+      },
     },
   ],
 };
