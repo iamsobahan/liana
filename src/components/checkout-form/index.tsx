@@ -58,6 +58,7 @@ const CheckoutForm = () => {
         address: data.shippingAddress,
         mobile: data.customerPhone,
       },
+      totalProductsPrice: subTotal,
       totalAmount: subTotal + shippingAmount,
       shippingAmount,
       paymentMethod: data.paymentMethod,
@@ -96,7 +97,7 @@ const CheckoutForm = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
             <div>
               <input
-                {...register('customerName', { required: 'Name is required' })}
+                {...register("customerName", { required: "Name is required" })}
                 type="text"
                 placeholder="Customer Name"
                 className="w-full border rounded-lg px-2 py-1 focus:outline-blue-500"
@@ -110,8 +111,8 @@ const CheckoutForm = () => {
 
             <div>
               <input
-                {...register('customerPhone', {
-                  required: 'Phone number is required',
+                {...register("customerPhone", {
+                  required: "Phone number is required",
                 })}
                 type="text"
                 placeholder="Phone Number"
@@ -130,7 +131,7 @@ const CheckoutForm = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <input
-                {...register('receiverName', { required: 'Name is required' })}
+                {...register("receiverName", { required: "Name is required" })}
                 type="text"
                 placeholder="Receiver Name"
                 className="w-full border rounded-lg px-2 py-1 focus:outline-blue-500"
@@ -143,8 +144,8 @@ const CheckoutForm = () => {
             </div>
             <div>
               <input
-                {...register('receiverPhone', {
-                  required: 'Phone number is required',
+                {...register("receiverPhone", {
+                  required: "Phone number is required",
                 })}
                 type="text"
                 placeholder="Receiver Phone Number"
@@ -158,8 +159,8 @@ const CheckoutForm = () => {
             </div>
             <div className="md:col-span-2">
               <textarea
-                {...register('shippingAddress', {
-                  required: 'Shipping address is required',
+                {...register("shippingAddress", {
+                  required: "Shipping address is required",
                 })}
                 placeholder="Shipping Address"
                 className="w-full border rounded-lg px-2  py-1 focus:outline-blue-500"
@@ -176,7 +177,7 @@ const CheckoutForm = () => {
           {/* Order Note */}
           <p className="font-medium mb-1">Additional Information</p>
           <textarea
-            {...register('note')}
+            {...register("note")}
             placeholder="Additional Information"
             className="w-full border rounded-lg px-4 py-1 mb-2 focus:outline-blue-500"
             rows={3}
@@ -188,21 +189,21 @@ const CheckoutForm = () => {
             <div className="mb-2">
               <p className="mb-2 font-medium">Select Delivery Area *</p>
               <div className="flex flex-wrap md:flex-nowrap gap-2">
-                {['inside', 'Subcity', 'outside'].map((area) => (
+                {["inside", "Subcity", "outside"].map((area) => (
                   <span
                     key={area}
                     onClick={() => setDeliveryArea(area)}
                     className={`px-2 md:px-4 py-1 text-md rounded-full border cursor-pointer transition font-medium ${
                       deliveryArea === area
-                        ? 'bg-yellow-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? "bg-yellow-600 text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
-                    {area === 'inside'
-                      ? 'Inside City'
-                      : area === 'Subcity'
-                      ? 'Subcity'
-                      : 'Outside City'}
+                    {area === "inside"
+                      ? "Inside City"
+                      : area === "Subcity"
+                      ? "Subcity"
+                      : "Outside City"}
                   </span>
                 ))}
               </div>
@@ -212,8 +213,8 @@ const CheckoutForm = () => {
               <p className=" font-medium mb-1 text-black">Payment Method</p>
               <label className="flex items-center gap-3 cursor-pointer">
                 <input
-                  {...register('paymentMethod', {
-                    required: 'Payment method is required',
+                  {...register("paymentMethod", {
+                    required: "Payment method is required",
                   })}
                   type="radio"
                   value="COD"
@@ -227,9 +228,7 @@ const CheckoutForm = () => {
         </div>
         {/* RIGHT SECTION */}
         <div className="bg-white shadow-md rounded-2xl p-4 pt-2">
-          <p className="text-lg font-semibold">
-            Order Overview
-          </p>
+          <p className="text-lg font-semibold">Order Overview</p>
 
           {cartItems.map((item, key) => (
             <div key={key} className="flex items-center gap-4 mb-6">
@@ -257,9 +256,9 @@ const CheckoutForm = () => {
             <div className="flex justify-between">
               <span>Delivery</span>
               <span>
-                {deliveryArea === 'inside'
+                {deliveryArea === "inside"
                   ? 60
-                  : deliveryArea === 'Subcity'
+                  : deliveryArea === "Subcity"
                   ? 100
                   : 150}
               </span>
@@ -271,9 +270,9 @@ const CheckoutForm = () => {
                   (acc, item) => acc + item.price * item.quantity,
                   0
                 ) +
-                  (deliveryArea === 'inside'
+                  (deliveryArea === "inside"
                     ? 60
-                    : deliveryArea === 'Subcity'
+                    : deliveryArea === "Subcity"
                     ? 100
                     : 150)}
               </span>
@@ -283,7 +282,7 @@ const CheckoutForm = () => {
           {/* Coupon */}
           <div className="mt-4 flex flex-wrap gap-2">
             <input
-              {...register('coupon')}
+              {...register("coupon")}
               type="text"
               placeholder="Coupon Code"
               className="flex-1 border rounded-lg px-3 py-2"
@@ -302,7 +301,7 @@ const CheckoutForm = () => {
             type="submit"
             className="mt-6 w-full bg-black text-white font-semibold py-3 rounded-lg hover:bg-gray-900 transition cursor-pointer"
           >
-            {isLoading ? 'Placing Order...' : 'Place Order'}
+            {isLoading ? "Placing Order..." : "Place Order"}
           </button>
         </div>
       </form>
