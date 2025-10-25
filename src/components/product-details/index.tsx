@@ -103,6 +103,7 @@ export default function ProductInfo({ product }: Props) {
         item={product}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        price={price}
       />
       {/* LEFT: IMAGE + GALLERY */}
       <div>
@@ -269,19 +270,6 @@ export default function ProductInfo({ product }: Props) {
             </button>
           </Link>
         </div>
-
-        {/* Specs */}
-        {/*  <div className="mt-5 sm:mt-6 text-sm text-gray-700 space-y-1">
-          <p>
-            <strong>Fabric type:</strong> Double PK
-          </p>
-          <p>
-            <strong>Composition:</strong> 80% cotton + 20% polyester
-          </p>
-          <p>
-            <strong>GSM:</strong> 210-220
-          </p>
-        </div> */}
       </div>
     </div>
   );
