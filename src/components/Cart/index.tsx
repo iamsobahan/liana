@@ -64,11 +64,11 @@ export default function Cart() {
               initial={{ x: 400 }}
               animate={{ x: 0 }}
               exit={{ x: 400 }}
-              transition={{ type: 'tween', duration: 0.35 }}
+              transition={{ type: "tween", duration: 0.35 }}
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="flex items-center text-xl font-bold text-gray-800">
-                  <BiSolidShoppingBags size={30} />{' '}
+                  <BiSolidShoppingBags size={30} />{" "}
                   <span className="ml-3">My Cart</span>
                 </h2>
                 <button

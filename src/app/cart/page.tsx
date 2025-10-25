@@ -12,6 +12,7 @@ import {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
+  clearCart,
 } from "@/redux/features/cart/cartSlice";
 
 export default function CartPage() {
@@ -25,6 +26,9 @@ export default function CartPage() {
   );
   const handleDelete = (product: ICartItem) => {
     dispatch(removeFromCart(product));
+  };
+  const clearAll = () => {
+    dispatch(clearCart());
   };
 
   const handleIncrementQuantity = (product: ICartItem) => {
@@ -51,7 +55,10 @@ export default function CartPage() {
             />
             SELECT ALL ( {cartCount} ITEM(S))
           </label>
-          <button className="flex items-center gap-1 text-gray-500 fw-bold hover:underline hover:text-red-500 cursor-pointer">
+          <button
+            onClick={clearAll}
+            className="flex items-center gap-1 text-gray-500 fw-bold hover:underline hover:text-red-500 cursor-pointer"
+          >
             <HiOutlineTrash size={25} />
           </button>
         </div>
