@@ -55,7 +55,7 @@ const settings = {
       settings: {
         slidesToShow: 2,
         arrows: false,
-        slidesPerRow: 4,
+        // slidesPerRow: 4,
         autoplay: false,
       },
     },
