@@ -89,7 +89,8 @@ export default function CartPage() {
 
                 <div className="flex flex-col">
                   <h2 className="whitespace-break-spaces text-sm sm:text-base font-medium">
-                    {item.title}
+                    {item.title} {item.size && ` - ${item.size}`}{" "}
+                    {item.box && ` - With Box`}
                   </h2>
                   <span className="mt-1 text-xs  text-orange-600 py-0.5 rounded">
                     BEST PRICE
