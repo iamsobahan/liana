@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import config from "@/config";
 import { removeFromCart } from "@/redux/features/cart/cartSlice";
 import { ICartItem } from "@/types/cart";
+import MobileDrawer from "../drawer/mobileDrower";
 
 type IProps = {
   categories: ICategory[];
@@ -150,7 +151,8 @@ const Header = ({ categories }: IProps) => {
                             </div>
                             <div className="text-sm cursor-pointer">
                               <h2 className="font-semibold text-base leading-5">
-                                {item.title}
+                                {item.title} {item.size && ` - ${item.size}`}{" "}
+                                {item.box && ` - With Box`}
                               </h2>
                               <p className="text-xs text-gray-600">
                                 {item.price}TK
@@ -295,53 +297,11 @@ const Header = ({ categories }: IProps) => {
       </nav>
 
       {/* Mobile Drawer */}
-      <div
-        className={`sm:hidden fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-linear ${
-          isDrawerOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <button
-          className="text-gray-800 text-right w-full p-4 text-lg"
-          onClick={() => setDrawerOpen(false)}
-        >
-          ✕ Close
-        </button>
-
-        <ul className="flex flex-col gap-4 px-4 text-lg uppercase font-medium overflow-y-auto h-[calc(100vh-250px)]">
-          <li className="hover:text-[#D6A74E]">
-            <Link href="/">HOME</Link>
-          </li>
-          {categories?.map((cat, key) => (
-            <li key={key} className="hover:text-[#D6A74E]">
-              <details>
-                <summary className="hover:text-[#D6A74E] cursor-pointer">
-                  <Link href={`/categories/${cat.slug}`}>{cat.name}</Link>
-                </summary>
-                <ul className="pl-6 text-base">
-                  {cat.children.map((subCat, key) => (
-                    <li key={key}>
-                      <details>
-                        <summary className="hover:text-[#D6A74E] cursor-pointer">
-                          {subCat.name}
-                        </summary>
-                        <ul className="pl-6 text-base">
-                          {subCat.children.map((subSubCat, key) => (
-                            <li key={key} className="py-1">
-                              <Link href={`/categories/${subSubCat.slug}`}>
-                                {subSubCat.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <MobileDrawer
+        isDrawerOpen={isDrawerOpen}
+        setDrawerOpen={setDrawerOpen}
+        categories={categories}
+      />
     </div>
   );
 };
