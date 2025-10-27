@@ -101,7 +101,8 @@ export default function Cart() {
                       {/* Product Info */}
                       <div className="flex flex-col">
                         <p className="text-sm  font-semibold text-gray-800 whitespace-nowrap w-40 overflow-hidden text-ellipsis">
-                          {item.title}
+                          {item.title} {item.size && ` - ${item.size}`}{" "}
+                          {item.box && ` - With Box`}
                         </p>
                         <p className="text-xs sm:text-sm text-gray-500">
                           Qty: {item.quantity}

@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { clearCart } from "@/redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type CheckoutFormInputs = {
   customerName: string;
@@ -228,19 +229,28 @@ const CheckoutForm = () => {
         </div>
         {/* RIGHT SECTION */}
         <div className="bg-white shadow-md rounded-2xl p-4 pt-2">
-          <p className="text-lg font-semibold">Order Overview</p>
+          <div className="flex justify-between items-center mb-1">
+            <p className="text-lg font-semibold">Order Overview</p>
+            <Link href="/cart" className="ml-2 text-[#D6A74E] ">
+              Edit
+            </Link>
+          </div>
 
           {cartItems.map((item, key) => (
             <div key={key} className="flex items-center gap-4 mb-6">
               <Image
                 src={`${config.API_URL}/images/products/${item.image}`}
                 alt="product"
-                className="w-20 h-24 object-cover rounded-lg"
-                width={80}
-                height={96}
+                className="object-cover rounded-lg"
+                width={60}
+                height={60}
               />
               <div className="flex-1">
-                <h3 className="text-sm font-medium">{item.title}</h3>
+                <h3 className="text-sm font-medium">
+                  {" "}
+                  {item.title} {item.size && ` - ${item.size}`}{" "}
+                  {item.box && ` - With Box`}
+                </h3>
                 <p className="text-sm font-semibold">
                   Tk. {item.price} X {item.quantity}
                 </p>
