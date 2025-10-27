@@ -20,10 +20,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
   const [price, setPrice] = useState<number>(item?.salePrice || 0);
 
   const handleAddToCart = (data: IProduct) => {
-    if (
-      (data.sizes && data.sizes?.length > 0) ||
-      (data.boxes && data.boxes?.length > 0)
-    ) {
+    if (data.sizes && data.sizes?.length > 0) {
       setShowProductModal(true);
     } else {
       const cardData = {
@@ -38,26 +35,12 @@ const ProductCard: FC<IProps> = ({ item }) => {
       setShowModal(true);
     }
   };
-
   useEffect(() => {
-    if (!item) return;
-
-    let newPrice = item.salePrice || 0; // 👈 start from salePrice
-
-    // Handle sizes
-    if (Array.isArray(item.sizes) && item.sizes.length > 0) {
-      const firstSize = item.sizes[0];
-      newPrice = firstSize?.price || 0;
+    let finalPrice = item.salePrice;
+    if (item.box && item.box.sellingPrice) {
+      finalPrice += item.box.sellingPrice;
     }
-    // Handle boxes
-    if (Array.isArray(item.boxes) && item.boxes.length > 0) {
-      const selectedBoxItem =
-        item.boxes.find((box) => box.isSelected) || item.boxes[0];
-      console.log(selectedBoxItem);
-      newPrice += selectedBoxItem?.price || 0;
-    }
-
-    setPrice(newPrice);
+    setPrice(finalPrice);
   }, [item]);
 
   return (
@@ -80,7 +63,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
       <div className="px-1 md:px-2 cursor-pointer">
         <div className="bg-white shadow-md rounded-sm overflow-hidden hover:shadow-lg border-gray-100 transition">
           <Link href={`/products/${item?.slug}`}>
-            <div className="relative h-32 md:h-60 w-full">
+            <div className="relative w-full">
               <Image
                 src={`${config.API_URL}/images/products/${item?.thumbnail}`}
                 width={400}

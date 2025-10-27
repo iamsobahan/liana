@@ -12,24 +12,11 @@ type IProps = {
 const SmallProductCard: FC<IProps> = ({ item }) => {
   const [price, setPrice] = useState<number>(item.salePrice);
   useEffect(() => {
-    if (!item) return;
-
-    let newPrice = item.salePrice || 0;
-
-    // Handle sizes
-    if (Array.isArray(item.sizes) && item.sizes.length > 0) {
-      const firstSize = item.sizes[0];
-      newPrice += firstSize?.price || 0;
+    let finalPrice = item.salePrice;
+    if (item.box && item.box.sellingPrice) {
+      finalPrice += item.box.sellingPrice;
     }
-
-    // Handle boxes
-    if (Array.isArray(item.boxes) && item.boxes.length > 0) {
-      const selectedBoxItem =
-        item.boxes.find((box) => box.isSelected) || item.boxes[0];
-      newPrice += selectedBoxItem?.price || 0;
-    }
-
-    setPrice(newPrice);
+    setPrice(finalPrice);
   }, [item]);
 
   return (
@@ -39,7 +26,7 @@ const SmallProductCard: FC<IProps> = ({ item }) => {
           <Link href={`/products/${item?.slug}`} className="block">
             <div className="rounded-sm overflow-hidden">
               {/* explicit size wrapper for next/image */}
-              <div className="relative w-[240px] h-[120px] md:w-[500px] md:h-[240px]">
+              <div className="relative w-full object-cover">
                 <Image
                   src={`${config.API_URL}/images/products/${item?.thumbnail}`}
                   alt={item.name ?? "Product Image"}
