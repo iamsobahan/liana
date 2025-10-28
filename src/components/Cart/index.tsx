@@ -27,10 +27,10 @@ export default function Cart() {
   return (
     <>
       {/* ✅ Floating Cart Button */}
-      <div className="fixed top-1/3 right-0 z-50">
+      <div className="fixed top-1/3 right-0 z-50 w-12">
         <button
           onClick={() => setIsOpen(true)}
-          className="flex flex-col items-center  cursor-pointer overflow-hidden  shadow-2xl bg-[#46351F] hover:scale-105 transition duration-300  pt-[2px] md:pt-1"
+          className="flex flex-col items-center  cursor-pointer overflow-hidden  shadow-2xl bg-[#46351F] hover:scale-105 transition duration-300  pt-[2px] md:pt-1 w-full"
         >
           <BiSolidShoppingBags className="h-3 w-3 md:h-5 md:w-5 text-[#EBA659]" />
           <span className="text-xs font-medium md:font-semibold text-[#EBA659] mt-0 md:mt-1">
