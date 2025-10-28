@@ -21,6 +21,7 @@ export default function ProductModal({
   onClose,
   product,
 }: ProductModalProps) {
+  console.log(product)
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const safeArea = useRef<HTMLDivElement | null>(null);
   const [price, setPrice] = useState<number>(product?.salePrice || 0);
@@ -75,8 +76,7 @@ export default function ProductModal({
     let newPrice = 0;
     if (selectedBox) {
       const boxItem = product.boxes?.find((box) => box.box.id === selectedBox);
-      console.log(product.boxes);
-      console.log(boxItem);
+     
       newPrice = boxItem?.price as number;
     }
     if (selectedSize) {

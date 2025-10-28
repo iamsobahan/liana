@@ -19,6 +19,7 @@ export type IProduct = {
     galleryImages: string[];
     // boxes?: BoxItem[];
     box: Box;
+    boxes: BoxItem[];
     sizes?: Size[];
     boxTitle?: string;
     sizeTitle?: string;
@@ -57,6 +58,8 @@ export type Box = {
 };
 export type Size = {
     name: string;
+    _id: string;
+    price : number;
 };
 export type BoxItem = {
     box: Box;
