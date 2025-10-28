@@ -9,6 +9,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import Cart from "@/components/Cart";
 import Pagination from "@/components/pagination";
+import Sort from "@/components/sorting/sort";
 
 // Correct Props type
 type Props = {
@@ -49,12 +50,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 // ------------------ Page Component ------------------
 export default async function ShopPage({ params, searchParams }: Props) {
   const { slug } = await params;
-  const search = await searchParams;
+  const pageNum = parseInt(((await searchParams)?.page as string) || "1", 10);
+  const sortyBy = ((await searchParams)?.sortBy as string) || "createdAt";
+  const sortOrder =
+    ((await searchParams)?.sortOrder as "asc" | "desc") || "desc";
+  const limitNum = parseInt(
+    ((await searchParams)?.limit as string) || "50",
+    10
+  );
 
-  const page = Number(search?.page) || 1;
-  const limit = Number(search?.limit) || 10;
-
-  const products = await fetchProductsByCategory(slug, page, limit);
+  const products = await fetchProductsByCategory(slug, {
+    page: pageNum,
+    limit: limitNum,
+    sortBy: sortyBy,
+    sortOrder: sortOrder,
+  });
 
   if (products.success === false) {
     return (
@@ -88,19 +98,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
           {/* PRODUCT GRID */}
           <main className="lg:col-span-3">
             {/* Sort Bar */}
-            <div className="hidden lg:flex justify-between items-center mb-6">
-              <h2 className="text-xl font-semibold"></h2>
-              <label>
-                <span className="font-medium mr-5">sort by:</span>
-                <select className="border rounded-lg px-1 py-1 text-sm">
-                  <option value="default">Default</option>
-                  <option value="latest">Latest</option>
-                  <option value="low-high">Price: Low to High</option>
-                  <option value="high-low">Price: High to Low</option>
-                  <option value="best-selling">Best Selling</option>
-                </select>
-              </label>
-            </div>
+            <Sort />
 
             {/* Grid */}
             <div className="grid gap-y-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
@@ -108,7 +106,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
                 <ProductCard key={idx} item={product} />
               ))}
             </div>
-            <Pagination total={products?.meta?.total || 0} limit={limit} />
+            <Pagination total={products?.meta?.total || 0} limit={limitNum} />
           </main>
         </div>
       </div>
