@@ -2,8 +2,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
+import { ICategory } from "@/types/category";
 
-const MobileDrawer = ({ isDrawerOpen, setDrawerOpen, categories }) => {
+type IProps = {
+  categories: ICategory[];
+  isDrawerOpen: boolean;
+  setDrawerOpen: ((open: boolean) => void) 
+};
+
+const MobileDrawer = ({ isDrawerOpen, setDrawerOpen, categories }:IProps) => {
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [openSubCategory, setOpenSubCategory] = useState<string | null>(null);
 
