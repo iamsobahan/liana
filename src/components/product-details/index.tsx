@@ -21,6 +21,7 @@ type Props = {
 export default function ProductInfo({ product }: Props) {
   const dispatch = useAppDispatch();
   const [selectedSize, setSelectedSize] = useState<string>("");
+  const [sizeId, setSizeId] = useState<string>("");
   const [selectedBox, setSelectedBox] = useState<string>(
     product?.box?.id || ""
   );
@@ -54,6 +55,7 @@ export default function ProductInfo({ product }: Props) {
       image: product.thumbnail,
       size: selectedSize || null,
       box: selectedBox || null,
+      sizeId: sizeId || null,
     };
     dispatch(addToCart(item));
     setIsModalOpen(true);
@@ -161,35 +163,37 @@ export default function ProductInfo({ product }: Props) {
         </div>
 
         {/* Step 1: Show Boxes if With Box */}
-        <div className="mt-5 sm:mt-6">
-          <h3 className="text-sm font-semibold text-gray-600">
-            {product.boxTitle ?? "Select Box"}
-          </h3>
-          <div className="flex flex-wrap gap-2 mt-2">
-            <button
-              onClick={() => {
-                setSelectedBox(product.box.id);
-              }}
-              className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
-                selectedBox
-                  ? "bg-black text-white border-black"
-                  : "bg-white text-gray-700 border-gray-300 hover:border-black"
-              }`}
-            >
-              with Box
-            </button>
-            <button
-              onClick={() => setSelectedBox("")}
-              className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
-                !selectedBox
-                  ? "bg-black text-white border-black"
-                  : "bg-white text-gray-700 border-gray-300 hover:border-black"
-              }`}
-            >
-              without Box
-            </button>
+        {product.box && product.box._id && (
+          <div className="mt-5 sm:mt-6">
+            <h3 className="text-sm font-semibold text-gray-600">
+              {product.boxTitle ?? "Select Box"}
+            </h3>
+            <div className="flex flex-wrap gap-2 mt-2">
+              <button
+                onClick={() => {
+                  setSelectedBox(product.box.id);
+                }}
+                className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
+                  selectedBox
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-gray-700 border-gray-300 hover:border-black"
+                }`}
+              >
+                with Box
+              </button>
+              <button
+                onClick={() => setSelectedBox("")}
+                className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
+                  !selectedBox
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-gray-700 border-gray-300 hover:border-black"
+                }`}
+              >
+                without Box
+              </button>
+            </div>
           </div>
-        </div>
+        )}
 
         {/*step2: Sizes */}
         {(product?.sizes?.length ?? 0) > 0 && (
@@ -203,6 +207,7 @@ export default function ProductInfo({ product }: Props) {
                   key={size.name}
                   onClick={() => {
                     setSelectedSize(size.name);
+                    setSizeId(size._id);
                     setIsSelectError(false);
                   }}
                   className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
