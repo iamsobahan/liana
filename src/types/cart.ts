@@ -7,5 +7,6 @@ export interface ICartItem {
   regularPrice: number;
   productAttribute?: string;
   size?: string | null;
+  sizeId?: string | null;
   box?: string | null;
 }
