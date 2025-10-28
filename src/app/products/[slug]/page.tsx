@@ -12,7 +12,10 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 export async function generateStaticParams() {
-  const products = await fetchAllProducts(1, 20);
+  const products = await fetchAllProducts({
+    page: 1,
+    limit: 50,
+  });
 
   return products.data.map((product) => ({
     slug: product.slug,
