@@ -16,12 +16,14 @@ import config from "@/config";
 import { removeFromCart } from "@/redux/features/cart/cartSlice";
 import { ICartItem } from "@/types/cart";
 import MobileDrawer from "../drawer/mobileDrower";
+import { useRouter } from "next/navigation";
 
 type IProps = {
   categories: ICategory[];
 };
 
 const Header = ({ categories }: IProps) => {
+  const router = useRouter();
   const { cart: cartItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -40,6 +42,14 @@ const Header = ({ categories }: IProps) => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Implement search functionality here
+    const formData = new FormData(e.currentTarget);
+    const searchTerm = formData.get("search") as string;
+    router.push(`/search/${searchTerm}`);
+  };
 
   return (
     <div className="w-full bg-gray-100 text-gray-800">
@@ -94,8 +104,13 @@ const Header = ({ categories }: IProps) => {
 
               {/* Search */}
               <div className="hidden md:block w-[600px] bg-white px-4 py-3">
-                <form action="" className="relative w-full">
+                <form
+                  action=""
+                  className="relative w-full"
+                  onSubmit={handleSearchSubmit}
+                >
                   <input
+                    name="search"
                     type="text"
                     placeholder="Search your products"
                     className="w-full pl-4 pr-10 py-2 md:py-2 border border-gray-400 rounded-3xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
