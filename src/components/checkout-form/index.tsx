@@ -48,6 +48,8 @@ const CheckoutForm = () => {
         product: item.productId,
         price: item.price,
         quantity: item.quantity,
+        size: item.size,
+        box: item.box,
       })),
       shippingInfo: {
         name: data.receiverName,
