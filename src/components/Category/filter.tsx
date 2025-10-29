@@ -102,7 +102,7 @@ const CategoryFilter = ({ categories }: IProps) => {
     <>
       {/* FILTER ICON for Mobile */}
       <div className="md:mx-0 lg:hidden">
-        <div className="flex justify-between items-center shadow-sm p-3 bg-white">
+        <div className="flex justify-between items-center shadow-sm p-2 bg-white">
           <select
             className="border rounded-md p-1 text-xs"
             onChange={handleSortChange}
