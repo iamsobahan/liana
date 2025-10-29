@@ -149,7 +149,7 @@ export default function ProductInfo({ product }: Props) {
 
         {/* Price */}
         <div className="mt-3 sm:mt-4 flex items-center gap-3">
-          <h3>Price:</h3>
+          <h3 className="text-black">Price:</h3>
           <span className="text-gray-400 line-through text-base sm:text-lg">
             ৳{product.regularPrice}
           </span>
