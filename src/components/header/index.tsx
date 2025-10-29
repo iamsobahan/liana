@@ -45,7 +45,6 @@ const Header = ({ categories }: IProps) => {
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Implement search functionality here
     const formData = new FormData(e.currentTarget);
     const searchTerm = formData.get("search") as string;
     if (searchTerm) {
