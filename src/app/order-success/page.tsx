@@ -1,18 +1,15 @@
-
-'use client';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react';
+"use client";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
 
 export default function page() {
- 
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-green-100 flex items-center justify-center">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className="bg-white shadow-xl rounded-xl max-w-xl w-full p-6 sm:p-5 text-center"
       >
         {/* Icon */}
@@ -22,7 +19,7 @@ export default function page() {
 
         {/* Title */}
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-          Payment Successful
+          Order Submitted Successfully
         </h1>
 
         {/* Subtitle */}
@@ -32,7 +29,7 @@ export default function page() {
         </p>
 
         {/* Order summary mockup */}
-        <div className="bg-gray-50 rounded-xl p-4 sm:p-6 mb-6 text-left shadow-inner">
+        {/* <div className="bg-gray-50 rounded-xl p-4 sm:p-6 mb-6 text-left shadow-inner">
           <h2 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">
             Order Summary
           </h2>
@@ -49,12 +46,15 @@ export default function page() {
             <span>Total</span>
             <span>$104.00</span>
           </div>
-        </div>
+        </div> */}
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center" style={{alignItems: 'center'}}>
+        <div
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
+          style={{ alignItems: "center" }}
+        >
           <Link
-            href="/orders"
+            href="/"
             className="w-full sm:w-auto bg-gray-800 hover:bg-gray-900 text-white px-6 py-3 rounded-lg text-sm sm:text-base font-semibold shadow-md transition"
           >
             View Orders

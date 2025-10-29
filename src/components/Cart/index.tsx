@@ -27,10 +27,10 @@ export default function Cart() {
   return (
     <>
       {/* ✅ Floating Cart Button */}
-      <div className="fixed top-1/3 right-0 z-50">
+      <div className="fixed top-1/3 right-0 z-50 w-12">
         <button
           onClick={() => setIsOpen(true)}
-          className="flex flex-col items-center  cursor-pointer overflow-hidden  shadow-2xl bg-[#46351F] hover:scale-105 transition duration-300  pt-[2px] md:pt-1"
+          className="flex flex-col items-center  cursor-pointer overflow-hidden  shadow-2xl bg-[#46351F] hover:scale-105 transition duration-300  pt-[2px] md:pt-1 w-full"
         >
           <BiSolidShoppingBags className="h-3 w-3 md:h-5 md:w-5 text-[#EBA659]" />
           <span className="text-xs font-medium md:font-semibold text-[#EBA659] mt-0 md:mt-1">
@@ -64,11 +64,11 @@ export default function Cart() {
               initial={{ x: 400 }}
               animate={{ x: 0 }}
               exit={{ x: 400 }}
-              transition={{ type: 'tween', duration: 0.35 }}
+              transition={{ type: "tween", duration: 0.35 }}
             >
               <div className="flex justify-between items-center mb-6">
                 <h2 className="flex items-center text-xl font-bold text-gray-800">
-                  <BiSolidShoppingBags size={30} />{' '}
+                  <BiSolidShoppingBags size={30} />{" "}
                   <span className="ml-3">My Cart</span>
                 </h2>
                 <button
@@ -101,7 +101,8 @@ export default function Cart() {
                       {/* Product Info */}
                       <div className="flex flex-col">
                         <p className="text-sm  font-semibold text-gray-800 whitespace-nowrap w-40 overflow-hidden text-ellipsis">
-                          {item.title}
+                          {item.title} {item.size && ` - ${item.size}`}{" "}
+                          {item.box && ` - With Box`}
                         </p>
                         <p className="text-xs sm:text-sm text-gray-500">
                           Qty: {item.quantity}

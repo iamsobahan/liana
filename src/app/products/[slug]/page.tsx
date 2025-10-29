@@ -12,7 +12,10 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 export async function generateStaticParams() {
-  const products = await fetchAllProducts(1, 20);
+  const products = await fetchAllProducts({
+    page: 1,
+    limit: 50,
+  });
 
   return products.data.map((product) => ({
     slug: product.slug,
@@ -45,7 +48,11 @@ const ProductDetails = async ({ params }: Props) => {
   return (
     <div className="container mx-auto px-3 sm:px-6 py-6 sm:py-10">
       <ProductInfo product={product.data.product} />
-      <DetailsTabs description={product.data.product.description} />
+      <DetailsTabs
+        description={product.data.product.description}
+        policy={product.data.product.policy}
+        sizeGuide={product.data.product.sizeGuide}
+      />
       <Feature
         feature={product.data.relatedProducts}
         title="Similar Products"

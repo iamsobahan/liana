@@ -12,9 +12,15 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   item: IProduct;
+  price?: number;
 }
 
-export default function AddToCartModal({ isOpen, onClose, item }: ModalProps) {
+export default function AddToCartModal({
+  isOpen,
+  onClose,
+  item,
+  price,
+}: ModalProps) {
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const safeAreaRef = useRef<HTMLDivElement | null>(null);
 
@@ -90,7 +96,7 @@ export default function AddToCartModal({ isOpen, onClose, item }: ModalProps) {
             <p className="text-sm text-gray-600 mt-1">
               Price:
               <span className="text-lg font-bold ml-3 text-gray-800">
-                ৳{item.salePrice}
+                ৳{price}
               </span>
             </p>
           </div>
@@ -99,13 +105,13 @@ export default function AddToCartModal({ isOpen, onClose, item }: ModalProps) {
         {/* Actions */}
         <div className="flex items-center justify-between px-2 md:px-6 gap-2 py-2 md:py-4">
           <Link
-            href={'/'}
+            href={"/"}
             className="flex-1 text-center border border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white transition rounded-md py-1 md:py-2 px-1 md:px-0 font-medium whitespace-nowrap"
           >
             Back to Shopping
           </Link>
           <Link
-            href={'/checkout'}
+            href={"/checkout"}
             className="flex-1 bg-gray-800 border border-gray-800 hover:bg-gray-900 text-white transition rounded-md py-1 md:py-2 px-1 md:px-0 font-medium text-center whitespace-nowrap"
           >
             Proceed to Checkout

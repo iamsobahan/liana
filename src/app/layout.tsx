@@ -4,7 +4,7 @@ import "./globals.css";
 import { Rajdhani, Raleway } from "next/font/google";
 import Header from "@/components/header";
 import FooterPage from "@/components/Footer/page";
-import MobileBottomNav from "@/components/Tab/page";
+import MobileBottomNav from "@/components/Tab";
 import ReduxProvider from "@/redux/provider";
 import ToasterProvider from "@/toast";
 import { getAllCategories } from "@/lib/data/category";

@@ -11,9 +11,9 @@ const FeaturePage = dynamic(() => import("@/components/Feature"), {
   ssr: true,
 });
 
-const SocialBar = dynamic(() => import("@/components/SocialBar/page"), {
-  ssr: true,
-});
+// const SocialBar = dynamic(() => import("@/components/SocialBar/page"), {
+//   ssr: true,
+// });
 
 import Cart from "@/components/Cart";
 import { fetchHomeProducts } from "@/lib/data/prodcuts";

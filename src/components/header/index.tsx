@@ -13,15 +13,17 @@ import logo from "../../assets/logo.png";
 import { ICategory } from "@/types/category";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import config from "@/config";
-import { IProduct } from "@/types/product";
 import { removeFromCart } from "@/redux/features/cart/cartSlice";
 import { ICartItem } from "@/types/cart";
+import MobileDrawer from "../drawer/mobileDrower";
+import { useRouter } from "next/navigation";
 
 type IProps = {
   categories: ICategory[];
 };
 
 const Header = ({ categories }: IProps) => {
+  const router = useRouter();
   const { cart: cartItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -40,6 +42,14 @@ const Header = ({ categories }: IProps) => {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Implement search functionality here
+    const formData = new FormData(e.currentTarget);
+    const searchTerm = formData.get("search") as string;
+    router.push(`/search/${searchTerm}`);
+  };
 
   return (
     <div className="w-full bg-gray-100 text-gray-800">
@@ -77,8 +87,8 @@ const Header = ({ categories }: IProps) => {
           <div
             className={`bg-white py-1.5 md:py-0 border-b border-gray-300  ${
               isSticky
-                ? 'fixed top-0 shadow-lg w-full z-40 transition-all duration-300'
-                : 'relative'
+                ? "fixed top-0 shadow-lg w-full z-40 transition-all duration-300"
+                : "relative"
             }`}
           >
             <div className="md:container px-4 mx-auto flex justify-between items-center">
@@ -94,8 +104,13 @@ const Header = ({ categories }: IProps) => {
 
               {/* Search */}
               <div className="hidden md:block w-[600px] bg-white px-4 py-3">
-                <form action="" className="relative w-full">
+                <form
+                  action=""
+                  className="relative w-full"
+                  onSubmit={handleSearchSubmit}
+                >
                   <input
+                    name="search"
                     type="text"
                     placeholder="Search your products"
                     className="w-full pl-4 pr-10 py-2 md:py-2 border border-gray-400 rounded-3xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#D6A74E] placeholder-gray-500 text-gray-900"
@@ -151,13 +166,14 @@ const Header = ({ categories }: IProps) => {
                             </div>
                             <div className="text-sm cursor-pointer">
                               <h2 className="font-semibold text-base leading-5">
-                                {item.title}
+                                {item.title} {item.size && ` - ${item.size}`}{" "}
+                                {item.box && ` - With Box`}
                               </h2>
                               <p className="text-xs text-gray-600">
                                 {item.price}TK
                               </p>
                               <p className="text-sm mt-1">
-                                {item.quantity} x{' '}
+                                {item.quantity} x{" "}
                                 <span className="font-semibold">
                                   Tk {item.price}
                                 </span>
@@ -248,7 +264,7 @@ const Header = ({ categories }: IProps) => {
             >
               <Link href={`/categories/${cat.slug}`}>
                 <span className="inline-flex items-center cursor-pointer">
-                  {cat.name}{' '}
+                  {cat.name}{" "}
                   {!!cat.children.length && <IoIosArrowDown className="ml-1" />}
                 </span>
               </Link>
@@ -296,53 +312,11 @@ const Header = ({ categories }: IProps) => {
       </nav>
 
       {/* Mobile Drawer */}
-      <div
-        className={`sm:hidden fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-linear ${
-          isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <button
-          className="text-gray-800 text-right w-full p-4 text-lg"
-          onClick={() => setDrawerOpen(false)}
-        >
-          ✕ Close
-        </button>
-
-        <ul className="flex flex-col gap-4 px-4 text-lg uppercase font-medium overflow-y-auto h-[calc(100vh-250px)]">
-          <li className="hover:text-[#D6A74E]">
-            <Link href="/">HOME</Link>
-          </li>
-          {categories?.map((cat, key) => (
-            <li key={key} className="hover:text-[#D6A74E]">
-              <details>
-                <summary className="hover:text-[#D6A74E] cursor-pointer">
-                  <Link href={`/categories/${cat.slug}`}>{cat.name}</Link>
-                </summary>
-                <ul className="pl-6 text-base">
-                  {cat.children.map((subCat, key) => (
-                    <li key={key}>
-                      <details>
-                        <summary className="hover:text-[#D6A74E] cursor-pointer">
-                          {subCat.name}
-                        </summary>
-                        <ul className="pl-6 text-base">
-                          {subCat.children.map((subSubCat, key) => (
-                            <li key={key} className="py-1">
-                              <Link href={`/categories/${subSubCat.slug}`}>
-                                {subSubCat.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </details>
-                    </li>
-                  ))}
-                </ul>
-              </details>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <MobileDrawer
+        isDrawerOpen={isDrawerOpen}
+        setDrawerOpen={setDrawerOpen}
+        categories={categories}
+      />
     </div>
   );
 };

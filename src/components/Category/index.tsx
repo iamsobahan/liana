@@ -63,9 +63,15 @@ const settings = {
 type IProps = {
   categories: ICategory[];
 };
+function flattenCategories(categories: ICategory[]): ICategory[] {
+  return categories.flatMap((cat) => [
+    cat,
+    ...flattenCategories(cat.children || []),
+  ]);
+}
 const CategoryPage: React.FC<IProps> = ({ categories }) => {
   const sliderRef = useRef<Slider>(null);
-
+  const allCategories = flattenCategories(categories);
   return (
     <div className="container mx-auto my-2 md:my-10 px-4">
       <div className="text-center mb-3 md:mb-10">
@@ -77,7 +83,7 @@ const CategoryPage: React.FC<IProps> = ({ categories }) => {
       <div className="relative">
         {/* Slider */}
         <Slider ref={sliderRef} {...settings}>
-          {categories.map((cat, index) => (
+          {allCategories.map((cat, index) => (
             <div key={index} className="px-2">
               <div className="relative rounded-lg overflow-hidden cursor-pointer">
                 <Link href={`/categories/${cat.slug}`}>

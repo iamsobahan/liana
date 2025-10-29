@@ -1,13 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FaWhatsapp } from "react-icons/fa";
 import React from "react";
 import Link from "next/link";
-interface SizeOption {
-  label: string;
-  value: string;
-}
 
 import { IProduct } from "@/types/product";
 import config from "@/config";
@@ -24,11 +20,15 @@ type Props = {
 
 export default function ProductInfo({ product }: Props) {
   const dispatch = useAppDispatch();
-  const [isWithBox, setIsWithBox] = useState<boolean | null>(false);
   const [selectedSize, setSelectedSize] = useState<string>("");
-  const [selectedBox, setSelectedBox] = useState<string>("");
+  const [sizeId, setSizeId] = useState<string>("");
+  const [selectedBox, setSelectedBox] = useState<string>(
+    product?.box?.id || ""
+  );
   const [quantity, setQuantity] = useState<number>(1);
+  const [isSelectError, setIsSelectError] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [price, setPrice] = useState<number>(product.salePrice);
   const [selectedImage, setSelectedImage] = useState<string>(
     `${config.API_URL}/images/products/${product.galleryImages[0]}`
   );
@@ -42,30 +42,51 @@ export default function ProductInfo({ product }: Props) {
     });
   };
   const handleAddToCart = () => {
+    if (product.sizes && product.sizes.length > 0 && !selectedSize) {
+      setIsSelectError(true);
+      return;
+    }
     const item: ICartItem = {
       productId: product.id,
       title: product.name,
-      price: product.salePrice,
+      price: price,
       regularPrice: product.regularPrice,
       quantity,
-      image: product.galleryImages[0],
+      image: product.thumbnail,
+      size: selectedSize || null,
+      box: selectedBox || null,
+      sizeId: sizeId || null,
     };
     dispatch(addToCart(item));
     setIsModalOpen(true);
   };
 
   const handleBuyNow = () => {
+    if (product.sizes && product.sizes.length > 0 && !selectedSize) {
+      setIsSelectError(true);
+      return;
+    }
     const item: ICartItem = {
       productId: product.id,
       title: product.name,
-      price: product.salePrice,
+      price: price,
       regularPrice: product.regularPrice,
       quantity,
-      image: product.galleryImages[0],
+      image: product.thumbnail,
+      size: selectedSize || null,
+      box: selectedBox || null,
     };
     dispatch(addToCart(item));
     router.push("/checkout");
   };
+
+  useEffect(() => {
+    let finalPrice = product.salePrice;
+    if (selectedBox) {
+      finalPrice += product.box.sellingPrice;
+    }
+    setPrice(finalPrice);
+  }, [selectedBox, product]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
@@ -73,6 +94,7 @@ export default function ProductInfo({ product }: Props) {
         item={product}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        price={price}
       />
       {/* LEFT: IMAGE + GALLERY */}
       <div>
@@ -132,7 +154,7 @@ export default function ProductInfo({ product }: Props) {
             ৳{product.regularPrice}
           </span>
           <span className="text-2xl sm:text-3xl font-bold text-green-600">
-            ৳{product.salePrice}
+            ৳{price}
           </span>
         </div>
         {/* Short Description */}
@@ -140,83 +162,71 @@ export default function ProductInfo({ product }: Props) {
           {product.shortDescription}
         </div>
 
-        {/* Step 1: With Box or Without Box */}
-        <div className="mt-5 sm:mt-6">
-          <h3 className="text-sm font-semibold text-gray-600">
-            Choose Option:
-          </h3>
-          <div className="flex gap-4 mt-2">
-            <button
-              onClick={() => {
-                setIsWithBox(true);
-                setSelectedBox("");
-              }}
-              className={`px-4 py-2 border rounded-md font-semibold text-sm ${
-                isWithBox === true
-                  ? "bg-black text-white border-black"
-                  : "bg-white text-gray-700 border-gray-300 hover:border-black"
-              }`}
-            >
-              With Box
-            </button>
-
-            <button
-              onClick={() => {
-                setIsWithBox(false);
-                setSelectedSize("");
-              }}
-              className={`px-4 py-2 border rounded-md font-semibold text-sm ${
-                isWithBox === false
-                  ? "bg-black text-white border-black"
-                  : "bg-white text-gray-700 border-gray-300 hover:border-black"
-              }`}
-            >
-              Without Box
-            </button>
-          </div>
-        </div>
-
-        {/* Step 2: Show Boxes if With Box */}
-        {isWithBox && product && product?.boxs?.length > 0 && (
+        {/* Step 1: Show Boxes if With Box */}
+        {product.box && product.box._id && (
           <div className="mt-5 sm:mt-6">
-            <h3 className="text-sm font-semibold text-gray-600">Select Box:</h3>
+            <h3 className="text-sm font-semibold text-gray-600">
+              {product.boxTitle ?? "Select Box"}
+            </h3>
             <div className="flex flex-wrap gap-2 mt-2">
-              {product.boxs.map((box) => (
+              <button
+                onClick={() => {
+                  setSelectedBox(product.box.id);
+                }}
+                className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
+                  selectedBox
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-gray-700 border-gray-300 hover:border-black"
+                }`}
+              >
+                with Box
+              </button>
+              <button
+                onClick={() => setSelectedBox("")}
+                className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
+                  !selectedBox
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-gray-700 border-gray-300 hover:border-black"
+                }`}
+              >
+                without Box
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/*step2: Sizes */}
+        {(product?.sizes?.length ?? 0) > 0 && (
+          <div className="mt-5 sm:mt-6">
+            <h3 className="text-sm font-semibold text-gray-600">
+              {product.sizeTitle ?? "Select Size :"}
+            </h3>
+            <div className="flex flex-wrap gap-2 mt-2">
+              {product?.sizes?.map((size) => (
                 <button
-                  key={box.id}
-                  onClick={() => setSelectedBox(box.id)}
-                  className={`px-4 py-2 border rounded-md font-semibold text-sm ${
-                    selectedBox === box.id
+                  key={size.name}
+                  onClick={() => {
+                    setSelectedSize(size.name);
+                    setSizeId(size._id);
+                    setIsSelectError(false);
+                  }}
+                  className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
+                    selectedSize === size.name
                       ? "bg-black text-white border-black"
                       : "bg-white text-gray-700 border-gray-300 hover:border-black"
                   }`}
                 >
-                  {box?.box ? `${box.box.name}` : "Box"}
+                  {size.name}
                 </button>
               ))}
             </div>
           </div>
         )}
-
-        {/* Sizes */}
-        <div className="mt-5 sm:mt-6">
-          <h3 className="text-sm font-semibold text-gray-600">Select Size:</h3>
-          <div className="flex flex-wrap gap-2 mt-2">
-            {product?.size?.map((size) => (
-              <button
-                key={size.id}
-                onClick={() => setSelectedSize(size.name)}
-                className={`px-4 py-2 border rounded-md font-semibold text-sm transition-all ${
-                  selectedSize === size.name
-                    ? "bg-black text-white border-black"
-                    : "bg-white text-gray-700 border-gray-300 hover:border-black"
-                }`}
-              >
-                {size.name}
-              </button>
-            ))}
-          </div>
-        </div>
+        {isSelectError && (
+          <p className="text-red-500 text-sm mt-2">
+            Please select a size before adding to cart.
+          </p>
+        )}
 
         {/* Quantity + Actions */}
         <div className="mt-5 sm:mt-6 flex flex-wrap items-center gap-3">
@@ -257,19 +267,6 @@ export default function ProductInfo({ product }: Props) {
             </button>
           </Link>
         </div>
-
-        {/* Specs */}
-        {/*  <div className="mt-5 sm:mt-6 text-sm text-gray-700 space-y-1">
-          <p>
-            <strong>Fabric type:</strong> Double PK
-          </p>
-          <p>
-            <strong>Composition:</strong> 80% cotton + 20% polyester
-          </p>
-          <p>
-            <strong>GSM:</strong> 210-220
-          </p>
-        </div> */}
       </div>
     </div>
   );
