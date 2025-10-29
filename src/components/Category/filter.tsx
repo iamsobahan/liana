@@ -6,7 +6,11 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { ICategory } from "@/types/category";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-const CategoryFilter = ({ categories = [] }) => {
+interface IProps {
+  categories: ICategory[];
+}
+
+const CategoryFilter = ({ categories }: IProps) => {
   const [showFilter, setShowFilter] = useState(false);
 
   const router = useRouter();

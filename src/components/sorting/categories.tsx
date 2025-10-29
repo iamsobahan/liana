@@ -1,12 +1,13 @@
 import { ICategory } from "@/types/category";
 import React from "react";
-import { ChevronRight, ChevronDown } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { FC } from "react";
 interface IProps {
   categories: ICategory[];
 }
 const CategoryFilterSidebar: FC<IProps> = ({ categories }) => {
-  const renderCategory = (category, level = 0) => (
+  const renderCategory = (category: ICategory, level = 0) => (
     <details
       key={category._id}
       className="group"
