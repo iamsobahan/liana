@@ -14,7 +14,12 @@ import Sort from "@/components/sorting/sort";
 // Correct Props type
 type Props = {
   params: Promise<{ slug: string }>;
-  searchParams?: Promise<{ page?: string; limit?: string }>;
+  searchParams?: Promise<{
+    page?: string;
+    limit?: string;
+    sortBy?: string;
+    sortOrder?: string;
+  }>;
 };
 
 // ------------------ Generate Static Params ------------------
