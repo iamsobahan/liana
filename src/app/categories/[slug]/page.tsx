@@ -1,9 +1,9 @@
 import CategoryFilter from "@/components/Category/filter";
 import { fetchProductsByCategory } from "@/lib/data/prodcuts";
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, ChevronDown } from "lucide-react";
 import ProductCard from "@/components/card";
 import { FilterContent } from "@/components/Category/content";
-import { getAllCategoriesData, getSingleCategory } from "@/lib/data/category";
+import { getAllCategories, getAllCategoriesData, getSingleCategory } from "@/lib/data/category";
 import config from "@/config";
 import React from "react";
 import { Metadata } from "next";
@@ -92,9 +92,10 @@ export default async function ShopPage({ params, searchParams }: Props) {
   }
 
 
-  const category = await getAllCategoriesData();
-  
+  const allCategories = await getAllCategories();
+  console.log(allCategories)
 
+  
   return (
     <div className="bg-gray-50">
       <div className="container mx-auto py-2 md:py-4 text-gray-800">
@@ -106,21 +107,56 @@ export default async function ShopPage({ params, searchParams }: Props) {
                 Categories
               </div>
 
-              <div className="divide-y-gray-200">
-                {category?.data?.map((cat) => (
-                  <button
-                    key={cat._id}
-                    className="flex items-center justify-between w-full text-left p-3 cursor-pointer hover:bg-yellow-100 transition"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="flex flex-col text-sm">
+              <div className="divide-y divide-gray-200">
+                {allCategories?.data?.map((cat) => (
+                  <details key={cat._id} className="group">
+                    <summary className="flex items-center justify-between w-full text-left p-3 cursor-pointer hover:bg-yellow-100 transition">
+                      <div className="flex items-center gap-3">
                         <span className="font-semibold text-gray-800">
                           {cat.name}
                         </span>
                       </div>
-                    </div>
-                    <ChevronRight size={18} className="text-gray-500" />
-                  </button>
+
+                      {cat.children?.length > 0 ? (
+                        <ChevronRight
+                          size={18}
+                          className="text-gray-500 group-open:rotate-90 transition-transform duration-200"
+                        />
+                      ) : (
+                        <ChevronRight size={18} className="opacity-30" />
+                      )}
+                    </summary>
+
+                    {/* Collapsible child items */}
+                    {cat.children?.length > 0 && (
+                      <div className="bg-gray-50 pl-12 pr-4 py-2 animate-fadeIn">
+                        {cat.children.map((child) => (
+                          <summary key={child._id} className="flex items-center justify-between w-full text-left p-3 cursor-pointer hover:bg-yellow-100 transition">
+                            <div className="flex items-center gap-3">
+                              <span className="font-semibold text-gray-800">
+                                {
+                                child.name}
+                              </span>
+                            </div>
+
+                            {child.children?.length > 0 ? (
+                              <ChevronRight
+                                size={18}
+                                className="text-gray-500 group-open:rotate-90 transition-transform duration-200"
+                              />
+                            ) : (
+                              <ChevronRight size={18} className="opacity-30" />
+                            )}
+                          </summary>
+                            
+                            
+                            
+                 
+                          
+                        ))}
+                      </div>
+                    )}
+                  </details>
                 ))}
               </div>
 
@@ -129,6 +165,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
               </button>
             </div>
           </aside>
+
           <Cart />
           <CategoryFilter />
 
