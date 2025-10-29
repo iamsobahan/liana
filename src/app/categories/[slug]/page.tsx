@@ -1,5 +1,6 @@
 import CategoryFilter from "@/components/Category/filter";
 import { fetchProductsByCategory } from "@/lib/data/prodcuts";
+import { ChevronRight } from 'lucide-react';
 import ProductCard from "@/components/card";
 import { FilterContent } from "@/components/Category/content";
 import { getAllCategoriesData, getSingleCategory } from "@/lib/data/category";
@@ -18,7 +19,8 @@ type Props = {
 
 // ------------------ Generate Static Params ------------------
 export async function generateStaticParams() {
-  const categories = await getAllCategoriesData();
+    const categories = await getAllCategoriesData();
+  
 
   return categories.data.map((category) => ({
     slug: category.slug,
@@ -74,13 +76,43 @@ export default async function ShopPage({ params, searchParams }: Props) {
     );
   }
 
+
+  const category = await getAllCategoriesData();
+  
+
   return (
     <div className="bg-gray-50">
-      <div className="container mx-auto py-2 md:py-8 text-gray-800">
+      <div className="container mx-auto py-2 md:py-4 text-gray-800">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* FILTER SIDEBAR (desktop) */}
-          <aside className="hidden lg:block bg-white shadow-md rounded-xl p-5 h-fit">
-            <FilterContent />
+          <aside className="hidden lg:block bg-white shadow-md rounded-xl h-fit">
+            <div className=" bg-white rounded-lg  shadow-sm">
+              <div className="bg-yellow-500 text-white font-semibold text-lg p-3 rounded-t-lg">
+                Categories
+              </div>
+
+              <div className="divide-y-gray-200">
+                {category?.data?.map((cat) => (
+                  <button
+                    key={cat._id}
+                    className="flex items-center justify-between w-full text-left p-3 cursor-pointer hover:bg-yellow-100 transition"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="flex flex-col text-sm">
+                        <span className="font-semibold text-gray-800">
+                          {cat.name}
+                        </span>
+                      </div>
+                    </div>
+                    <ChevronRight size={18} className="text-gray-500" />
+                  </button>
+                ))}
+              </div>
+
+              <button className="w-full py-2 text-md text-yellow-600 cursor-pointer  font-medium hover:underline">
+                Clear All Filters
+              </button>
+            </div>
           </aside>
           <Cart />
           <CategoryFilter />
