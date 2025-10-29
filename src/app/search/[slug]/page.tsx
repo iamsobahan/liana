@@ -8,7 +8,12 @@ import { fetchAllProducts } from "@/lib/data/prodcuts";
 // Correct Props type
 type Props = {
   params: Promise<{ slug: string }>;
-  searchParams?: Promise<{ page?: string; limit?: string }>;
+  searchParams?: Promise<{
+    page?: string;
+    limit?: string;
+    sortBy?: string;
+    sortOrder?: string;
+  }>;
 };
 
 export default async function SearchPage({ params, searchParams }: Props) {
