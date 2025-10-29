@@ -1,9 +1,10 @@
 import ProductCard from "@/components/card";
 import Cart from "@/components/Cart";
-import { FilterContent } from "@/components/Category/content";
 import CategoryFilter from "@/components/Category/filter";
 import Pagination from "@/components/pagination";
+import CategoryFilterSidebar from "@/components/sorting/categories";
 import Sort from "@/components/sorting/sort";
+import { getAllCategories } from "@/lib/data/category";
 import { fetchAllProducts } from "@/lib/data/prodcuts";
 // Correct Props type
 type Props = {
@@ -34,16 +35,16 @@ export default async function SearchPage({ params, searchParams }: Props) {
     sortOrder: sortOrder,
   });
 
+  const allCategories = await getAllCategories();
+
   return (
     <div className="bg-gray-50">
       <div className="container mx-auto py-2 md:py-8 text-gray-800">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* FILTER SIDEBAR (desktop) */}
-          <aside className="hidden lg:block bg-white shadow-md rounded-xl p-5 h-fit">
-            <FilterContent />
-          </aside>
+          <CategoryFilterSidebar categories={allCategories.data} />
           <Cart />
-          <CategoryFilter />
+          <CategoryFilter categories={allCategories.data} />
 
           {/* PRODUCT GRID */}
           <main className="lg:col-span-3">

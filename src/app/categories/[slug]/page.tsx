@@ -1,9 +1,11 @@
 import CategoryFilter from "@/components/Category/filter";
 import { fetchProductsByCategory } from "@/lib/data/prodcuts";
-import { ChevronRight, ChevronDown } from "lucide-react";
 import ProductCard from "@/components/card";
-import { FilterContent } from "@/components/Category/content";
-import { getAllCategories, getAllCategoriesData, getSingleCategory } from "@/lib/data/category";
+import {
+  getAllCategories,
+  getAllCategoriesData,
+  getSingleCategory,
+} from "@/lib/data/category";
 import config from "@/config";
 import React from "react";
 import { Metadata } from "next";
@@ -11,6 +13,7 @@ import Link from "next/link";
 import Cart from "@/components/Cart";
 import Pagination from "@/components/pagination";
 import Sort from "@/components/sorting/sort";
+import CategoryFilterSidebar from "@/components/sorting/categories";
 
 // Correct Props type
 type Props = {
@@ -23,10 +26,8 @@ type Props = {
   }>;
 };
 
-// ------------------ Generate Static Params ------------------
 export async function generateStaticParams() {
-    const categories = await getAllCategoriesData();
-  
+  const categories = await getAllCategoriesData();
 
   return categories.data.map((category) => ({
     slug: category.slug,
@@ -54,7 +55,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// ------------------ Page Component ------------------
 export default async function ShopPage({ params, searchParams }: Props) {
   const { slug } = await params;
   const pageNum = parseInt(((await searchParams)?.page as string) || "1", 10);
@@ -83,7 +83,7 @@ export default async function ShopPage({ params, searchParams }: Props) {
         </p>
         <Link
           href="/"
-          className="px-5 py-2 rounded bg-blue-600 text-white hover:bg-blue-500 transition"
+          className="px-5 py-2 rounded bg-yellow-500 text-white hover:bg-yellow-400S transition"
         >
           Back to Home Page
         </Link>
@@ -91,83 +91,16 @@ export default async function ShopPage({ params, searchParams }: Props) {
     );
   }
 
-
   const allCategories = await getAllCategories();
-  console.log(allCategories)
 
-  
   return (
     <div className="bg-gray-50">
       <div className="container mx-auto py-2 md:py-4 text-gray-800">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* FILTER SIDEBAR (desktop) */}
-          <aside className="hidden lg:block bg-white shadow-md rounded-xl h-fit">
-            <div className=" bg-white rounded-lg  shadow-sm">
-              <div className="bg-yellow-500 text-white font-semibold text-lg p-3 rounded-t-lg">
-                Categories
-              </div>
-
-              <div className="divide-y divide-gray-200">
-                {allCategories?.data?.map((cat) => (
-                  <details key={cat._id} className="group">
-                    <summary className="flex items-center justify-between w-full text-left p-3 cursor-pointer hover:bg-yellow-100 transition">
-                      <div className="flex items-center gap-3">
-                        <span className="font-semibold text-gray-800">
-                          {cat.name}
-                        </span>
-                      </div>
-
-                      {cat.children?.length > 0 ? (
-                        <ChevronRight
-                          size={18}
-                          className="text-gray-500 group-open:rotate-90 transition-transform duration-200"
-                        />
-                      ) : (
-                        <ChevronRight size={18} className="opacity-30" />
-                      )}
-                    </summary>
-
-                    {/* Collapsible child items */}
-                    {cat.children?.length > 0 && (
-                      <div className="bg-gray-50 pl-12 pr-4 py-2 animate-fadeIn">
-                        {cat.children.map((child) => (
-                          <summary key={child._id} className="flex items-center justify-between w-full text-left p-3 cursor-pointer hover:bg-yellow-100 transition">
-                            <div className="flex items-center gap-3">
-                              <span className="font-semibold text-gray-800">
-                                {
-                                child.name}
-                              </span>
-                            </div>
-
-                            {child.children?.length > 0 ? (
-                              <ChevronRight
-                                size={18}
-                                className="text-gray-500 group-open:rotate-90 transition-transform duration-200"
-                              />
-                            ) : (
-                              <ChevronRight size={18} className="opacity-30" />
-                            )}
-                          </summary>
-                            
-                            
-                            
-                 
-                          
-                        ))}
-                      </div>
-                    )}
-                  </details>
-                ))}
-              </div>
-
-              <button className="w-full py-2 text-md text-yellow-600 cursor-pointer  font-medium hover:underline">
-                Clear All Filters
-              </button>
-            </div>
-          </aside>
-
+          <CategoryFilterSidebar categories={allCategories.data} />
           <Cart />
-          <CategoryFilter />
+          <CategoryFilter categories={allCategories.data} />
 
           {/* PRODUCT GRID */}
           <main className="lg:col-span-3">
