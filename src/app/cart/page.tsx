@@ -51,7 +51,7 @@ export default function CartPage() {
           <label className="flex items-center gap-2 text-sm font-medium">
             <input
               type="checkbox"
-              className="w-5 h-5 appearance-none border-2 border-gray-400 rounded-sm checked:before:content-['✔'] checked:before:text-orange-500 checked:before:block checked:before:text-center checked:before:text-sm focus:outline-none cursor-pointer"
+              className="w-5 h-5 md:w-5 md:h-5 appearance-none border-2 border-gray-400 rounded-sm checked:before:content-['✔'] checked:before:text-orange-500 checked:before:block checked:before:text-center checked:before:text-sm focus:outline-none cursor-pointer"
             />
             SELECT ALL ( {cartCount} ITEM(S))
           </label>
@@ -74,10 +74,10 @@ export default function CartPage() {
             >
               {/* Left */}
               <div className="flex items-center  gap-4 w-full sm:w-auto">
-                <input
+                {/* <input
                   type="checkbox"
-                  className="w-8 h-5.5 md:w-5 md:h-5 appearance-none border-2 border-gray-400 rounded-sm checked:before:content-['✔'] checked:before:text-orange-500 checked:before:block checked:before:text-center checked:before:text-sm focus:outline-none cursor-pointer"
-                />
+                  className="w-4 h-4 md:w-5 md:h-5 appearance-none border-2 border-gray-400 rounded-sm  focus:outline-none cursor-pointer"
+                /> */}
 
                 <Image
                   src={`${config.API_URL}/images/products/${item.image}`}
