@@ -83,7 +83,7 @@ export default function ProductModal({
   useEffect(() => {
     let finalPrice = product.salePrice;
     if (selectedBox) {
-      finalPrice += product.box.sellingPrice;
+      finalPrice += product.box?.sellingPrice || 0;
     }
     setPrice(finalPrice);
   }, [selectedBox, product]);
