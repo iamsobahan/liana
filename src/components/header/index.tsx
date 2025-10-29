@@ -48,7 +48,11 @@ const Header = ({ categories }: IProps) => {
     // Implement search functionality here
     const formData = new FormData(e.currentTarget);
     const searchTerm = formData.get("search") as string;
-    router.push(`/search/${searchTerm}`);
+    if (searchTerm) {
+      router.push(`/search/${searchTerm}`);
+    } else {
+      router.push(`/`);
+    }
   };
 
   return (
