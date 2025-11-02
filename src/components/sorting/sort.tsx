@@ -14,11 +14,11 @@ const Sort = () => {
     switch (selectedSort) {
       case "low-high":
         params.set("sortOrder", "asc");
-        params.set("sortBy", "salePrice");
+        params.set("sortBy", "sellingPrice");
         break;
       case "high-low":
         params.set("sortOrder", "desc");
-        params.set("sortBy", "salePrice");
+        params.set("sortBy", "sellingPrice");
         break;
       case "latest":
         params.set("sortOrder", "desc");
@@ -45,9 +45,9 @@ const Sort = () => {
   const sortOrder = searchParams.get("sortOrder");
 
   const currentSort =
-    sortBy === "salePrice" && sortOrder === "asc"
+    sortBy === "sellingPrice" && sortOrder === "asc"
       ? "low-high"
-      : sortBy === "salePrice" && sortOrder === "desc"
+      : sortBy === "sellingPrice" && sortOrder === "desc"
       ? "high-low"
       : sortBy === "createdAt"
       ? "latest"
