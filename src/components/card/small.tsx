@@ -10,9 +10,9 @@ type IProps = {
   item: IProduct;
 };
 const SmallProductCard: FC<IProps> = ({ item }) => {
-  const [price, setPrice] = useState<number>(item.salePrice);
+  const [price, setPrice] = useState<number>(item.sellingPrice);
   useEffect(() => {
-    let finalPrice = item.salePrice;
+    let finalPrice = item.sellingPrice;
     if (item.box && item.box.sellingPrice) {
       finalPrice += item.box.sellingPrice;
     }

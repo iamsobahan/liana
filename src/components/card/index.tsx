@@ -17,7 +17,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
   const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState(false);
   const [showProductModal, setShowProductModal] = useState(false);
-  const [price, setPrice] = useState<number>(item?.salePrice || 0);
+  const [price, setPrice] = useState<number>(item?.sellingPrice || 0);
 
   const handleAddToCart = (data: IProduct) => {
     if (data.sizes && data.sizes?.length > 0) {
@@ -27,7 +27,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
         productId: data.id,
         title: data.name,
         image: data.thumbnail,
-        price: data.salePrice,
+        price: data.sellingPrice,
         regularPrice: data.regularPrice,
         quantity: 1,
       };
@@ -36,7 +36,7 @@ const ProductCard: FC<IProps> = ({ item }) => {
     }
   };
   useEffect(() => {
-    let finalPrice = item.salePrice;
+    let finalPrice = item.sellingPrice;
     if (item.box && item.box.sellingPrice) {
       finalPrice += item.box.sellingPrice;
     }
