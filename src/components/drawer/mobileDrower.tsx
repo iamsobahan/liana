@@ -3,14 +3,16 @@ import { useState } from "react";
 import Link from "next/link";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { ICategory } from "@/types/category";
+import { useAppDispatch } from "@/redux/hooks";
+import { setIsOpenCategory } from "@/redux/features/global/state";
 
 type IProps = {
   categories: ICategory[];
   isDrawerOpen: boolean;
-  setDrawerOpen: ((open: boolean) => void) 
 };
 
-const MobileDrawer = ({ isDrawerOpen, setDrawerOpen, categories }:IProps) => {
+const MobileDrawer = ({ isDrawerOpen, categories }: IProps) => {
+  const dispatch = useAppDispatch();
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [openSubCategory, setOpenSubCategory] = useState<string | null>(null);
 
@@ -22,7 +24,7 @@ const MobileDrawer = ({ isDrawerOpen, setDrawerOpen, categories }:IProps) => {
     >
       <button
         className="text-gray-800 text-right w-full px-4 py-2.5 text-lg border-b border-gray-300 font-medium"
-        onClick={() => setDrawerOpen(false)}
+        onClick={() => dispatch(setIsOpenCategory(false))}
       >
         ✕ Close
       </button>
@@ -32,7 +34,7 @@ const MobileDrawer = ({ isDrawerOpen, setDrawerOpen, categories }:IProps) => {
           <Link
             href="/"
             className="hover:text-[#D6A74E] text-sm capitalize"
-            onClick={() => setDrawerOpen(false)}
+            onClick={() => dispatch(setIsOpenCategory(false))}
           >
             HOME
           </Link>
@@ -46,7 +48,7 @@ const MobileDrawer = ({ isDrawerOpen, setDrawerOpen, categories }:IProps) => {
               <Link
                 href={`/categories/${cat.slug}`}
                 className="hover:text-[#D6A74E] text-sm capitalize"
-                onClick={() => setDrawerOpen(false)}
+                onClick={() => dispatch(setIsOpenCategory(false))}
               >
                 {cat.name}
               </Link>
@@ -81,7 +83,7 @@ const MobileDrawer = ({ isDrawerOpen, setDrawerOpen, categories }:IProps) => {
                       <Link
                         href={`/categories/${subCat.slug}`}
                         className="text-xs capitalize hover:text-[#D6A74E]"
-                        onClick={() => setDrawerOpen(false)}
+                        onClick={() => dispatch(setIsOpenCategory(false))}
                       >
                         {subCat.name}
                       </Link>
@@ -115,7 +117,9 @@ const MobileDrawer = ({ isDrawerOpen, setDrawerOpen, categories }:IProps) => {
                               <Link
                                 href={`/categories/${subSubCat.slug}`}
                                 className="hover:text-[#D6A74E] text-xs capitalize"
-                                onClick={() => setDrawerOpen(false)}
+                                onClick={() =>
+                                  dispatch(setIsOpenCategory(false))
+                                }
                               >
                                 {subSubCat.name}
                               </Link>
