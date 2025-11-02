@@ -17,6 +17,7 @@ import { removeFromCart } from "@/redux/features/cart/cartSlice";
 import { ICartItem } from "@/types/cart";
 import MobileDrawer from "../drawer/mobileDrower";
 import { useRouter } from "next/navigation";
+import { setIsOpenCategory } from "@/redux/features/global/state";
 
 type IProps = {
   categories: ICategory[];
@@ -25,8 +26,8 @@ type IProps = {
 const Header = ({ categories }: IProps) => {
   const router = useRouter();
   const { cart: cartItems } = useAppSelector((state) => state.cart);
+  const { global: globalState } = useAppSelector((state) => state);
   const dispatch = useAppDispatch();
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => setIsSticky(window.scrollY > 60);
@@ -219,7 +220,9 @@ const Header = ({ categories }: IProps) => {
 
                 {/* Drawer Toggle */}
                 <button
-                  onClick={() => setDrawerOpen(!isDrawerOpen)}
+                  onClick={() =>
+                    dispatch(setIsOpenCategory(!globalState.isOpenCategory))
+                  }
                   className="sm:hidden"
                 >
                   <HiMenu className="text-2xl text-gray-700" />
@@ -316,8 +319,7 @@ const Header = ({ categories }: IProps) => {
 
       {/* Mobile Drawer */}
       <MobileDrawer
-        isDrawerOpen={isDrawerOpen}
-        setDrawerOpen={setDrawerOpen}
+        isDrawerOpen={globalState.isOpenCategory}
         categories={categories}
       />
     </div>

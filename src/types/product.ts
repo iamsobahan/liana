@@ -26,7 +26,7 @@ export type IProduct = {
     policy?: string;
     thumbnail: string;
     regularPrice: number;
-    salePrice: number;
+    sellingPrice: number;
     flashPrice: number;
     stock: number;
     isInStock: boolean;
