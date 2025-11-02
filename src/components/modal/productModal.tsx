@@ -23,7 +23,7 @@ export default function ProductModal({
 }: ProductModalProps) {
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const safeArea = useRef<HTMLDivElement | null>(null);
-  const [price, setPrice] = useState<number>(product?.salePrice || 0);
+  const [price, setPrice] = useState<number>(product?.sellingPrice || 0);
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [sizeId, setSizeId] = useState<string>("");
   const [selectedBox, setSelectedBox] = useState<string>(
@@ -81,7 +81,7 @@ export default function ProductModal({
   }, [onClose]);
 
   useEffect(() => {
-    let finalPrice = product.salePrice;
+    let finalPrice = product.sellingPrice;
     if (selectedBox) {
       finalPrice += product.box?.sellingPrice || 0;
     }

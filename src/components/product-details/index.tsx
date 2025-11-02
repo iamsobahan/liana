@@ -28,7 +28,7 @@ export default function ProductInfo({ product }: Props) {
   const [quantity, setQuantity] = useState<number>(1);
   const [isSelectError, setIsSelectError] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [price, setPrice] = useState<number>(product.salePrice);
+  const [price, setPrice] = useState<number>(product.sellingPrice);
   const [selectedImage, setSelectedImage] = useState<string>(
     `${config.API_URL}/images/products/${product.galleryImages[0]}`
   );
@@ -81,7 +81,7 @@ export default function ProductInfo({ product }: Props) {
   };
 
   useEffect(() => {
-    let finalPrice = product.salePrice;
+    let finalPrice = product.sellingPrice;
     if (selectedBox) {
       finalPrice += product.box.sellingPrice;
     }
