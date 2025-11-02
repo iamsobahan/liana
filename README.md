@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+(The file `d:\Eliana\liana\README.md` exists, but contains only whitespace)
+## Liana — Next.js eCommerce Starter
 
-## Getting Started
+A small, opinionated Next.js storefront built with the App Router, TypeScript, Redux Toolkit, Tailwind + DaisyUI and common shopping UX patterns (cart, product pages, categories, checkout).
 
-First, run the development server:
+This README covers quick setup, available scripts, repository layout and suggestions for contributors.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Quick start
+
+Prerequisites: Node.js (18+ recommended) and npm.
+
+Install dependencies:
+
+```powershell
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the dev server (uses Next.js with Turbopack):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```powershell
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build for production:
 
-## Learn More
+```powershell
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the production server (after build):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```powershell
+npm run start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Run TypeScript check (no emit):
 
-## Deploy on Vercel
+```powershell
+npx tsc --noEmit
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Run the linter:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```powershell
+npm run lint
+```
+
+## What you'll find in this repo
+
+- Next.js (App Router) with `src/app` — pages and layout
+- TailwindCSS + DaisyUI for styling
+- Redux Toolkit in `src/redux` for global state
+- Reusable components in `src/components`
+- Example data/stubs in `src/lib/data`
+
+Top-level files of interest:
+
+- `package.json` — scripts & deps
+- `next.config.ts` — Next.js configuration
+- `tsconfig.json` — TypeScript configuration
+
+## Scripts
+
+- `dev` — start Next.js in development (Turbopack)
+- `build` — production build
+- `start` — start production server (port override: `-p 7008` in package.json)
+- `lint` — run ESLint via `next lint`
+
+## Environment variables
+
+This project doesn't include a committed `.env` file. Add a `.env.local` at the project root for runtime configuration. Typical variables you may want:
+
+- `NEXT_PUBLIC_API_URL` — public API base URL used by client-side requests
+- Any authentication or third-party keys needed by your environment
+
+Keep secrets out of git; use environment-specific configuration or a secret manager for production.
+
+## Project structure (high level)
+
+`src/`
+- `app/` — Next.js App Router pages and layouts
+- `components/` — UI components (Banner, Card, Header, Footer, etc.)
+- `lib/` — utilities and example data used across the app
+- `redux/` — Redux store, slices and hooks
+- `types/` — TypeScript model definitions
+
+Example: `src/redux/features/global/state.ts` contains a small `createSlice` for global UI flags (search modal, category drawer).
+
+## Redux notes
+
+- This project uses Redux Toolkit (`@reduxjs/toolkit`) + React-Redux. Keep slices small and selectors co-located when possible.
+- Suggestion: export slice state types (e.g. `GlobalState`) and selectors to improve typing across the app and enable typed `useSelector` usage with your `RootState`.
+
+## Contributing
+
+- Fork and open a PR for fixes or features
+- Keep commits focused and include tests where appropriate
+- Run `npx tsc --noEmit` and `npm run lint` before opening a PR
+
+## Deployment
+
+This app is designed to deploy to Vercel (default for Next.js). Configure environment variables in Vercel dashboard and set the build command to `npm run build`.
+
+## Troubleshooting
+
+- If you hit runtime type errors, run `npx tsc --noEmit` to find type issues
+- If a page fails to build, examine `next build` output. For environment-sensitive failures, check `.env.local` variables.
+
+## License
+
+This repository doesn't include a license file by default. If you want to open-source this project, add a `LICENSE` file (for example, MIT) and mention it here.
+
+## Contact
+
+If you want me to: export commonly-used types, add selectors for the Redux slices, or prepare a Vercel deployment guide with example env variables — tell me which and I'll add them.
+
+
+---
+Generated README: concise setup, scripts, structure, and next steps for the project.
+
+
